@@ -1,0 +1,16 @@
+{
+  "presets": [
+    [
+      "env", {
+        "targets": {
+          "browsers": "Chrome 60"
+        }
+      }
+    ],
+    "react"
+  ],
+  "plugins": [
+    "transform-class-properties",
+    "transform-object-rest-spread"
+  ]
+}
