@@ -8,7 +8,7 @@
     "copy": "rm -rf ../server/public && cp -R ./docs ../server/public",
     "start": "webpack-dev-server --hot --mode development --open",
     "lint": "eslint .",
-    "pretest": "npm run lint",
+    "//pretest": "npm run lint",
     "jest": "jest",
     "test": "npm run jest",
     "test:watch": "npm run jest -- --watch"
