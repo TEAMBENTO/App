@@ -79,7 +79,7 @@ class SearchBar extends React.Component {
                 <div className="Demo__search-input-container">
                   <input
                     {...getInputProps({
-                      placeholder: 'Search Places...',
+                      placeholder: 'Location',
                       className: 'Demo__search-input',
                     })}
                   />
@@ -88,7 +88,7 @@ class SearchBar extends React.Component {
                       className="Demo__clear-button"
                       onClick={this.handleCloseClick}
                     >
-                      x
+                      Reset
                     </button>
                   )}
                 </div>
