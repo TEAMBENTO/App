@@ -22,7 +22,7 @@ class Groups extends Component {
 
     return (
       <div>
-        {groups.map(group => <h1 key={group._id}>{group.teamName}</h1>)}
+        {groups.map(group => <GroupThumbnail key={group._id} group={group}/>)}
       </div>
     );
   }
