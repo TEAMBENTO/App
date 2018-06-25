@@ -61,6 +61,7 @@
   },
   "dependencies": {
     "@mdi/font": "^2.4.85",
+    "google-maps-react": "^2.0.2",
     "jsonwebtoken-promisified": "^1.0.3",
     "mdi-react": "^3.4.0",
     "prop-types": "^15.6.1",
