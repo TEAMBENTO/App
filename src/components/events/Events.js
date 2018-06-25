@@ -16,8 +16,8 @@ export default class Events extends Component {
   render() {
     return (
       <div>
-        {/* <MapContainer defaultCoords={this.state.portland} /> */}
-        <Autocomplete />
+        <Autocomplete/>
+        <MapContainer defaultCoords={this.state.portland} />
       </div>
     );
   } 
