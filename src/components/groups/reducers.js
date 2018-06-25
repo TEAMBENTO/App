@@ -2,6 +2,7 @@ export const GROUPS_LOAD = 'GROUPS_LOAD';
 export const GROUP_ADD = 'GROUP_ADD';
 export const GROUP_UPDATE = 'GROUP_UPDATE';
 
+export const getGroups = state => state.groups;
 
 export function groups(state = [], { type, payload }) {
   switch(type) {
