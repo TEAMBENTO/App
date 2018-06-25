@@ -9,22 +9,49 @@ export class MapContainer extends Component {
     defaultCoords: PropTypes.object
   };
 
+  state = {
+    showingInfoWindow: false,
+    activeMarker: {},
+    selectedPlace: {},
+  };
 
-  render() {
-    return (
-      <Map google={this.props.google} zoom={14} initialCenter={this.props.defaultCoords}>
+  onMarkerClick = (props, marker, e) =>
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    });
+
+    onMapClicked = (props) => {
+      if(this.state.showingInfoWindow) {
+        this.setState({
+          showingInfoWindow: false,
+          activeMarker: null
+        });
+      }
+    };
+
+
+    render() {
+      return (
+        <Map google={this.props.google} zoom={14} initialCenter={this.props.defaultCoords}>
  
-        <Marker onClick={this.onMarkerClick}
-          name={'Current location'} />
+          <Marker
+            onClick={this.onMarkerClick}
+            title={'The marker`s title will appear as a tooltip.'}
+            name={'Colonel Summers Park'}
+            position={{  lat: 45.5155, lng: -122.6467  }} />
  
-        <InfoWindow onClose={this.onInfoWindowClose}>
-          <div>
-            {/* <h1>{this.state.selectedPlace.name}</h1> */}
-          </div>
-        </InfoWindow>
-      </Map>
-    );
-  }
+          <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}>
+            <div>
+              <h1>{this.state.selectedPlace.name}</h1>
+            </div>
+          </InfoWindow>
+        </Map>
+      );
+    }
 }
  
 export default GoogleApiWrapper({
