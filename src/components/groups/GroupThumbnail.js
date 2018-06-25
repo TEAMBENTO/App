@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 class GroupThumbnail extends Component {
 
   static propTypes = {
-    group: PropTypes.object.isRequired
+    image: PropTypes.string.isRequired,
+    teamName: PropTypes.string.isRequired
   };
 
   render() {
-    const { teamName, image } = this.props.group;
+    const { teamName, image } = this.props;
 
     return (
       <div>
