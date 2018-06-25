@@ -12,7 +12,7 @@ class Profile extends Component {
     };
 
     componentDidMount() {
-      this.props.loadProfile('5b31259eba0af104a4a0b275');
+      this.props.loadProfile();
     }
 
     render() {
