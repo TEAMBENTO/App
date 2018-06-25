@@ -1,6 +1,7 @@
 import {
   groups,
-  GROUPS_LOAD
+  GROUPS_LOAD,
+  GROUP_ADD
 } from './reducers';
 
 
@@ -21,5 +22,19 @@ describe('Groups Reducer', () => {
 
     expect(state).toEqual(data);
   });
+
+  it('adds a new group', () => {
+    const data = { type: 'running', teamName: 'RUNNERS!', description: 'We like to run', private: false };
+    const newData = { type: 'running', teamName: 'RUNNERS!', description: 'We like to run', private: false };
+
+    const state = groups([data], {
+      type: GROUP_ADD,
+      payload: newData
+    });
+
+    expect(state).toEqual([data, newData]);
+  });
+
+
 
 });
