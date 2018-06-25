@@ -6,8 +6,8 @@ import About from '../about/About';
 import Nav from '../nav/Nav';
 // import { connect } from 'react-redux';
 import styles from './App.css';
-import Error from './Error';
-import Loading from './Loading';
+// import Error from './Error';
+// import Loading from './Loading';
 
 
 class App extends PureComponent {
