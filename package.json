@@ -1,7 +1,6 @@
 {
   "name": "app",
   "version": "1.0.0",
-  "description": "",
   "main": ".enzyme.setup.js",
   "scripts": {
     "build:prod": "npm run build && npm run copy",
@@ -71,5 +70,11 @@
     "react-router-dom": "^4.2.2",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0"
-  }
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "keywords": [],
+  "author": "",
+  "description": ""
 }
