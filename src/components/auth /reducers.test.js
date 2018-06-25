@@ -7,6 +7,12 @@ describe('user reducer', () => {
     expect(state).toBe(null);
   });
 
+  it('loads user', () => {
+    const data = { name: 'user' };
+    const state = user(null, { type: USER_AUTH, payload: data });
+    expect(state).toEqual(data);
+  });
+
 
 });
 
