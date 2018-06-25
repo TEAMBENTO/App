@@ -25,11 +25,11 @@ class Nav extends Component {
     return (
       <nav className={styles.nav}>
         <ul>
-          <li><NavLink exact to="/" activeClassName="current">Home</NavLink></li>
-          <li><NavLink to="/about" activeClassName="current">About</NavLink></li>
-          <li><NavLink to="/profile" activeClassName="current">Profile</NavLink></li>
-          <li><NavLink to="/events" activeClassName="current">Events</NavLink></li>
-          <li><NavLink to="/groups" activeClassName="current">Groups</NavLink></li>
+          <li><NavLink exact to="/" >Home</NavLink></li>
+          <li><NavLink to="/about" >About</NavLink></li>
+          <li><NavLink to="/profile" >Profile</NavLink></li>
+          <li><NavLink to="/events" >Events</NavLink></li>
+          <li><NavLink to="/groups" >Groups</NavLink></li>
           {/* {
             user
               ? <li><NavLink to="/" onClick={this.handleLogout}>Logout</NavLink></li>
