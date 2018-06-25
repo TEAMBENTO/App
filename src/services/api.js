@@ -7,6 +7,8 @@ const URL = '/api';
 // const EVENTS_URL = `${URL}/events`;
 const AUTH_URL = `${URL}/auth`;
 
+export const getAllGroups = () => get(GROUPS_URL);
+export const postGroup = group => post(GROUPS_URL, group);
 export const signin = credentials => post(`${AUTH_URL}/signin`, credentials);
 export const signup = credentials => post(`${AUTH_URL}/signup`, credentials);
 
