@@ -11,6 +11,7 @@ import About from '../about/About';
 import Nav from '../nav/Nav';
 import Profile from '../profile/Profile';
 import Groups from '../groups/Groups';
+import Events from '../events/Events';
 import styles from './App.css';
 // import Error from './Error';
 // import Loading from './Loading';
@@ -56,8 +57,8 @@ class App extends PureComponent {
               <Route path="/about" component={About}/>
               <Route exact path="/profile" component={Profile}/>          
               <Route path="/auth" component={Auth}/>
-              {/* <Route exact path="/events" component={Events}/>
-              */}
+              <Route exact path="/events" component={Events}/>
+             
               <Route exact path="/groups" component={Groups}/>
               <Redirect to="/"/>
             </Switch>
