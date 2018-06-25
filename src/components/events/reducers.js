@@ -12,6 +12,9 @@ export function events(state = [], { type, payload }) {
     case EVENT_ADD: {
       return [...state, payload];
     }
+    case EVENT_UPDATE: {
+      return state.map(event => event._id === payload._id ? payload : event);
+    }
     default:
       return state;
   }

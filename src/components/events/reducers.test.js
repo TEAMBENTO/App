@@ -53,4 +53,33 @@ describe('events reducer', () => {
 
     expect(state).toEqual([data, data2]);
   });
+
+  it('updates an event', () => {
+    const state = events(
+      [{ _id: 123,
+        type: 'soccer',
+        location: 'Portland',
+        description: 'were gonna play futball2',
+        teamName: 'sneaky sneks2',
+        private: 'false' }],
+      {
+        type: EVENT_UPDATE,
+        payload: { _id: 123,
+          type: 'basketball',
+          location: 'Portland',
+          description: 'were gonna play basketball',
+          teamName: 'sneaky sneks2',
+          private: 'false' } 
+      });
+    expect(state).toEqual([{ 
+      _id: 123,
+      type: 'basketball',
+      location: 'Portland',
+      description: 'were gonna play basketball',
+      teamName: 'sneaky sneks2',
+      private: 'false' } 
+    ]);
+  });
+
+
 });
