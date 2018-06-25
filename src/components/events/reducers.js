@@ -6,6 +6,12 @@ export const getEvents = state => state.events;
 
 export function events(state = [], { type, payload }) {
   switch(type) {
+    case EVENTS_LOAD: {
+      return payload;
+    }
+    case EVENT_ADD: {
+      return [...state, payload];
+    }
     default:
       return state;
   }
