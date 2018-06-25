@@ -1,10 +1,11 @@
 jest.mock('../../services/api', () => ({
-  getAllGroups: jest.fn()
+  getAllGroups: jest.fn(),
+  postGroup: jest.fn()
 }));
 
-import { loadGroups } from './actions';
-import { GROUPS_LOAD } from './reducers';
-import { getAllGroups } from '../../services/api';
+import { loadGroups, addGroup } from './actions';
+import { GROUPS_LOAD, GROUP_ADD } from './reducers';
+import { getAllGroups, postGroup } from '../../services/api';
 
 describe('loads groups', () => {
 
@@ -18,4 +19,13 @@ describe('loads groups', () => {
     expect(payload).toBe(promise);
   });
 
+  it('adds a group', () => {
+    const promise = Promise.resolve();
+    postGroup.mockReturnValueOnce(promise);
+
+    const { type, payload } = addGroup(promise);
+    expect(type).toBe(GROUP_ADD);
+    expect(postGroup.mock.calls.length).toBe(1);
+    expect(payload).toBe(promise);
+  });
 });
