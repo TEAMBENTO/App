@@ -8,3 +8,4 @@ const EVENTS_URL = `${URL}/events`;
 const AUTH_URL = `${URL}/auth`;
 
 export const getProfileById = id => get(`${PROFILES_URL}/${id}`);
+export const postProfile = profile => post(PROFILES_URL, profile);
