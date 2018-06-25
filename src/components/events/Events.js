@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MapContainer from './MapContainer';
+import Autocomplete from './Autocomplete';
 
 
 
@@ -15,7 +16,8 @@ export default class Events extends Component {
   render() {
     return (
       <div>
-        <MapContainer defaultCoords={this.state.portland} />
+        {/* <MapContainer defaultCoords={this.state.portland} /> */}
+        <Autocomplete />
       </div>
     );
   } 
