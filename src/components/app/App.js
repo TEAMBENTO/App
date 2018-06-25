@@ -9,6 +9,7 @@ import Home from '../home/Home';
 import Auth from '../auth/Auth';
 import About from '../about/About';
 import Nav from '../nav/Nav';
+import Profile from '../profile/Profile';
 import Groups from '../groups/Groups';
 import styles from './App.css';
 // import Error from './Error';
@@ -53,9 +54,10 @@ class App extends PureComponent {
             <Switch>
               <Route exact path="/" component={Home}/>
               <Route path="/about" component={About}/>
+              <Route exact path="/profile" component={Profile}/>          
               <Route path="/auth" component={Auth}/>
               {/* <Route exact path="/events" component={Events}/>
-              <Route exact path="/profile" component={Profile}/> */}
+              */}
               <Route exact path="/groups" component={Groups}/>
               <Redirect to="/"/>
             </Switch>
