@@ -1,4 +1,3 @@
-
 import store from '../store/store';
 import { getUser } from '../components/auth/reducers';
 
