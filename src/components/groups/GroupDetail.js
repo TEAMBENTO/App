@@ -12,13 +12,14 @@ class GroupDetail extends Component {
   };
 
   static propTypes = {
-    group: PropTypes.object,
     match: PropTypes.object,
     loadGroup: PropTypes.func.isRequired,
+    group: PropTypes.object,
     updateGroup: PropTypes.func.isRequired
   };
 
   componentDidMount() {
+    console.log('ID!!!!!!!', this.props.match.params.id);
     this.props.loadGroup(this.props.match.params.id);
   }
 
@@ -38,11 +39,13 @@ class GroupDetail extends Component {
 
   render() {
     const { editing } = this.state;
-    const { group } = this.prop;
+    const { group } = this.props;
     const { teamName, image, description } = group;
+
 
     return (
       <div>
+        <h1> I am here!</h1>
         <h1>{teamName}</h1>
         <img src={image}/>
         <p>{description}</p>
