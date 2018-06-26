@@ -8,6 +8,7 @@ const GROUPS_URL = `${URL}/groups`;
 const AUTH_URL = `${URL}/auth`;
 
 export const putProfile = profile => put(`${PROFILES_URL}/${profile._id}`, profile);
+export const getAllProfiles = () => get(`${PROFILES_URL}`);
 export const getProfileById = id => get(`${PROFILES_URL}/${id}`);
 export const postProfile = profile => post(PROFILES_URL, profile);
 export const getAllGroups = () => get(GROUPS_URL);

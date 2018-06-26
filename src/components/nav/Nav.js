@@ -27,7 +27,8 @@ class Nav extends Component {
         <ul>
           <li><NavLink exact to="/" >Home</NavLink></li>
           <li><NavLink to="/about" >About</NavLink></li>
-          <li><NavLink to="/profile" >Profile</NavLink></li>
+          <li><NavLink to="/profile/:id" >Profile</NavLink></li>
+          <li><NavLink to="/profiles" >Profiles</NavLink></li>
           <li><NavLink to="/events" >Events</NavLink></li>
           <li><NavLink to="/groups" >Groups</NavLink></li>
           {

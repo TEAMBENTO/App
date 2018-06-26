@@ -3,17 +3,21 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getProfile } from './reducers';
 import { loadProfile } from './actions';
+import { getUser } from '../auth/reducers';
 import { Link } from 'react-router-dom';
 
 class Profile extends Component {
 
     static propTypes = {
+      user: PropTypes.object,
+      match: PropTypes.object,
       loadProfile: PropTypes.func.isRequired,
       profile: PropTypes.object
     };
 
     componentDidMount() {
-      this.props.loadProfile('5b3177d2eff9351db09ab4be');
+      console.log('PROFILE', this.props.user);
+      this.props.loadProfile(this.props.profile._id);
     }
 
     render() {
@@ -40,7 +44,10 @@ class Profile extends Component {
 }
 
 export default connect(
-  state => ({ profile: getProfile(state) }),
+  state => ({ 
+    user: getUser(state),
+    profile: getProfile(state) 
+  }),
   { loadProfile }
 )(Profile);
 

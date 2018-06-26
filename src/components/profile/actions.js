@@ -1,5 +1,6 @@
 import {
   PROFILE_LOAD,
+  PROFILES_LOAD,
   PROFILE_ADD,
   PROFILE_UPDATE
 } from './reducers';
@@ -7,13 +8,21 @@ import {
 import {
   getProfileById,
   postProfile,
-  putProfile
+  putProfile,
+  getAllProfiles
 } from '../../services/api';
 
 export function loadProfile(id) {
   return {
     type: PROFILE_LOAD,
     payload: getProfileById(id)
+  };
+}
+
+export function loadProfiles() {
+  return {
+    type: PROFILES_LOAD,
+    payload: getAllProfiles()
   };
 }
 
