@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addGroup } from './actions';
-import { getGroups } from './reducers';
+import { getGroup } from './reducers';
 
 const defaultState = {
   teamName: '',
@@ -72,6 +72,6 @@ class GroupForm extends Component {
 }
 
 export default connect(
-  state => ({ group: getGroups(state) }),
+  state => ({ group: getGroup(state) }),
   { addGroup }
 )(GroupForm);
