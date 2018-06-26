@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getGroup } from './reducers';
-import { loadGroup } from './actions';
+import { loadGroup, updateGroup } from './actions';
 import { GroupForm } from './GroupForm';
 
 class GroupDetail extends Component {
@@ -14,11 +14,11 @@ class GroupDetail extends Component {
   static propTypes = {
     group: PropTypes.object,
     match: PropTypes.object,
-    loadGroup: PropTypes.func.isRequired
+    loadGroup: PropTypes.func.isRequired,
+    updateGroup: PropTypes.func.isRequired
   };
 
   componentDidMount() {
-    console.log(this.props.match.params.id);
     this.props.loadGroup(this.props.match.params.id);
   }
 
@@ -31,7 +31,7 @@ class GroupDetail extends Component {
   };
 
   handleUpdate = data => {
-    this.props.onUpdate(data);
+    this.props.updateGroup(data);
     this.setState({ editing: false });
   };
   
@@ -66,5 +66,5 @@ export default connect(
   state => ({ 
     group: getGroup(state)
   }),
-  { loadGroup }
+  { loadGroup, updateGroup }
 )(GroupDetail);
