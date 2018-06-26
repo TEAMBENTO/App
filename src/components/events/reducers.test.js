@@ -2,10 +2,28 @@ import {
   events,
   EVENTS_LOAD,
   EVENT_ADD,
-  EVENT_UPDATE
+  EVENT_UPDATE,
+  EVENT_REMOVE
 } from './reducers';
 
 describe('events reducer', () => {
+
+  const sneks = { _id: 123,
+    type: 'soccer',
+    location: 'Portland',
+    description: 'were gonna play futball2',
+    teamName: 'sneaky sneks2',
+    private: 'false'
+  };
+
+  const footballSneks = {
+    _id: 234,
+    type: 'basketball',
+    location: 'Portland',
+    description: 'were gonna play basketball',
+    teamName: 'sneaky sneks2',
+    private: 'false'
+  };
 
   it('returns empty array for inital state', () => {
     const state = events(undefined, {});
@@ -79,6 +97,11 @@ describe('events reducer', () => {
       teamName: 'sneaky sneks2',
       private: 'false' } 
     ]);
+  });
+
+  it('removes an event', () => {
+    const state = events([sneks, footballSneks], { type: EVENT_REMOVE, payload: sneks });
+    expect(state).toEqual([footballSneks]);
   });
 
 
