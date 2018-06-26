@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { signin, signup } from './actions';
 // import { addProfile } from '../profile/actions';
 import { getUser } from './reducers';
+import { getProfile } from '../profile/reducers';
 import Credentials from './Credentials';
 import styles from './Auth.css';
 
@@ -15,12 +16,13 @@ class Auth extends PureComponent {
     signin: PropTypes.func.isRequired,
     signup: PropTypes.func.isRequired,
     // addProfile: PropTypes.func.isRequired,
-    location: PropTypes.object
+    location: PropTypes.object,
+    profile: PropTypes.object
   };
 
   render() {
-    const { user, signin, signup, location } = this.props;
-    const redirect = location.state ? location.state.from : '/profile/:id';
+    const { user, signin, signup, location, profile } = this.props;
+    const redirect = location.state ? location.state.from : `/profile/${profile._id}`; //we need profile.id to redirect to profile.
 
     if(user) return <Redirect to={redirect}/>;
     
@@ -48,7 +50,9 @@ class Auth extends PureComponent {
 
 export default connect(
   state => ({ 
-    user: getUser(state) 
+    user: getUser(state),
+    profile: getProfile(state) 
   }),
   { signup, signin }
 )(Auth);
+
