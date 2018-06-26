@@ -54,6 +54,7 @@ class GroupDetail extends Component {
         <img src={image}/>
         <p>{description}</p>
         {editing || <button onClick={this.handleEdit}>✐</button>}
+        <button onClick={() => onRemove(group)}>X</button>
         {editing && 
           <div>
             <GroupForm
