@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getGroup } from './reducers';
 import { loadGroup, updateGroup, removeGroup } from './actions';
@@ -51,7 +52,9 @@ class GroupDetail extends Component {
         <img src={image}/>
         <p>{description}</p>
         {editing || <button onClick={this.handleEdit}>✐</button>}
-        <button onClick={() => removeGroup(group._id)}>X</button>
+        <Link to={'/groups'}>
+          <button onClick={() => removeGroup(group._id)}>X</button>
+        </Link>
         {editing && 
           <div>
             <GroupForm
