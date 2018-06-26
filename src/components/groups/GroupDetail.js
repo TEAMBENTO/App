@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getGroup } from './reducers';
-import { loadGroup, updateGroup } from './actions';
+import { loadGroup, updateGroup, removeGroup } from './actions';
 import GroupForm from './GroupForm';
 
 class GroupDetail extends Component {
@@ -15,7 +15,8 @@ class GroupDetail extends Component {
     match: PropTypes.object,
     loadGroup: PropTypes.func,
     group: PropTypes.object,
-    updateGroup: PropTypes.func
+    updateGroup: PropTypes.func,
+    removeGroup: PropTypes.func,
   };
 
   componentDidMount() {
@@ -23,7 +24,6 @@ class GroupDetail extends Component {
   }
 
   handleEdit = () => {
-    console.log('I MADE IT!');
     this.setState({ editing: true });
   };
 
@@ -32,10 +32,7 @@ class GroupDetail extends Component {
   };
 
   handleUpdate = data => {
-    this.props.updateGroup(data)
-      .then(res => {
-        console.log('RES!!!', res);
-      });
+    this.props.updateGroup(data);
     this.setState({ editing: false });
   };
   
@@ -54,7 +51,7 @@ class GroupDetail extends Component {
         <img src={image}/>
         <p>{description}</p>
         {editing || <button onClick={this.handleEdit}>✐</button>}
-        <button onClick={() => onRemove(group)}>X</button>
+        <button onClick={() => removeGroup(group._id)}>X</button>
         {editing && 
           <div>
             <GroupForm
@@ -74,5 +71,5 @@ export default connect(
   state => ({ 
     group: getGroup(state)
   }),
-  { loadGroup, updateGroup }
+  { loadGroup, updateGroup, removeGroup }
 )(GroupDetail);
