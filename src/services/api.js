@@ -4,7 +4,7 @@ import { get, post } from './request';
 const URL = '/api';
 const PROFILES_URL = `${URL}/profiles`;
 const GROUPS_URL = `${URL}/groups`;
-// const EVENTS_URL = `${URL}/events`;
+const EVENTS_URL = `${URL}/events`;
 const AUTH_URL = `${URL}/auth`;
 
 
@@ -13,6 +13,9 @@ export const postProfile = profile => post(PROFILES_URL, profile);
 export const getAllGroups = () => get(GROUPS_URL);
 export const getGroupById = id => get(`${GROUPS_URL}/${id}`);
 export const postGroup = group => post(GROUPS_URL, group);
+export const getAllEvents = () => get(EVENTS_URL);
+export const getEventById = id => get(`${EVENTS_URL}/${id}`);
+export const postEvent = event => post(EVENTS_URL, event);
 export const signin = credentials => post(`${AUTH_URL}/signin`, credentials);
 export const signup = credentials => post(`${AUTH_URL}/signup`, credentials);
 
