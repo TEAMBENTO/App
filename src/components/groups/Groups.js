@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loadGroups } from './actions';
 import { getGroups } from './reducers';
@@ -22,7 +23,9 @@ class Groups extends Component {
 
     return (
       <div>
-        {groups.map(group => <h1 key={group._id}>{group.name}</h1>)}
+        {groups.map(group => <Link key={group._id} to={`/groups/${group._id}`}> 
+          <GroupThumbnail {...group}/>
+        </Link>)}
       </div>
     );
   }

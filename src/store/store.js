@@ -4,13 +4,14 @@ import promiseMiddleware from './promise-middleware';
 import { user, checkedAuth } from '../components/auth/reducers';
 import { error, loading } from '../components/app/reducers';
 import { profile } from '../components/profile/reducers';
-import { groups } from '../components/groups/reducers';
+import { groups, group } from '../components/groups/reducers';
 
 const rootReducer = combineReducers({
   error,
   loading,
   profile,
   groups,
+  group,
   user,
   checkedAuth
 });
