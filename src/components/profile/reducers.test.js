@@ -32,7 +32,6 @@ describe('Profile reducers', () => {
   });
 
   it('Loads a Profile', () => {
-
     const state = profile({}, { type: PROFILE_LOAD, payload: data1 });
     expect(state).toEqual(data1);
   });
