@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addEvent } from './actions';
 import { getEvents } from './reducers';
+import { getUser } from '../auth/reducers';
 
 const defaultState = {
   eventName: '',
@@ -16,7 +17,8 @@ const defaultState = {
 class AddEvent extends Component {
 
   static propTypes = {
-    addEvent: PropTypes.func.isRequired
+    addEvent: PropTypes.func.isRequired,
+    user: PropTypes.object
   };
 
   state = {
@@ -34,10 +36,25 @@ class AddEvent extends Component {
     });
   };
 
+
   handleSubmit = event => {
-    const { addEvent } = this.props;
     event.preventDefault();
-    addEvent(this.state.form);
+    this.structureEventData(this.state.form);
+  };
+
+  structureEventData = formData => {
+    const structuredData = {
+      name: formData.eventName,
+      description: formData.description,
+      type: formData.type,
+      location: formData.location,
+      time: {
+        start: new Date(formData.timeStart),
+        end: new Date(formData.timeEnd)
+      },
+      host: this.props.user._id // change to profile ID
+    };
+    this.props.addEvent(structuredData);
   };
 
   render() {
@@ -68,6 +85,9 @@ class AddEvent extends Component {
 }
 
 export default connect(
-  state => ({ event: getEvents(state) }),
+  state => ({ 
+    event: getEvents(state),
+    user: getUser(state)
+  }),
   { addEvent }
 )(AddEvent);
