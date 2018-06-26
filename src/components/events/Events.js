@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { loadEvents } from './actions';
+import { getEvents } from './reducers';
 import MapContainer from './MapContainer';
 import Autocomplete from './Autocomplete';
 
 
+class Events extends Component {
 
-export default class Events extends Component {
+  static propTypes = {
+    loadEvents: PropTypes.func.isRequired,
+    events: PropTypes.array
+  };
+
+  componentDidMount() {
+    this.props.loadEvents();
+  }
 
   state = {
     portland: {
@@ -14,6 +26,10 @@ export default class Events extends Component {
   };
 
   render() {
+    const { events } = this.props;
+
+    console.log('EVENTS', events);
+
     return (
       <div>
         <Autocomplete/>
@@ -22,3 +38,8 @@ export default class Events extends Component {
     );
   } 
 }
+
+export default connect(
+  state => ({ events: getEvents(state) }),
+  { loadEvents }
+)(Events);
