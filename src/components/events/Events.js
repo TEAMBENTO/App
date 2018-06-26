@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import EventsList from './EventsList';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loadEvents } from './actions';
@@ -27,13 +28,15 @@ class Events extends Component {
 
   render() {
     const { events } = this.props;
+    if(!events) return null;
 
     console.log('EVENTS', events);
 
     return (
       <div>
+        <EventsList events={events} />
         <Autocomplete/>
-        <MapContainer defaultCoords={this.state.portland} />
+        <MapContainer defaultCoords={this.state.portland} events={events}/>
       </div>
     );
   } 
