@@ -1,9 +1,11 @@
 import {
   events,
+  event,
   EVENTS_LOAD,
   EVENT_ADD,
   EVENT_UPDATE,
-  EVENT_REMOVE
+  EVENT_REMOVE,
+  EVENT_LOAD
 } from './reducers';
 
 describe('events reducer', () => {
@@ -104,5 +106,24 @@ describe('events reducer', () => {
     expect(state).toEqual([footballSneks]);
   });
 
+});
+
+describe('event reducer', () => {
+
+  it('returns empty object for inital state', () => {
+    const state = event(undefined, {});
+    expect(state).toEqual({});
+  });
+
+  it('loads a singular event', () => {
+    const data = { type: 'something' };
+
+    const state = event({}, {
+      type: EVENT_LOAD,
+      payload: data
+    });
+
+    expect(state).toEqual(data);
+  });
 
 });

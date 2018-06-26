@@ -2,6 +2,7 @@ export const EVENTS_LOAD = 'EVENTS_LOAD';
 export const EVENT_ADD = 'EVENT_ADD';
 export const EVENT_UPDATE = 'EVENT_UPDATE';
 export const EVENT_REMOVE = 'EVENT_REMOVE';
+export const EVENT_LOAD = 'EVENT_LOAD';
 
 export const getEvents = state => state.events;
 
@@ -18,6 +19,16 @@ export function events(state = [], { type, payload }) {
     }
     case EVENT_REMOVE: {
       return state.filter(event => event !== payload);
+    }
+    default:
+      return state;
+  }
+}
+
+export function event(state = {}, { type, payload }) {
+  switch(type) {
+    case EVENT_LOAD: {
+      return payload;
     }
     default:
       return state;
