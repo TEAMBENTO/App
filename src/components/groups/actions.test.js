@@ -41,4 +41,4 @@ describe('loads a group', () => {
     expect(getGroupById.mock.calls.length).toBe(1);
     expect(payload).toBe(promise);
   });
-})
+});
