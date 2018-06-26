@@ -12,7 +12,6 @@ const defaultState = {
 class GroupForm extends Component {
 
   static propTypes = {
-    addGroup: PropTypes.func.isRequired,
     label: PropTypes.string.isRequired,
     onComplete: PropTypes.func.isRequired,
     onCancel: PropTypes.func
