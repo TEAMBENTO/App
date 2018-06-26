@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getGroup } from './reducers';
 import { loadGroup, updateGroup } from './actions';
-import { GroupForm } from './GroupForm';
+import GroupForm from './GroupForm';
 
 class GroupDetail extends Component {
 
