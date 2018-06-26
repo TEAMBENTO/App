@@ -5,8 +5,8 @@ jest.mock('../../services/api', () => ({
 }));
 
 
-import { EVENTS_LOAD, EVENTS_ADD, EVENT_UPDATE, EVENT_REMOVE } from './reducers';
-import { loadEvents } from './actions';
+import { EVENTS_LOAD, EVENT_ADD, EVENT_UPDATE, EVENT_REMOVE } from './reducers';
+import { loadEvents, addEvent } from './actions';
 import { getAllEvents, postEvent, getEventById } from '../../services/api';
 
 describe('events actions', () => {
@@ -20,5 +20,16 @@ describe('events actions', () => {
     expect(getAllEvents.mock.calls.length).toBe(1);
     expect(payload).toBe(promise);
   });
-})
+  
+  it('adds event', () => {
+    const promise = Promise.resolve();
+    postEvent.mockReturnValueOnce(promise);
+
+    const { type, payload } = addEvent();
+    expect(type).toBe(EVENT_ADD);
+    expect(getAllEvents.mock.calls.length).toBe(1);
+    expect(payload).toBe(promise);
+  });
+  
+});
 
