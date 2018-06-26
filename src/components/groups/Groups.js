@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { loadGroups } from './actions';
 import { getGroups } from './reducers';
 import GroupThumbnail from './GroupThumbnail';
+import GroupForm from './GroupForm';
 
 class Groups extends Component {
 
@@ -23,6 +24,7 @@ class Groups extends Component {
 
     return (
       <div>
+        <GroupForm/>
         {groups.map(group => <Link key={group._id} to={`/groups/${group._id}`}> 
           <GroupThumbnail {...group}/>
         </Link>)}
