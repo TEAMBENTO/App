@@ -9,7 +9,7 @@ const defaultState = {
   description: '',
   type: '',
   image: '',
-  private: '',
+  private: false,
 };
 
 class GroupForm extends Component {
@@ -35,7 +35,8 @@ class GroupForm extends Component {
       return {
         edit: {
           ...edit,
-          [target.placeholder]: target.value
+          [target.name]: target.value,
+          private: target.checked ? true : false
         }
       };
     });
@@ -50,18 +51,18 @@ class GroupForm extends Component {
   };
 
   render() {
-    const { teamName, description, type, image } = this.state;
+    const { teamName, description, type, image } = this.state.edit;
 
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <input placeholder="teamName" value={teamName} onChange={this.handleChange}/>
-          <input placeholder="type" value={type} onChange={this.handleChange}/>
-          <input placeholder="image" value={image} onChange={this.handleChange}/>
-          <textarea placeholder="description" value={description} onChange={this.handleChange}/>
+          <input name="teamName" placeholder="Name" value={teamName} onChange={this.handleChange}/>
+          <input name="type" placeholder="Activity" value={type} onChange={this.handleChange}/>
+          <input name="image" placeholder="Image" value={image} onChange={this.handleChange}/>
+          <textarea name="description" placeholder="Description" value={description} onChange={this.handleChange}/>
           <label>
             Private
-            <input type="checkbox" placeholder="private" value={this.state.private} onChange={this.handleChange}/>
+            <input name="private" type="checkbox" onChange={this.handleChange}/>
           </label>
           <button type="submit">Add Group</button>
         </form>
