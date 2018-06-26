@@ -8,10 +8,10 @@ export function loadEvents() {
   };
 }
 
-export function addEvent() {
+export function addEvent(event) {
   return {
     type: EVENT_ADD,
-    payload: postEvent()
+    payload: postEvent(event)
   };
 }
 
