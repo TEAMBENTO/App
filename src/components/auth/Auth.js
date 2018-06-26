@@ -24,7 +24,7 @@ class Auth extends PureComponent {
     const { user, signin, signup, location, profile } = this.props;
     const redirect = location.state ? location.state.from : `/profile/${profile._id}`; //we need profile.id to redirect to profile.
 
-    if(user) return <Redirect to={redirect}/>;
+    if(user && profile) return <Redirect to={redirect}/>;
     
     return (
       <section className={styles.auth}>

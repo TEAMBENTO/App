@@ -16,10 +16,6 @@ class Profile extends Component {
     };
 
     componentDidMount() {
-      //if there is a profile in here that matches user ids then load that profile.
-      //load profiles. then pass that id into load profiles singular. then load that profile.
-      // if(user === user._id) 
-      // console.log('PROFILE', this.props.user);
       console.log('PROFILE', this.props.user);
       this.props.loadProfile(this.props.match.params.id);
 

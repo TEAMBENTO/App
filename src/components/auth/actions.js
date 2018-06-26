@@ -13,7 +13,8 @@ const makeAuth = api => credentials => ({
 });
 
 export const signup = makeAuth(signupApi);
-export const signin = makeAuth(signinApi); 
+export const signin = makeAuth(signinApi);
+
 export const logout = () => ({ type: LOGOUT });
 
 const authChecked = () => ({ type: CHECKED_AUTH });
