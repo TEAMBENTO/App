@@ -1,6 +1,7 @@
 
 export const PROFILE_LOAD = 'PROFILE_LOAD';
 export const PROFILES_LOAD = 'PROFILES_LOAD';
+export const PROFILE_ADD = 'PROFILES_ADD';
 
 export const getProfile = state => state.profile;
 
@@ -19,6 +20,8 @@ export function profiles(state = [], { type, payload }) {
     case PROFILES_LOAD: {
       return payload;
     }
+    case PROFILE_ADD:
+      return [...state, payload];
     default:
       return state;
   }
