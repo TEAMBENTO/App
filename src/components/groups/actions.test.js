@@ -2,12 +2,13 @@ jest.mock('../../services/api', () => ({
   getAllGroups: jest.fn(),
   postGroup: jest.fn(),
   getGroupById: jest.fn(),
-  putGroup: jest.fn()
+  putGroup: jest.fn(),
+  deleteGroup: jest.fn()
 }));
 
-import { loadGroups, addGroup, loadGroup, updateGroup } from './actions';
-import { GROUPS_LOAD, GROUP_ADD, GROUP_LOAD, GROUP_UPDATE } from './reducers';
-import { getAllGroups, postGroup, getGroupById, putGroup } from '../../services/api';
+import { loadGroups, addGroup, loadGroup, updateGroup, removeGroup } from './actions';
+import { GROUPS_LOAD, GROUP_ADD, GROUP_LOAD, GROUP_UPDATE, GROUP_REMOVE } from './reducers';
+import { getAllGroups, postGroup, getGroupById, putGroup, deleteGroup } from '../../services/api';
 
 describe('loads groups', () => {
 
@@ -52,6 +53,18 @@ describe('updates a group', () => {
     const { type, payload } = updateGroup(promise);
     expect(type).toBe(GROUP_UPDATE);
     expect(putGroup.mock.calls.length).toBe(1);
+    expect(payload).toBe(promise);
+  });
+});
+
+describe('deletes a group', () => {
+  it('deletes a group', () => {
+    const promise = Promise.resolve();
+    deleteGroup.mockReturnValueOnce(promise);
+
+    const { type, payload } = removeGroup(promise);
+    expect(type).toBe(GROUP_REMOVE);
+    expect(deleteGroup.mock.calls.length).toBe(1);
     expect(payload).toBe(promise);
   });
 });
