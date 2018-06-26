@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getProfile } from './reducers';
 import { loadProfile } from './actions';
+// import { Link } from 'react-router-dom';
 
 class Profile extends Component {
 
@@ -28,6 +29,9 @@ class Profile extends Component {
           {demographic ? <p>demographic:{demographic}</p> : <p>blank</p>}
           {location ? <p>Location: {location}</p> : <p>Fill in your location!</p>}
           {activities ? <p>{activities}</p> : <p>No activities added</p>}
+          {/* {events.map(event => <Link key={event._id} to={`/events/${event._id}`}>
+          This is an event!
+          </Link>)} */}
 
         </div>
 
