@@ -40,6 +40,7 @@ class Credentials extends PureComponent {
         });
     } return this.props.submit(this.state)
       .then(({ payload }) => {
+        console.log('PAYLOADID', payload._id);
         return this.props.queryProfile(payload._id); 
       });
   };

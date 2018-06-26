@@ -16,10 +16,15 @@ class Profile extends Component {
     };
 
     componentDidMount() {
-      console.log('PROFILE', this.props.user);
+      console.log('PROFILE', this.props.profile);
       this.props.loadProfile(this.props.match.params.id);
-
     }
+
+    // componentDidUpdate(prevProps) {
+    //   if(this.props.profile !== prevProps.profile) {
+    //     this.fetchData(this.props.profile);
+    //   }
+    // }
 
     render() {
 

@@ -16,15 +16,16 @@ class Auth extends PureComponent {
     signin: PropTypes.func.isRequired,
     signup: PropTypes.func.isRequired,
     // addProfile: PropTypes.func.isRequired,
-    location: PropTypes.object,
+    // location: PropTypes.object,
     profile: PropTypes.object
   };
 
   render() {
-    const { user, signin, signup, location, profile } = this.props;
-    const redirect = location.state ? location.state.from : `/profile/${profile._id}`; //we need profile.id to redirect to profile.
+    const { user, signin, signup, profile } = this.props;
+    console.log('PROFILE', profile);
+    // const redirect = profile ? `/profile/${profile._id}` : location.state.from; //we need profile.id to redirect to profile.
 
-    if(user && profile) return <Redirect to={redirect}/>;
+    if(user && profile) return <Redirect to={`/profile/${profile._id}`}/>;
     
     return (
       <section className={styles.auth}>
