@@ -5,7 +5,9 @@ import {
   GROUP_LOAD,
   group,
   getGroup,
-  getGroups
+  getGroups,
+  GROUP_UPDATE,
+  GROUP_REMOVE
 } from './reducers';
 
 
@@ -72,6 +74,28 @@ describe('Group Reducer', () => {
     });
 
     expect(state).toEqual(data);
+  });
+
+  it('updates a group', () => {
+    const data = { _id: 1, type: 'running', teamName: 'RUNNERS!', description: 'Exercise', private: false };
+    const updated = { _id: 1, type: 'yoga', teamName: 'YOGA!', description: 'Exercise', private: false };
+
+    const state = group(data, {
+      type: GROUP_UPDATE,
+      payload: updated
+    });
+
+    expect(state).toEqual(updated);
+  });
+
+  it('deletes a group', () => {
+    const data = { _id: 1, type: 'running', teamName: 'RUNNERS!', description: 'Exercise', private: false };
+
+    const state = group(data, {
+      type: GROUP_REMOVE
+    });
+
+    expect(state).toEqual(null);
   });
 
 });

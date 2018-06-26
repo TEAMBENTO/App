@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { addGroup } from './actions';
-import { getGroups } from './reducers';
 
 const defaultState = {
   teamName: '',
@@ -15,7 +12,10 @@ const defaultState = {
 class GroupForm extends Component {
 
   static propTypes = {
-    addGroup: PropTypes.func.isRequired
+    group: PropTypes.object,
+    label: PropTypes.string.isRequired,
+    onComplete: PropTypes.func.isRequired,
+    onCancel: PropTypes.func
   };
 
   static getDerivedStateFromProps({ group }, { edit }) {
@@ -44,7 +44,7 @@ class GroupForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.addGroup(this.state.edit);
+    this.props.onComplete(this.state.edit);
     this.setState({
       edit: { ...defaultState }
     });
@@ -52,26 +52,23 @@ class GroupForm extends Component {
 
   render() {
     const { teamName, description, type, image } = this.state.edit;
+    const { label, onCancel } = this.props;
 
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input name="teamName" placeholder="Name" value={teamName} onChange={this.handleChange}/>
-          <input name="type" placeholder="Activity" value={type} onChange={this.handleChange}/>
-          <input name="image" placeholder="Image" value={image} onChange={this.handleChange}/>
-          <textarea name="description" placeholder="Description" value={description} onChange={this.handleChange}/>
-          <label>
-            Private
-            <input name="private" type="checkbox" onChange={this.handleChange}/>
-          </label>
-          <button type="submit">Add Group</button>
-        </form>
-      </div>
+      <form onSubmit={this.handleSubmit}>
+        <input name="teamName" placeholder="Name" value={teamName} onChange={this.handleChange}/>
+        <input name="type" placeholder="Activity" value={type} onChange={this.handleChange}/>
+        <input name="image" placeholder="Image" value={image} onChange={this.handleChange}/>
+        <textarea name="description" placeholder="Description" value={description} onChange={this.handleChange}/>
+        <label>
+          Private
+          <input name="private" type="checkbox" onChange={this.handleChange}/>
+        </label>
+        <button type="submit">{label}</button>
+        {onCancel && <button type="reset" onClick={onCancel}>Cancel</button>}
+      </form>
     );
   }
 }
 
-export default connect(
-  state => ({ group: getGroups(state) }),
-  { addGroup }
-)(GroupForm);
+export default GroupForm;
