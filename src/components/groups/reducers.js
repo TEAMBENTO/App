@@ -31,7 +31,7 @@ export function group(state = {}, { type, payload }) {
       return payload;
     }
     case GROUP_UPDATE: {
-      return payload
+      return payload;
     }
     default:
       return state;
