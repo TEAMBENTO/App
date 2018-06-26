@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class GroupThumbnail extends Component {
+
+  static propTypes = {
+    image: PropTypes.string.isRequired,
+    teamName: PropTypes.string.isRequired
+  };
+
   render() {
+    const { teamName, image } = this.props;
+
     return (
       <div>
-        <img src="http://programming.wmlcloud.com/image/062012/Epic%20Moments%20in%20Sports_1.jpg"/>
-        <h1>GROUP NAME!</h1>
+        {image && <img src={image}/>}
+        {teamName && <h1>{teamName}</h1>}
       </div>
     );
   }

@@ -2,7 +2,10 @@ import {
   groups,
   GROUPS_LOAD,
   GROUP_ADD,
-  GROUP_UPDATE
+  GROUP_LOAD,
+  group,
+  getGroup,
+  getGroups
 } from './reducers';
 
 
@@ -51,4 +54,42 @@ describe('Groups Reducer', () => {
   // });
 
 
+});
+
+describe('Group Reducer', () => {
+
+  it('empty object for initial state', () => {
+    const state = group(undefined, {});
+    expect(state).toEqual({});
+  });
+
+  it('loads a group', () => {
+    const data = { type: 'running', teamName: 'RUNNERS!', description: 'We like to run', private: false };
+
+    const state = group({}, {
+      type: GROUP_LOAD,
+      payload: data
+    });
+
+    expect(state).toEqual(data);
+  });
+
+});
+
+describe('Group Selectors', () => {
+  
+  it('selects groups', () => {
+    const data = { _id: 1, type: 'running', teamName: 'RUNNERS!', description: 'We like to run', private: false };
+    const moreData = { _id: 2, type: 'basketball', teamName: 'Ballers!', description: 'We like to basketball', private: false };
+
+    const groups = [data, moreData];
+    const got = getGroups({ groups });
+    expect(got).toBe(groups);
+  });
+
+  it('selects a group', () => {
+    const group = { _id: 1, type: 'running', teamName: 'RUNNERS!', description: 'We like to run', private: false };
+    const got = getGroup({ group });
+    expect(got).toBe(group);
+  });
 });

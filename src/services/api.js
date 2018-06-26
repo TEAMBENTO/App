@@ -11,6 +11,7 @@ const AUTH_URL = `${URL}/auth`;
 export const getProfileById = id => get(`${PROFILES_URL}/${id}`);
 export const postProfile = profile => post(PROFILES_URL, profile);
 export const getAllGroups = () => get(GROUPS_URL);
+export const getGroupById = id => get(`${GROUPS_URL}/${id}`);
 export const postGroup = group => post(GROUPS_URL, group);
 export const signin = credentials => post(`${AUTH_URL}/signin`, credentials);
 export const signup = credentials => post(`${AUTH_URL}/signup`, credentials);
