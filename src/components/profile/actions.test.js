@@ -1,11 +1,13 @@
 jest.mock('../../services/api', () => ({
   getProfileById: jest.fn(),
-  postProfile: jest.fn()
+  postProfile: jest.fn(),
+  putProfile: jest.fn()
 }));
 
-import { loadProfile, addProfile } from './actions';
-import { PROFILE_LOAD, PROFILE_ADD } from './reducers';
-import { getProfileById, postProfile } from '../../services/api';
+import { loadProfile, addProfile, updateProfile } from './actions';
+import { PROFILE_LOAD, PROFILE_ADD, PROFILE_UPDATE } from './reducers';
+import { getProfileById, postProfile, putProfile } from '../../services/api';
+import { GROUP_UPDATE } from '../groups/reducers';
 
 
 describe('profile action tests', ()=> {
@@ -34,5 +36,20 @@ describe('profile action tests', ()=> {
     expect(payload).toBe(promise);
   });
 
+});
+
+describe('updates a profile', () => {
+
+  it('updates a profile!', () => {
+    const promise = Promise.resolve();
+    putProfile.mockReturnValueOnce(promise);
+
+    const { type, payload } = updateProfile(promise);
+    expect(type).toBe(PROFILE_UPDATE);
+    expect(putProfile.mock.calls.length).toBe(1);
+    expect(payload).toBe(promise);
+
+
+  });
 
 });
