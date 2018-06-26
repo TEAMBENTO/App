@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import EventsList from './EventsList';
+import AddEvent from './AddEvent';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loadEvents } from './actions';
@@ -34,6 +35,7 @@ class Events extends Component {
 
     return (
       <div>
+        <AddEvent/>
         <EventsList events={events} />
         <Autocomplete/>
         <MapContainer defaultCoords={this.state.portland} events={events}/>
