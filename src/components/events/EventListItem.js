@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class EventListItem extends Component {
 
@@ -12,15 +13,22 @@ class EventListItem extends Component {
     const { event } = this.props;
     const { attendance, description, group, host, location, name, time, type, _id } = event;
 
+    const { start, end } = time;
+
+    const timeStart = new Date(start);
+    const timeEnd = new Date(end);
+
     return (
       <li>
-        <h2>{name}</h2>
-        <p>Hosted by: {host}</p>
+        <Link to={`/events/${_id}/`}><h2>{name}</h2></Link>
+        {!host ? <p>Hosted by: {host}</p> : null}
+        {!group ? <p>Team: {group}</p> : null}
         <p>Activity: {type}</p>
         <p>Description: {description}</p>
-        <p>Starting at: {time.start}</p>
-        <p>Ending at: {time.end}</p>
-        
+        <p>Location: {location}</p>
+        <p>Event Start: {timeStart.toLocaleString()}</p>
+        <p>Event End: {timeEnd.toLocaleString()}</p>
+        {!attendance ? <p>Attendants: {attendance}</p> : null}
       </li>
     );
   }
