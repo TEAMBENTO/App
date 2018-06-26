@@ -6,11 +6,13 @@ import { loadGroups } from './actions';
 import { getGroups } from './reducers';
 import GroupThumbnail from './GroupThumbnail';
 import GroupForm from './GroupForm';
+import { addGroup } from './actions';
 
 class Groups extends Component {
 
   static propTypes = {
     loadGroups: PropTypes.func.isRequired,
+    addGroup: PropTypes.func.isRequired,
     groups: PropTypes.array
   };
 
@@ -19,12 +21,12 @@ class Groups extends Component {
   }
 
   render() {
-    const { groups } = this.props;
+    const { groups, addGroup } = this.props;
     if(!groups) return null;
 
     return (
       <div>
-        <GroupForm/>
+        <GroupForm label="Add" onComplete={addGroup}/>
         {groups.map(group => <Link key={group._id} to={`/groups/${group._id}`}> 
           <GroupThumbnail {...group}/>
         </Link>)}
@@ -35,5 +37,5 @@ class Groups extends Component {
 
 export default connect(
   state => ({ groups: getGroups(state) }),
-  { loadGroups }
+  { loadGroups, addGroup }
 )(Groups);
