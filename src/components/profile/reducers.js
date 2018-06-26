@@ -1,7 +1,7 @@
 
 export const PROFILE_LOAD = 'PROFILE_LOAD';
 export const PROFILES_LOAD = 'PROFILES_LOAD';
-export const PROFILE_ADD = 'PROFILES_ADD';
+export const PROFILE_ADD = 'PROFILE_ADD';
 
 export const getProfile = state => state.profile;
 
