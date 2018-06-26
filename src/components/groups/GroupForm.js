@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { addGroup } from './actions';
-import { getGroup } from './reducers';
 
 const defaultState = {
   teamName: '',
@@ -15,7 +12,10 @@ const defaultState = {
 class GroupForm extends Component {
 
   static propTypes = {
-    addGroup: PropTypes.func.isRequired
+    addGroup: PropTypes.func.isRequired,
+    label: PropTypes.string.isRequired,
+    onComplete: PropTypes.func.isRequired,
+    onCancel: PropTypes.func
   };
 
   static getDerivedStateFromProps({ group }, { edit }) {
@@ -44,7 +44,7 @@ class GroupForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.addGroup(this.state.edit);
+    this.props.onComplete(this.state.edit);
     this.setState({
       edit: { ...defaultState }
     });
@@ -52,6 +52,7 @@ class GroupForm extends Component {
 
   render() {
     const { teamName, description, type, image } = this.state.edit;
+    const { label, onCancel } = this.props;
 
     return (
       <div>
@@ -64,14 +65,12 @@ class GroupForm extends Component {
             Private
             <input name="private" type="checkbox" onChange={this.handleChange}/>
           </label>
-          <button type="submit">Add Group</button>
+          <button type="submit">{label}</button>
+          {onCancel && <button type="reset" onClick={onCancel}>Cancel</button>}
         </form>
       </div>
     );
   }
 }
 
-export default connect(
-  state => ({ group: getGroup(state) }),
-  { addGroup }
-)(GroupForm);
+export default GroupForm;
