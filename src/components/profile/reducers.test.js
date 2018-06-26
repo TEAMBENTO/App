@@ -2,7 +2,8 @@ import {
   profile,
   profiles,
   PROFILE_LOAD,
-  PROFILE_ADD
+  PROFILE_ADD,
+  PROFILE_UPDATE
 } from './reducers.js';
 
 // describe('Profiles reducer', () => {
@@ -42,7 +43,15 @@ describe('Profile reducers', () => {
   });
 
   it('it updates a profile', () => {
+    const data = { _id: 1, activities: 'running', bio: 'I LOVE TO RUN!' };
+    const updated = { _id: 1, activities: 'running', bio: 'I LOVE TO RUN! TO FOOD!' };
 
+    const state = profile(data, {
+      type: PROFILE_UPDATE,
+      payload: updated
+    });
+
+    expect(state).toEqual(updated);
   });
 
 });
