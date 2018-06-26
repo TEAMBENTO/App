@@ -13,17 +13,17 @@ class GroupDetail extends Component {
 
   static propTypes = {
     match: PropTypes.object,
-    loadGroup: PropTypes.func.isRequired,
+    loadGroup: PropTypes.func,
     group: PropTypes.object,
-    updateGroup: PropTypes.func.isRequired
+    updateGroup: PropTypes.func
   };
 
   componentDidMount() {
-    console.log('ID!!!!!!!', this.props.match.params.id);
     this.props.loadGroup(this.props.match.params.id);
   }
 
   handleEdit = () => {
+    console.log('I MADE IT!');
     this.setState({ editing: true });
   };
 
@@ -32,7 +32,10 @@ class GroupDetail extends Component {
   };
 
   handleUpdate = data => {
-    this.props.updateGroup(data);
+    this.props.updateGroup(data)
+      .then(res => {
+        console.log('RES!!!', res);
+      });
     this.setState({ editing: false });
   };
   
@@ -41,6 +44,7 @@ class GroupDetail extends Component {
     const { editing } = this.state;
     const { group } = this.props;
     const { teamName, image, description } = group;
+    if(!group) return null;
 
 
     return (
