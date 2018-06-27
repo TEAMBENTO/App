@@ -5,7 +5,9 @@ import { connect } from 'react-redux';
 import { getGroup } from './reducers';
 import { getUserProfile } from '../profile/reducers';
 import { loadGroup, updateGroup, removeGroup } from './actions';
+import { getEvents } from '../events/reducers';
 import GroupForm from './GroupForm';
+import EventList from '../events/EventsList';
 
 class GroupDetail extends Component {
 
@@ -23,7 +25,9 @@ class GroupDetail extends Component {
   };
 
   componentDidMount() {
-    this.props.loadGroup(this.props.match.params.id);
+    const { loadGroup, loadEventsByGroup, group, match } = this.props;
+    loadGroup(match.params.id);
+    // loadEventsByGroup(group._id);
   }
 
   handleEdit = () => {
@@ -46,13 +50,12 @@ class GroupDetail extends Component {
       ...group,
       members: [...profileIds, userProfile._id]
     };
-    console.log('MEMBERS!!', updatedGroup.members);
     this.props.updateGroup(updatedGroup);
   };
   
   render() {
     const { editing } = this.state;
-    const { group } = this.props;
+    const { group, events } = this.props;
     const { teamName, image, description } = group;
     if(!group) return null;
 
@@ -77,6 +80,7 @@ class GroupDetail extends Component {
             />
           </div>
         }
+        {events && <EventList events={events}/>}
       </div>
     );
   }
@@ -85,7 +89,8 @@ class GroupDetail extends Component {
 export default connect(
   state => ({ 
     group: getGroup(state),
-    userProfile: getUserProfile(state)
+    userProfile: getUserProfile(state),
+    events: getEvents(state)
   }),
   { loadGroup, updateGroup, removeGroup }
 )(GroupDetail);
