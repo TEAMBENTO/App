@@ -103,11 +103,6 @@ export class MapContainer extends Component {
             position={event.location.coords}
           />
         ))}
-        <Marker
-          onClick={this.onMarkerClick}
-          title={'The marker`s title will appear as a tooltip.'}
-          name={'Colonel Summers Park'}
-          position={{  lat: 45.5155, lng: -122.6467  }} />
  
         <InfoWindow
           marker={this.state.activeMarker}
