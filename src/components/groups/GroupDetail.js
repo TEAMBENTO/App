@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getGroup } from './reducers';
+import { getUser } from '../auth/reducers';
 import { loadGroup, updateGroup, removeGroup } from './actions';
 import GroupForm from './GroupForm';
 
@@ -13,9 +14,10 @@ class GroupDetail extends Component {
   };
 
   static propTypes = {
+    user: PropTypes.object.isRequired,
     match: PropTypes.object,
     loadGroup: PropTypes.func.isRequired,
-    group: PropTypes.object,
+    group: PropTypes.object.isRequired,
     updateGroup: PropTypes.func,
     removeGroup: PropTypes.func,
   };
@@ -38,7 +40,13 @@ class GroupDetail extends Component {
   };
 
   handleJoin = () => {
-    const updatedGroup = {}
+    const { group, user } = this.props;
+    const updatedGroup = {
+      ...group,
+      members: [...group.members._id, user.profile._id]
+    };
+    console.log('MEMBERS!!', updatedGroup.members);
+    // this.props.updateGroup(updatedGroup);
   };
   
   render() {
@@ -75,7 +83,8 @@ class GroupDetail extends Component {
 
 export default connect(
   state => ({ 
-    group: getGroup(state)
+    group: getGroup(state),
+    user: getUser(state)
   }),
   { loadGroup, updateGroup, removeGroup }
 )(GroupDetail);
