@@ -4,7 +4,7 @@ import { Switch, Route, Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signin, signup } from './actions';
 import { getUser } from './reducers';
-import { getProfile } from '../profile/reducers';
+import { getUserProfile } from '../profile/reducers';
 import Credentials from './Credentials';
 import styles from './Auth.css';
 
@@ -14,13 +14,17 @@ class Auth extends PureComponent {
     user: PropTypes.object,
     signin: PropTypes.func.isRequired,
     signup: PropTypes.func.isRequired,
-    profile: PropTypes.object
+    profile: PropTypes.object,
+    userProfile: PropTypes.object
   };
 
   render() {
-    const { user, signin, signup, profile } = this.props;
+    const { user, signin, signup, profile, userProfile } = this.props;
     if(user && !profile) return null;
-    if(user && profile) return <Redirect to={`/profile/${profile._id}`}/>;
+    
+    if(user && userProfile._id) {
+      return <Redirect to={`/profile/${userProfile._id}`}/>;  
+    }
     
     return (
       <section className={styles.auth}>
@@ -47,7 +51,8 @@ class Auth extends PureComponent {
 export default connect(
   state => ({ 
     user: getUser(state),
-    profile: getProfile(state) 
+    profile: getUserProfile(state), 
+    userProfile: getUserProfile(state)
   }),
   { signup, signin }
 )(Auth);

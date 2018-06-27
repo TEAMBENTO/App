@@ -22,9 +22,7 @@ class Profile extends Component {
     };
 
     componentDidMount() {
-      console.log('PROFILE', this.props.user);
       this.props.loadProfile(this.props.match.params.id);
-
     }
 
     handleEdit = () => {
@@ -57,9 +55,10 @@ class Profile extends Component {
       return (
         <div>
           { editing &&
-          <ProfileForm label="update profile"
-            onComplete={updateProfile}
+          <ProfileForm 
+            label="update profile"
             profile={profile}
+            onComplete={updateProfile}
             onCancel={this.handleCancel}
           /> }
           {editing || <button onClick={this.handleEdit}>✐</button>}

@@ -2,12 +2,14 @@
 import { get, post, put, del } from './request';
 
 const URL = '/api';
+const USERS_URL = `${URL}/users`;
 const PROFILES_URL = `${URL}/profiles`;
 const GROUPS_URL = `${URL}/groups`;
 const EVENTS_URL = `${URL}/events`;
 const AUTH_URL = `${URL}/auth`;
 
 export const getProfileByUser = id => get(`${PROFILES_URL}?userId=${id}`);
+export const getCurrentProfileByUser = id => get(`${PROFILES_URL}/${id}`);
 export const putProfile = profile => put(`${PROFILES_URL}/${profile._id}`, profile);
 export const getAllProfiles = () => get(`${PROFILES_URL}`);
 export const getProfileById = id => get(`${PROFILES_URL}/${id}`);
@@ -23,6 +25,7 @@ export const deleteGroup = id => del(`${GROUPS_URL}/${id}`, id);
 
 export const signin = credentials => post(`${AUTH_URL}/signin`, credentials);
 export const signup = credentials => post(`${AUTH_URL}/signup`, credentials);
+export const getUserProfile = id => get(`${USERS_URL}/${id}`);
 
 export const verifyUser = token => get(`${AUTH_URL}/verify`, { 
   headers: {

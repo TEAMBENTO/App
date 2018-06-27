@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-const defaultState = {
-  activities: '',
-  bio: '',
-  demographic: '',
-  location: '',
-  image: '',
-};
+import { Link } from 'react-router-dom';
 
 class ProfileForm extends Component {
 
@@ -15,21 +8,19 @@ class ProfileForm extends Component {
       profile: PropTypes.object,
       label: PropTypes.string.isRequired,
       onComplete: PropTypes.func.isRequired,
-      onCancel: PropTypes.func
+      onCancel: PropTypes.func,
     };
-
-    static getDerivedStateFromProps({ profile }) {
-      return {
-        ...profile 
-      };
-    }
     
-      state = {};
-  
-
-      handleChange = ({ target }) => {
-        this.setState({
-          [target.name]: target.value
+      state = { ...this.props.profile };
+    
+      handleChange = event => {
+        event.preventDefault();
+        const { target } = event;
+        this.setState(() => {
+          return {
+            ...this.state,
+            [target.name]: target.value,
+          };
         });
       };
     
@@ -39,7 +30,8 @@ class ProfileForm extends Component {
       };
 
       render() {
-        const { activities, bio, demographic, location, image } = this.props.profile;
+
+        const { activities, bio, demographic, location, image } = this.state;
         const { label, onCancel } = this.props;
 
         return (

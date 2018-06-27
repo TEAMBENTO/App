@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getGroup } from './reducers';
+import { getUser } from '../auth/reducers';
 import { loadGroup, updateGroup, removeGroup } from './actions';
 import GroupForm from './GroupForm';
 
@@ -13,9 +14,10 @@ class GroupDetail extends Component {
   };
 
   static propTypes = {
+    user: PropTypes.object.isRequired,
     match: PropTypes.object,
     loadGroup: PropTypes.func.isRequired,
-    group: PropTypes.object,
+    group: PropTypes.object.isRequired,
     updateGroup: PropTypes.func,
     removeGroup: PropTypes.func,
   };
@@ -36,8 +38,18 @@ class GroupDetail extends Component {
     this.props.updateGroup(data);
     this.setState({ editing: false });
   };
-  
 
+  handleJoin = () => {
+    const { group, user } = this.props;
+    const profileIds = group.members.map(member => member._id);
+    const updatedGroup = {
+      ...group,
+      members: [...profileIds, user._id]
+    };
+    console.log('MEMBERS!!', updatedGroup.members);
+    // this.props.updateGroup(updatedGroup);
+  };
+  
   render() {
     const { editing } = this.state;
     const { group } = this.props;
@@ -47,10 +59,10 @@ class GroupDetail extends Component {
 
     return (
       <div>
-        <h1> I am here!</h1>
         <h1>{teamName}</h1>
         <img src={image}/>
         <p>{description}</p>
+        <button onClick={this.handleJoin}>Join</button>
         {editing || <button onClick={this.handleEdit}>✐</button>}
         <Link to={'/groups'}>
           <button onClick={() => removeGroup(group._id)}>X</button>
@@ -72,7 +84,8 @@ class GroupDetail extends Component {
 
 export default connect(
   state => ({ 
-    group: getGroup(state)
+    group: getGroup(state),
+    user: getUser(state)
   }),
   { loadGroup, updateGroup, removeGroup }
 )(GroupDetail);

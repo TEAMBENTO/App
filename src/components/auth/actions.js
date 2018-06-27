@@ -1,6 +1,6 @@
-import { USER_AUTH, LOGOUT, CHECKED_AUTH } from './reducers';
-import { PROFILE_LOGOUT } from '../profile/reducers';
-import { verifyUser } from '../../services/api';
+import { USER_AUTH, LOGOUT, CHECKED_AUTH, USER_LOAD } from './reducers';
+import { PROFILE_LOGOUT, USER_PROFILE_LOGOUT } from '../profile/reducers';
+import { verifyUser, getUserProfile } from '../../services/api';
 import { getStoredUser, clearStoredUser } from '../../services/request';
 
 import { 
@@ -18,6 +18,14 @@ export const signin = makeAuth(signinApi);
 
 export const logout = () => ({ type: LOGOUT });
 export const profLogout = () => ({ type: PROFILE_LOGOUT });
+export const userProfLogout = () => ({ type: USER_PROFILE_LOGOUT });
+
+export function loadUser(id) {
+  return {
+    type: USER_LOAD,
+    payload: getUserProfile(id)
+  };
+}
 
 const authChecked = () => ({ type: CHECKED_AUTH });
 

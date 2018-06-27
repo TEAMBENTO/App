@@ -38,8 +38,6 @@ class App extends PureComponent {
 
     const { checkedAuth, user } = this.props;
 
-    console.log('HERE', checkedAuth);
-
 
     return (
       <Router>
