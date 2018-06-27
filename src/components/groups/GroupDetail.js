@@ -41,9 +41,10 @@ class GroupDetail extends Component {
 
   handleJoin = () => {
     const { group, user } = this.props;
+    const profileIds = group.members.map(member => member._id);
     const updatedGroup = {
       ...group,
-      members: [...group.members._id, user.profile._id]
+      members: [...profileIds, user._id]
     };
     console.log('MEMBERS!!', updatedGroup.members);
     // this.props.updateGroup(updatedGroup);
