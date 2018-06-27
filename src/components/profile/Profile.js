@@ -2,17 +2,23 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getProfile } from './reducers';
-import { loadProfile } from './actions';
+import { loadProfile, updateProfile } from './actions';
 import { getUser } from '../auth/reducers';
 import { Link } from 'react-router-dom';
+import ProfileForm  from './ProfileForm';
 
 class Profile extends Component {
+
+  state = {
+    editing: false
+  };
 
     static propTypes = {
       user: PropTypes.object,
       match: PropTypes.object,
       loadProfile: PropTypes.func.isRequired,
-      profile: PropTypes.object
+      profile: PropTypes.object,
+      updateProfile: PropTypes.func.isRequired
     };
 
     componentDidMount() {
@@ -21,13 +27,33 @@ class Profile extends Component {
 
     }
 
+    handleEdit = () => {
+      this.setState({ editing: true });
+    };
+  
+    handleCancel = () => {
+      this.setState({ editing: false });
+    };
+  
+    handleUpdate = data => {
+      this.props.updateProfile(data);
+      this.setState({ editing: false });
+    };
+
     render() {
 
+      const { editing } = this.state;
+    
       const { activities, bio, events, demographic, location, image, userId } = this.props.profile;
       if(!events) return null;
 
       return (
         <div>
+          { editing &&
+          <ProfileForm label="update profile"
+            onComplete={updateProfile} onCancel={this.handleCancel}
+          /> }
+          {editing || <button onClick={this.handleEdit}>✐</button>}
           <h1>This is a Profile Component</h1>
           <h1>{userId.name}</h1>
           {image ? <img src = {image}/> : <p>Add an image</p>}
