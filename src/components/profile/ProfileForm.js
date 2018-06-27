@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class ProfileForm extends Component {
 
@@ -7,18 +8,14 @@ class ProfileForm extends Component {
       profile: PropTypes.object,
       label: PropTypes.string.isRequired,
       onComplete: PropTypes.func.isRequired,
-      onCancel: PropTypes.func
+      onCancel: PropTypes.func,
     };
-
-    static getDerivedStateFromProps({ profile }) {
-      return {
-        ...profile
-      }; 
-    }
     
-      state = {};
+      state = { ...this.props.profile };
     
-      handleChange = ({ target }) => {
+      handleChange = event => {
+        event.preventDefault();
+        const { target } = event;
         this.setState(() => {
           return {
             ...this.state,
