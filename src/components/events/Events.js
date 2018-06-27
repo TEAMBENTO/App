@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { loadEvents } from './actions';
 import { getEvents } from './reducers';
 import MapContainer from './MapContainer';
-import Autocomplete from './Autocomplete';
+
 
 
 class Events extends Component {
@@ -46,7 +46,6 @@ class Events extends Component {
           <Route path={'/events/map'} render={() => {return <MapContainer defaultCoords={this.state.portland} events={events}/>;}} />
           <Redirect to="/events/map"/>
         </Switch>
-        <Autocomplete/>
       </div>
     );
   } 

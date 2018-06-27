@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { addEvent } from './actions';
 import { getEvents } from './reducers';
 import { getUser } from '../auth/reducers';
+import Autocomplete from './Autocomplete';
 
 const defaultState = {
   eventName: '',
@@ -24,6 +25,7 @@ class AddEvent extends Component {
   state = {
     form: defaultState
   };
+  
 
   handleChange = ({ target }) => {
     this.setState(({ form }) => {
@@ -70,6 +72,7 @@ class AddEvent extends Component {
           <label>Type of Activity:</label>
           <input type="text" name="type" value={type} onChange={this.handleChange}/>
           <label>Location:</label>
+          <Autocomplete handleChange={this.handlePlacesChange} />
           <input type="text" name="location" value={location} onChange={this.handleChange}/>
           <label>Event Start:</label>
           <input type="text" name="timeStart" value={timeStart} onChange={this.handleChange}/>

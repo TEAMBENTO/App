@@ -1,8 +1,13 @@
 import React from 'react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { classnames } from '../helpers';
+import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
+  static propTypes = {
+    handleChange: PropTypes.func
+  };
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -130,13 +135,17 @@ class SearchBar extends React.Component {
 
         {((latitude && longitude) || isGeocoding) && (
           <div>
-            <h3 className="Demo__geocode-result-header">Geocode result</h3>
+            <h3 className="Demo__geocode-result-header">Your location has been added</h3>
             {isGeocoding ? (
               <div>
                 <i className="fa fa-spinner fa-pulse fa-3x fa-fw Demo__spinner" />
               </div>
             ) : (
               <div>
+                <div className="Demo__geocode-result-item--lat">
+                  <label>Address:</label>
+                  <span>{address}</span>
+                </div>
                 <div className="Demo__geocode-result-item--lat">
                   <label>Latitude:</label>
                   <span>{latitude}</span>
