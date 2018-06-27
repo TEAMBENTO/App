@@ -45,7 +45,7 @@ class Events extends Component {
           <Route exact path={'/events/list'} render={() => {return <EventsList events={events}/>;}} />
           <Route path={'/events/new'} render={() => {return <AddEvent/>;}} />
           <Route path={'/events/map'} render={() => {return <MapContainer defaultCoords={this.state.portland} events={events}/>;}} />
-          <Route exact path="/events/list/:id" component={EventDetail}/>
+          <Route exact path="/events/:id" component={EventDetail}/>
           <Redirect to="/events/map"/>
         </Switch>
       </div>
