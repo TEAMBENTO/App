@@ -36,8 +36,11 @@ class GroupDetail extends Component {
     this.props.updateGroup(data);
     this.setState({ editing: false });
   };
-  
 
+  handleJoin = () => {
+    const updatedGroup = {}
+  };
+  
   render() {
     const { editing } = this.state;
     const { group } = this.props;
@@ -47,10 +50,10 @@ class GroupDetail extends Component {
 
     return (
       <div>
-        <h1> I am here!</h1>
         <h1>{teamName}</h1>
         <img src={image}/>
         <p>{description}</p>
+        <button onClick={this.handleJoin}>Join</button>
         {editing || <button onClick={this.handleEdit}>✐</button>}
         <Link to={'/groups'}>
           <button onClick={() => removeGroup(group._id)}>X</button>
