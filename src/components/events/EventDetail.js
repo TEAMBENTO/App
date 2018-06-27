@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { getEvent } from './reducers';
+import { loadEvent } from './actions';
 
-function mapStateToProps(state) {
-  return {
-
-  };
-}
 
 class EventDetail extends Component {
+
+  static propTypes = {
+    match: PropTypes.object,
+    loadEvent: PropTypes.func.isRequired,
+    event: PropTypes.object.isRequired
+  };
+  
+  componentDidMount() {
+    console.log(this.props.match);
+    this.props.loadEvent(this.props.match.params.id);
+  }
+
+
   render() {
     return (
       <div>
@@ -18,5 +29,8 @@ class EventDetail extends Component {
 }
 
 export default connect(
-  mapStateToProps,
+  state => ({
+    event: getEvent(state)
+  }),
+  { loadEvent }
 )(EventDetail);

@@ -15,9 +15,9 @@ export function addEvent(event) {
   };
 }
 
-export function loadEvent() {
+export function loadEvent(id) {
   return {
     type: EVENT_LOAD,
-    payload: getEventById()
+    payload: getEventById(id)
   };
 }
