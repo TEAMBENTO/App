@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import EventsList from './EventsList';
+import { Link, Switch, Route, Redirect } from 'react-router-dom';
 import AddEvent from './AddEvent';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -35,8 +36,14 @@ class Events extends Component {
 
     return (
       <div>
+        <h2>Events</h2>
+        <ul>
+          
+        </ul>
+        {/* <Switch>
+          <Route path={`/events/list`} render={() => {return <EventsList events={events} />/>
+        </Switch> */}
         <AddEvent/>
-        <EventsList events={events} />
         <Autocomplete/>
         <MapContainer defaultCoords={this.state.portland} events={events}/>
       </div>
