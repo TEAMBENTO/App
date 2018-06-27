@@ -31,7 +31,6 @@ class Credentials extends PureComponent {
     if(this.props.allowName) {
       return this.props.submit(this.state)
         .then(({ payload }) => {
-          console.log('SIGNUP', payload._id);
           const profile = { userId: payload._id };
           return this.props.addProfile(profile)
             .then(({ payload }) => {
@@ -40,7 +39,6 @@ class Credentials extends PureComponent {
         });
     } return this.props.submit(this.state)
       .then(({ payload }) => {
-        console.log('SIGNIN', payload._id);
         return this.props.queryProfile(payload._id); 
       });
   };
