@@ -18,13 +18,11 @@ class Profile extends Component {
       match: PropTypes.object,
       loadProfile: PropTypes.func.isRequired,
       profile: PropTypes.object,
-      updateProfile: PropTypes.func.isRequired
+      updateProfile: PropTypes.func
     };
 
     componentDidMount() {
-      console.log('PROFILE', this.props.user);
       this.props.loadProfile(this.props.match.params.id);
-
     }
 
     handleEdit = () => {

@@ -1,27 +1,15 @@
 import {
   profile,
   profiles,
+  userProfile,
   getProfiles,
   PROFILE_LOAD,
   PROFILES_LOAD,
   PROFILE_ADD,
-  PROFILE_UPDATE
+  PROFILE_UPDATE, 
+  USER_PROFILE_LOAD
 } from './reducers.js';
 
-// describe('Profiles reducer', () => {
-
-//     it('empty array for initial state', () => {
-//         const state = profiles(undefined, {});
-//         expect(state).toEqual([]);
-//     });
-
-//     it('loads all profiles', () => {
-//         const data = {userId: 1, activities: 'yoga' }
-
-//         const state =
-//     });
-    
-// });
 const data1 = { userId: 1, activities: 'basketball' };
 const data2 = { userId: 2, activities: 'basketball' };
 
@@ -44,9 +32,14 @@ describe('Profile reducers', () => {
     expect(state).toEqual(data1);
   });
 
+  it('loads users profile', () => {
+    const state = userProfile({}, { type: USER_PROFILE_LOAD, payload: data1 });
+    expect(state).toEqual(data1);
+  });
+
   it('adds a profile', () => {
-    const state = profiles(data1, { type: PROFILE_ADD, payload: data2 });
-    expect(state).toEqual([data1, data2]);
+    const state = profile(data1, { type: PROFILE_ADD, payload: data2 });
+    expect(state).toEqual(data2);
   });
 
   it('it updates a profile', () => {
