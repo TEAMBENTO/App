@@ -8,7 +8,8 @@ import { getCheckedAuth, getUser } from '../auth/reducers';
 import Home from '../home/Home';
 import Auth from '../auth/Auth';
 import About from '../about/About';
-import Nav from '../nav/Nav';
+import Header from '../header/Header';
+// import Nav from '../nav/Nav';
 import Profile from '../profile/Profile';
 import Groups from '../groups/Groups';
 import Events from '../events/Events';
@@ -43,7 +44,7 @@ class App extends PureComponent {
     return (
       <Router>
         <div className={styles.app}>
-          <h1>Hello World!</h1>
+          <Header/>
           { 
             user 
               ? <div>
@@ -52,7 +53,6 @@ class App extends PureComponent {
               </div>
               : <h1>Rally</h1>
           }
-          <Nav/>
           <main>
             { checkedAuth && 
             <Switch>

@@ -18,7 +18,7 @@ class Profile extends Component {
       match: PropTypes.object,
       loadProfile: PropTypes.func.isRequired,
       profile: PropTypes.object,
-      updateProfile: PropTypes.func.isRequired
+      updateProfile: PropTypes.func
     };
 
     componentDidMount() {
@@ -49,15 +49,18 @@ class Profile extends Component {
     render() {
 
       const { editing } = this.state;
+      const { profile } = this.props;
 
-      const { activities, bio, events, demographic, location, image, userId } = this.props.profile;
+      const { activities, bio, events, demographic, location, image, userId } = profile;
       if(!events) return null;
 
       return (
         <div>
           { editing &&
           <ProfileForm label="update profile"
-            onComplete={updateProfile} onCancel={this.handleCancel}
+            onComplete={updateProfile}
+            profile={profile}
+            onCancel={this.handleCancel}
           /> }
           {editing || <button onClick={this.handleEdit}>✐</button>}
           <h1>This is a Profile Component</h1>
@@ -82,6 +85,6 @@ export default connect(
     user: getUser(state),
     profile: getProfile(state) 
   }),
-  { loadProfile }
+  { loadProfile, updateProfile }
 )(Profile);
 

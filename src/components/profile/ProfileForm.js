@@ -14,49 +14,37 @@ class ProfileForm extends Component {
     static propTypes = {
       profile: PropTypes.object,
       label: PropTypes.string.isRequired,
-      onComplete: PropTypes.isRequired,
+      onComplete: PropTypes.func.isRequired,
       onCancel: PropTypes.func
     };
 
-    static getDerivedStateFromProps({ profile }, { edit }) {
-      if(edit) return null;
-    
+    static getDerivedStateFromProps({ profile }) {
       return {
-        edit: profile ? { ...profile } : { ...defaultState }
-      }; 
+        ...profile 
+      };
     }
     
-      state = {
-        edit: null
-      };
-    
+      state = {};
+  
+
       handleChange = ({ target }) => {
-        this.setState(({ edit }) => {
-          return {
-            edit: {
-              ...edit,
-              [target.name]: target.value,
-              private: target.checked ? true : false
-            }
-          };
+        this.setState({
+          [target.name]: target.value
         });
       };
     
       handleSubmit = event => {
         event.preventDefault();
-        this.props.onComplete(this.state.edit);
-        this.setState({
-          edit: { ...defaultState }
-        });
+        this.props.onComplete(this.state);
       };
 
       render() {
-        const { activities, bio, demographic, location, image } = this.state.edit;
+        const { activities, bio, demographic, location, image } = this.props.profile;
         const { label, onCancel } = this.props;
 
         return (
           <form onSubmit={this.handleSubmit}>
-            <input name="activites" placeholder="Activity" value={activities} onChange={this.handleChange}/>
+            <input name="activities" placeholder="Activity" value={activities} onChange={this.handleChange}/>
             <input name="bio" placeholder="Describe Yourself" value={bio} onChange={this.handleChange}/>
             <input name="demographic" placeholder="How do you Identify?" value={demographic} onChange={this.handleChange}/>
             <input name="location" placeholder="Location" value={location} onChange={this.handleChange}/>

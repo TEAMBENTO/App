@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500i,800|Raleway:400,800');
 
-:local(.nav) {
+:local(nav) {
+
+    display: inline-flex;
+    img {
+        height: 70px;
+    }   
+
 
   ul {
     display: inline-block;
