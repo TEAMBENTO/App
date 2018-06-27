@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { getGroup } from './reducers';
 import { getUserProfile } from '../profile/reducers';
 import { loadGroup, updateGroup, removeGroup } from './actions';
+import { loadEventsByGroup } from '../events/actions';
 import { getEvents } from '../events/reducers';
 import GroupForm from './GroupForm';
 import EventList from '../events/EventsList';
@@ -22,12 +23,14 @@ class GroupDetail extends Component {
     group: PropTypes.object.isRequired,
     updateGroup: PropTypes.func,
     removeGroup: PropTypes.func,
+    loadEventsByGroup: PropTypes.func.isRequired,
+    events: PropTypes.object
   };
 
   componentDidMount() {
-    const { loadGroup, loadEventsByGroup, group, match } = this.props;
+    const { loadGroup, loadEventsByGroup, match } = this.props;
     loadGroup(match.params.id);
-    // loadEventsByGroup(group._id);
+    loadEventsByGroup(match.params.id);
   }
 
   handleEdit = () => {
@@ -92,5 +95,5 @@ export default connect(
     userProfile: getUserProfile(state),
     events: getEvents(state)
   }),
-  { loadGroup, updateGroup, removeGroup }
+  { loadGroup, updateGroup, removeGroup, loadEventsByGroup }
 )(GroupDetail);

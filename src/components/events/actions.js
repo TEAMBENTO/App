@@ -1,5 +1,5 @@
 import { EVENTS_LOAD, EVENT_ADD, EVENT_LOAD, EVENT_UPDATE, EVENT_REMOVE } from './reducers';
-import { getAllEvents, getEventById, postEvent } from '../../services/api';
+import { getAllEvents, getEventById, postEvent, getEventByGroup } from '../../services/api';
 
 export function loadEvents() {
   return {
@@ -19,5 +19,12 @@ export function loadEvent() {
   return {
     type: EVENT_LOAD,
     payload: getEventById()
+  };
+}
+
+export function loadEventsByGroup(id) {
+  return {
+    type: EVENTS_LOAD,
+    payload: getEventByGroup(id)
   };
 }
