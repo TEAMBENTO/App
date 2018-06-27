@@ -40,10 +40,11 @@ class Events extends Component {
         <ul>
           
         </ul>
-        {/* <Switch>
-          <Route path={`/events/list`} render={() => {return <EventsList events={events} />/>
-        </Switch> */}
-        <AddEvent/>
+        <Switch>
+          <Route path={'/events/list'} render={() => {return <EventsList events={events}/>;}} />
+          <Route path={'/events/new'} render={() => {return <AddEvent/>;}} />
+          <Route path={'/events/map'} render={() => {return <MapContainer defaultCoords={this.state.portland} events={events}/>;}} />
+        </Switch>
         <Autocomplete/>
         <MapContainer defaultCoords={this.state.portland} events={events}/>
       </div>
