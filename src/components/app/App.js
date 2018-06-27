@@ -61,7 +61,7 @@ class App extends PureComponent {
               <Route exact path="/profile/:id" component={Profile}/>          
               <Route path="/profiles" component={Profiles}/>          
               <Route path="/auth" component={Auth}/>
-              <Route exact path="/events" component={Events}/>
+              <Route path="/events" component={Events}/>
               <Route exact path="/groups" component={Groups}/>
               <Route exact path="/groups/:id" component={GroupDetail}/>
               <Redirect to="/"/>
