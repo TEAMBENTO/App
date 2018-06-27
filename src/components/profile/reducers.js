@@ -34,7 +34,7 @@ export function profiles(state = [], { type, payload }) {
       return payload;
     }
     case PROFILE_ADD:
-      return [...state, payload];
+      return [state, payload];
     case PROFILE_LOGOUT: {
       return null;
     }
