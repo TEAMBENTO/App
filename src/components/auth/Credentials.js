@@ -31,7 +31,6 @@ class Credentials extends PureComponent {
     if(this.props.allowName) {
       return this.props.submit(this.state)
         .then(({ payload }) => {
-          // console.log('payload', payload);
           const profile = { userId: payload._id };
           return this.props.addProfile(profile)
             .then(({ payload }) => {
