@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getUser } from '../auth/reducers';
-import { logout } from '../auth/actions';
+import { logout, profLogout } from '../auth/actions';
 import styles from './Nav.css';
 // import { HomeIcon, ImageFilterIcon, ImageOutlineIcon, HelpIcon } from 'mdi-react';
 
@@ -11,11 +11,13 @@ class Nav extends Component {
 
   static propTypes = {
     user: PropTypes.object,
-    logout: PropTypes.func.isRequired
+    logout: PropTypes.func.isRequired,
+    profLogout: PropTypes.func.isRequired
   };
 
   handleLogout = () => {
     this.props.logout();
+    this.props.profLogout();
   };
 
   render() {
@@ -27,7 +29,8 @@ class Nav extends Component {
         <ul>
           <li><NavLink exact to="/" >Home</NavLink></li>
           <li><NavLink to="/about" >About</NavLink></li>
-          <li><NavLink to="/profile" >Profile</NavLink></li>
+          <li><NavLink to="/profile/:id" >Profile</NavLink></li>
+          <li><NavLink to="/profiles" >Profiles</NavLink></li>
           <li><NavLink to="/events" >Events</NavLink></li>
           <li><NavLink to="/groups" >Groups</NavLink></li>
           {
@@ -44,5 +47,5 @@ class Nav extends Component {
 
 export default connect(
   state => ({ user: getUser(state) }),
-  { logout }
+  { logout, profLogout }
 )(Nav);
