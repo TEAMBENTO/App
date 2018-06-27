@@ -7,7 +7,7 @@ import { addEvent } from './actions';
 import { getEvents } from './reducers';
 import { getUser } from '../auth/reducers';
 
-const defaultState = {
+const defaultFormState = {
   eventName: '',
   description: '',
   type: '',
@@ -26,7 +26,7 @@ class AddEvent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      form: defaultState,
+      form: defaultFormState,
       address: '',
       errorMessage: '',
       latitude: null,
@@ -37,21 +37,32 @@ class AddEvent extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.structureEventData(this.state.form);
+    this.structureEventData(this.state);
   };
 
-  structureEventData = formData => {
+  structureEventData = state => {
+    const formData = state.form;
+
+    const { address, latitude, longitude } = state;
+
     const structuredData = {
       name: formData.eventName,
       description: formData.description,
       type: formData.type,
-      location: formData.location,
+      location: {
+        name: address,
+        coords: {
+          lat: latitude,
+          lng: longitude
+        }
+      },
       time: {
         start: new Date(formData.timeStart),
         end: new Date(formData.timeEnd)
       },
       host: this.props.user._id // change to profile ID
     };
+    console.log(structuredData);
     this.props.addEvent(structuredData);
   };
 
@@ -202,7 +213,7 @@ class AddEvent extends React.Component {
 
         {((latitude && longitude) || isGeocoding) && (
           <div>
-            <h3 className="Demo__geocode-result-header">Your location has been added</h3>
+            <h3 className="Demo__geocode-result-header">Your location has been updated</h3>
             {isGeocoding ? (
               <div>
                 <i className="fa fa-spinner fa-pulse fa-3x fa-fw Demo__spinner" />
