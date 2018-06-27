@@ -9,11 +9,8 @@ class EventsList extends Component {
     events: PropTypes.array
   };
 
-
   render() {
-
     const { events } = this.props;
-    console.log('EVENTS from eventslist', events);
 
     return (
       <ul>

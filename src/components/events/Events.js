@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { loadEvents } from './actions';
 import { getEvents } from './reducers';
 import MapContainer from './MapContainer';
-import Autocomplete from './Autocomplete';
+
 
 
 class Events extends Component {
@@ -32,20 +32,20 @@ class Events extends Component {
     const { events } = this.props;
     if(!events) return null;
 
-    console.log('EVENTS', events);
-
     return (
       <div>
         <h2>Events</h2>
         <ul>
-          
+          <li><Link to={'/events/list'}>All Events</Link></li>
+          <li><Link to={'/events/new'}>Add a New Event</Link></li>
+          <li><Link to={'/events/map'}>Map View</Link></li>
         </ul>
-        {/* <Switch>
-          <Route path={`/events/list`} render={() => {return <EventsList events={events} />/>
-        </Switch> */}
-        <AddEvent/>
-        <Autocomplete/>
-        <MapContainer defaultCoords={this.state.portland} events={events}/>
+        <Switch>
+          <Route path={'/events/list'} render={() => {return <EventsList events={events}/>;}} />
+          <Route path={'/events/new'} render={() => {return <AddEvent/>;}} />
+          <Route path={'/events/map'} render={() => {return <MapContainer defaultCoords={this.state.portland} events={events}/>;}} />
+          <Redirect to="/events/map"/>
+        </Switch>
       </div>
     );
   } 

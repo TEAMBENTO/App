@@ -25,7 +25,7 @@ class EventListItem extends Component {
         {!group ? <p>Team: {group}</p> : null}
         <p>Activity: {type}</p>
         <p>Description: {description}</p>
-        <p>Location: {location}</p>
+        <p>Address: {location.name}</p>
         <p>Event Start: {timeStart.toLocaleString()}</p>
         <p>Event End: {timeEnd.toLocaleString()}</p>
         {!attendance ? <p>Attendants: {attendance}</p> : null}
