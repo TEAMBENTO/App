@@ -45,7 +45,7 @@ describe('Profile reducers', () => {
   });
 
   it('adds a profile', () => {
-    const state = profiles([data1], { type: PROFILE_ADD, payload: data2 });
+    const state = profiles(data1, { type: PROFILE_ADD, payload: data2 });
     expect(state).toEqual([data1, data2]);
   });
 
