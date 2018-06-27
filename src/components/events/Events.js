@@ -32,8 +32,6 @@ class Events extends Component {
     const { events } = this.props;
     if(!events) return null;
 
-    console.log('EVENTS', events);
-
     return (
       <div>
         <h2>Events</h2>
