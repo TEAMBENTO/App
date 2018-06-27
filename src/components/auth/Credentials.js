@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addProfile, loadProfile, queryProfile } from '../profile/actions';
+// import { loadUser } from '../auth/actions';
+import { addProfile, loadProfile, queryProfile, loadUserProfile } from '../profile/actions';
 import styles from './Credentials.css';
 import FormControl from '../shared/FormControl';
 
@@ -13,6 +14,8 @@ class Credentials extends PureComponent {
     addProfile: PropTypes.func.isRequired,
     loadProfile: PropTypes.func.isRequired,
     queryProfile: PropTypes.func.isRequired,
+    loadUserProfile: PropTypes.func.isRequired,
+    // loadUser: PropTypes.func.isRequired,
     allowName: PropTypes.bool
   };
 
@@ -34,12 +37,18 @@ class Credentials extends PureComponent {
           const profile = { userId: payload._id };
           return this.props.addProfile(profile)
             .then(({ payload }) => {
+              return this.props.loadUserProfile(payload._id);
+            })
+            .then(({ payload }) => {
               return this.props.loadProfile(payload._id);
             });
         });
     } return this.props.submit(this.state)
       .then(({ payload }) => {
         return this.props.queryProfile(payload._id); 
+      })
+      .then(({ payload }) => {
+        return this.props.loadUserProfile(payload[0]._id);
       });
   };
 
@@ -73,5 +82,5 @@ class Credentials extends PureComponent {
 
 export default connect(
   null,
-  { addProfile, loadProfile, queryProfile }
+  { addProfile, loadProfile, queryProfile, loadUserProfile }
 )(Credentials);
