@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 export class MapContainer extends Component {
 
   static propTypes = {
-    defaultCoords: PropTypes.object
+    defaultCoords: PropTypes.object,
+    google: PropTypes.object
   };
 
   state = {
@@ -77,7 +78,13 @@ export class MapContainer extends Component {
 
 
     return (
-      <Map google={this.props.google} zoom={14} initialCenter={this.state.fields.location}
+      <Map google={this.props.google}
+        style={{
+          width: '90%',
+          height: '90%'
+        }}
+        zoom={14}
+        initialCenter={this.state.fields.location}
         center={this.state.fields.location}>
  
         <Marker
