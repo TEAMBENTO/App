@@ -14,7 +14,7 @@ class GroupDetail extends Component {
 
   static propTypes = {
     match: PropTypes.object,
-    loadGroup: PropTypes.func,
+    loadGroup: PropTypes.func.isRequired,
     group: PropTypes.object,
     updateGroup: PropTypes.func,
     removeGroup: PropTypes.func,
