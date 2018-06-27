@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getUser } from '../auth/reducers';
-import { logout, profLogout } from '../auth/actions';
+import { logout, profLogout, userProfLogout } from '../auth/actions';
 import styles from './Header.css';
 // import logo from '../../../assets/RallyLogo_noback.png';
 // import { HomeIcon, ImageFilterIcon, ImageOutlineIcon, HelpIcon } from 'mdi-react';
@@ -13,12 +13,14 @@ class Header extends Component {
   static propTypes = {
     user: PropTypes.object,
     logout: PropTypes.func.isRequired,
-    profLogout: PropTypes.func.isRequired
+    profLogout: PropTypes.func.isRequired,
+    userProfLogout: PropTypes.func.isRequired
   };
 
   handleLogout = () => {
     this.props.logout();
     this.props.profLogout();
+    this.props.userProfLogout();
   };
 
   render() {
@@ -48,5 +50,5 @@ class Header extends Component {
 
 export default connect(
   state => ({ user: getUser(state) }),
-  { logout, profLogout }
+  { logout, profLogout, userProfLogout }
 )(Header);
