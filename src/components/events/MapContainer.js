@@ -7,7 +7,8 @@ export class MapContainer extends Component {
 
   static propTypes = {
     defaultCoords: PropTypes.object,
-    google: PropTypes.object
+    google: PropTypes.object,
+    events: PropTypes.array
   };
 
   state = {
@@ -76,6 +77,8 @@ export class MapContainer extends Component {
 
   render() {
 
+    const { events } = this.props;
+    const { attendance, name, description, group, host, location, time, type, _id } = events;
 
     return (
       <Map google={this.props.google}
@@ -86,7 +89,20 @@ export class MapContainer extends Component {
         zoom={14}
         initialCenter={this.state.fields.location}
         center={this.state.fields.location}>
- 
+
+        {events.map((event) => (
+          <Marker 
+            onClick={this.onMarkerClick}
+            key={event._id}
+            name={event.name}
+            activity={event.type}
+            title={event.description}
+            description={event.description}
+            time={(new Date(event.time.start)).toLocaleString()}
+            event={event}
+            position={event.location.coords}
+          />
+        ))}
         <Marker
           onClick={this.onMarkerClick}
           title={'The marker`s title will appear as a tooltip.'}
@@ -98,6 +114,9 @@ export class MapContainer extends Component {
           visible={this.state.showingInfoWindow}>
           <div>
             <h1>{this.state.selectedPlace.name}</h1>
+            <p>Activity: {this.state.selectedPlace.activity}</p>
+            <p>Description: {this.state.selectedPlace.description}</p>
+            <p>Event Start: {this.state.selectedPlace.time}</p>
           </div>
         </InfoWindow>
       </Map>
