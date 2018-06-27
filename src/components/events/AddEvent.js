@@ -60,7 +60,7 @@ class AddEvent extends React.Component {
         start: new Date(formData.timeStart),
         end: new Date(formData.timeEnd)
       },
-      host: this.props.user._id // change to profile ID
+      host: this.props.user._id // TODO: change to profile ID
     };
     console.log(structuredData);
     this.props.addEvent(structuredData);

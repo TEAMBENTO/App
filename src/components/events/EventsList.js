@@ -9,9 +9,7 @@ class EventsList extends Component {
     events: PropTypes.array
   };
 
-
   render() {
-
     const { events } = this.props;
 
     return (
