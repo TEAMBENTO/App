@@ -46,10 +46,9 @@ class Events extends Component {
           <Route path={'/events/list'} render={() => {return <EventsList events={events}/>;}} />
           <Route path={'/events/new'} render={() => {return <AddEvent/>;}} />
           <Route path={'/events/map'} render={() => {return <MapContainer defaultCoords={this.state.portland} events={events}/>;}} />
-
+          <Redirect to="/events/map"/>
         </Switch>
         <Autocomplete/>
-        {/* <MapContainer defaultCoords={this.state.portland} events={events}/> */}
       </div>
     );
   } 
