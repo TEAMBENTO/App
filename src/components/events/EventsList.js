@@ -13,7 +13,6 @@ class EventsList extends Component {
   render() {
 
     const { events } = this.props;
-    console.log('EVENTS from eventslist', events);
 
     return (
       <ul>
