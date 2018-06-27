@@ -3,11 +3,20 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getGroups } from './reducers';
+import { loadGroups } from './actions';
 import { addGroup } from './actions';
 import GroupForm from './GroupForm';
 import GroupList from './GroupList';
 
 class Groups extends Component {
+  static propTypes = {
+    loadGroups: PropTypes.func.isRequired,
+    groups: PropTypes.array
+  };
+
+  componentDidMount() {
+    this.props.loadGroups();
+  }
 
   state = {
     redirect: false,
@@ -29,6 +38,7 @@ class Groups extends Component {
   };
 
   render() {
+    const { groups } = this.props;
     const { redirect, newGroup } = this.state;
 
     if(redirect && newGroup) return <Redirect to={`/groups/${newGroup._id}`}/>;
@@ -36,7 +46,7 @@ class Groups extends Component {
     return (
       <div>
         <GroupForm label="Add" onComplete={this.handleAdd}/>
-        <GroupList/>
+        <GroupList groups={groups}/>
       </div>
     );
   }
@@ -44,5 +54,5 @@ class Groups extends Component {
 
 export default connect(
   state => ({ groups: getGroups(state) }),
-  { addGroup }
+  { addGroup, loadGroups }
 )(Groups);
