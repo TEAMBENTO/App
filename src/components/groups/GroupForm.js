@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getUser } from '../auth/reducers';
 import PropTypes from 'prop-types';
 
 const defaultState = {
@@ -12,6 +14,7 @@ const defaultState = {
 class GroupForm extends Component {
 
   static propTypes = {
+    user: PropTypes.object.isRequired,
     group: PropTypes.object,
     label: PropTypes.string.isRequired,
     onComplete: PropTypes.func.isRequired,
@@ -36,6 +39,8 @@ class GroupForm extends Component {
         edit: {
           ...edit,
           [target.name]: target.value,
+          captains: [this.props.user._id],
+          members: [this.props.user._id],
           private: target.checked ? true : false
         }
       };
@@ -71,4 +76,9 @@ class GroupForm extends Component {
   }
 }
 
-export default GroupForm;
+export default connect(
+  state => ({ 
+    user: getUser(state)
+  }),
+  null
+)(GroupForm);

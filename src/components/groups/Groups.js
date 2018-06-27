@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { loadGroups } from './actions';
 import { getGroups } from './reducers';
-import GroupThumbnail from './GroupThumbnail';
-import GroupForm from './GroupForm';
 import { addGroup } from './actions';
+import GroupForm from './GroupForm';
+import GroupList from './GroupList';
 
 class Groups extends Component {
 
@@ -16,14 +15,8 @@ class Groups extends Component {
   };
 
   static propTypes = {
-    loadGroups: PropTypes.func.isRequired,
     addGroup: PropTypes.func.isRequired,
-    groups: PropTypes.array
   };
-
-  componentDidMount() {
-    this.props.loadGroups();
-  }
 
   handleAdd = group => {
     this.props.addGroup(group)
@@ -36,18 +29,14 @@ class Groups extends Component {
   };
 
   render() {
-    const { groups } = this.props;
     const { redirect, newGroup } = this.state;
-    if(!groups) return null;
 
     if(redirect && newGroup) return <Redirect to={`/groups/${newGroup._id}`}/>;
 
     return (
       <div>
         <GroupForm label="Add" onComplete={this.handleAdd}/>
-        {groups.map(group => <Link key={group._id} to={`/groups/${group._id}`}> 
-          <GroupThumbnail {...group}/>
-        </Link>)}
+        <GroupList/>
       </div>
     );
   }
@@ -55,5 +44,5 @@ class Groups extends Component {
 
 export default connect(
   state => ({ groups: getGroups(state) }),
-  { loadGroups, addGroup }
+  { addGroup }
 )(Groups);
