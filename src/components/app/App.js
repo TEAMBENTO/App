@@ -48,10 +48,9 @@ class App extends PureComponent {
           { 
             user 
               ? <div>
-                <h1>Rally</h1>
                 <h2 className="user-name">Hello {user.name}</h2>
               </div>
-              : <h1>Rally</h1>
+              : <h1>Welcome to Rally!</h1>
           }
           <main>
             { checkedAuth && 
