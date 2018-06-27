@@ -30,9 +30,9 @@ class Profile extends Component {
       return (
         <div>
           <ul>
-            {profiles.map(profile => <li key={profile._id}>
-            Username: {profile.userId.name}</li>
-            )}
+            {profiles.map(profile => <Link key={profile._id} to={`/profile/${profile._id}`}>
+              <p>Username: {profile.userId.name}</p>
+            </Link>)}
           </ul>
         </div>
 
