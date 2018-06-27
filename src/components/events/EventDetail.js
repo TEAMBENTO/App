@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getEvent } from './reducers';
+import { getSingleEvent } from './reducers';
 import { loadEvent } from './actions';
 
 
@@ -10,19 +10,33 @@ class EventDetail extends Component {
   static propTypes = {
     match: PropTypes.object,
     loadEvent: PropTypes.func.isRequired,
-    event: PropTypes.object.isRequired
+    singleEvent: PropTypes.object.isRequired
   };
   
   componentDidMount() {
-    console.log(this.props.match);
     this.props.loadEvent(this.props.match.params.id);
   }
 
-
   render() {
+    if(!this.props.singleEvent._id) return null;
+    const { attendance, description, group, host, location, name, time, type } = this.props.singleEvent;
+
+    const { start, end } = time;
+
+    const timeStart = new Date(start);
+    const timeEnd = new Date(end);
+
     return (
       <div>
-        <h2>Event detail view</h2>
+        <h2>{name}</h2>
+        {!host ? <p>Hosted by: {host}</p> : null}
+        {!group ? <p>Team: {group}</p> : null}
+        <p>Activity: {type}</p>
+        <p>Description: {description}</p>
+        <p>Address: {location.name}</p>
+        <p>Event Start: {timeStart.toLocaleString()}</p>
+        <p>Event End: {timeEnd.toLocaleString()}</p>
+        {!attendance ? <p>Attendants: {attendance}</p> : null}
       </div>
     );
   }
@@ -30,7 +44,7 @@ class EventDetail extends Component {
 
 export default connect(
   state => ({
-    event: getEvent(state)
+    singleEvent: getSingleEvent(state)
   }),
   { loadEvent }
 )(EventDetail);
