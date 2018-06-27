@@ -138,8 +138,6 @@ class AddEvent extends React.Component {
             <input type="text" name="eventName" value={eventName} onChange={this.handleFormChange}/>
             <label>Type of Activity:</label>
             <input type="text" name="type" value={type} onChange={this.handleFormChange}/>
-            <label>Location:</label>
-            <input type="text" name="location" value={location} onChange={this.handleFormChange}/>
             <label>Event Start:</label>
             <input type="text" name="timeStart" value={timeStart} onChange={this.handleFormChange}/>
             <label>Event End:</label>
