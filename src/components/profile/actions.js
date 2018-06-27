@@ -2,14 +2,16 @@ import {
   PROFILE_LOAD,
   PROFILES_LOAD,
   PROFILE_ADD,
-  PROFILE_UPDATE
+  PROFILE_UPDATE,
+  PROFILE_LOGIN_LOAD
 } from './reducers';
 
 import {
   getProfileById,
   postProfile,
   putProfile,
-  getAllProfiles
+  getAllProfiles,
+  getProfileByUser
 } from '../../services/api';
 
 export function loadProfile(id) {
@@ -37,5 +39,12 @@ export function updateProfile(profile) {
   return {
     type: PROFILE_UPDATE,
     payload: putProfile(profile)
+  };
+}
+
+export function queryProfile(userId) {
+  return {
+    type: PROFILE_LOGIN_LOAD,
+    payload: getProfileByUser(userId)
   };
 }
