@@ -38,15 +38,18 @@ class Events extends Component {
       <div>
         <h2>Events</h2>
         <ul>
-          
+          <li><Link to={'/events/list'}>All Events</Link></li>
+          <li><Link to={'/events/new'}>Add a New Event</Link></li>
+          <li><Link to={'/events/map'}>Map View</Link></li>
         </ul>
         <Switch>
           <Route path={'/events/list'} render={() => {return <EventsList events={events}/>;}} />
           <Route path={'/events/new'} render={() => {return <AddEvent/>;}} />
           <Route path={'/events/map'} render={() => {return <MapContainer defaultCoords={this.state.portland} events={events}/>;}} />
+
         </Switch>
         <Autocomplete/>
-        <MapContainer defaultCoords={this.state.portland} events={events}/>
+        {/* <MapContainer defaultCoords={this.state.portland} events={events}/> */}
       </div>
     );
   } 
