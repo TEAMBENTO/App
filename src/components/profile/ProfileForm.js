@@ -30,6 +30,7 @@ class ProfileForm extends Component {
       };
 
       render() {
+
         const { activities, bio, demographic, location, image } = this.state;
         const { label, onCancel } = this.props;
 
