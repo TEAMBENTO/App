@@ -5,7 +5,7 @@ import { user, checkedAuth } from '../components/auth/reducers';
 import { error, loading } from '../components/app/reducers';
 import { profile, profiles, userProfile } from '../components/profile/reducers';
 import { groups, group } from '../components/groups/reducers';
-import { events, event } from '../components/events/reducers';
+import { events, singleEvent } from '../components/events/reducers';
 
 const rootReducer = combineReducers({
   error,
@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
   groups,
   group,
   events,
-  event,
+  singleEvent,
   user,
   checkedAuth
 });

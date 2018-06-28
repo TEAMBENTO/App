@@ -3,9 +3,10 @@ import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-au
 import { classnames } from '../helpers';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addEvent } from './actions';
+import { addEvent, updateEvent } from './actions';
 import { getEvents } from './reducers';
 import { getUser } from '../auth/reducers';
+import { getUserProfile } from '../profile/reducers';
 
 const defaultFormState = {
   eventName: '',
@@ -20,7 +21,11 @@ class AddEvent extends React.Component {
 
   static propTypes = {
     addEvent: PropTypes.func.isRequired,
-    user: PropTypes.object
+    updateEvent: PropTypes.func.isRequired,
+    user: PropTypes.object,
+    editing: PropTypes.bool,
+    id: PropTypes.string,
+    userProfile: PropTypes.object
   };
   
   constructor(props) {
@@ -34,6 +39,8 @@ class AddEvent extends React.Component {
       isGeocoding: false,
     };
   }
+  
+
 
   handleSubmit = event => {
     event.preventDefault();
@@ -41,6 +48,7 @@ class AddEvent extends React.Component {
   };
 
   structureEventData = state => {
+
     const formData = state.form;
 
     const { address, latitude, longitude } = state;
@@ -60,11 +68,18 @@ class AddEvent extends React.Component {
         start: new Date(formData.timeStart),
         end: new Date(formData.timeEnd)
       },
-      host: this.props.user._id // TODO: change to profile ID
+      host: this.props.userProfile._id,
+      attendance: this.props.userProfile._id
     };
-    console.log(structuredData);
-    this.props.addEvent(structuredData);
+    // console.log('profile', this.props.userProfile);
+    // console.log(structuredData);
+    if(this.props.editing) {
+      structuredData._id = this.props.id;
+      // console.log('structured data', structuredData);
+      this.props.updateEvent(structuredData);
+    } else this.props.addEvent(structuredData);
   };
+
 
   handleFormChange = ({ target }) => {
     this.setState(({ form }) => {
@@ -118,6 +133,7 @@ class AddEvent extends React.Component {
     });
   };
 
+
   render() {
     const {
       address,
@@ -126,6 +142,7 @@ class AddEvent extends React.Component {
       longitude,
       isGeocoding,
     } = this.state;
+
 
     const { eventName, description, type, location, timeStart, timeEnd } = this.state.form;
 
@@ -144,7 +161,7 @@ class AddEvent extends React.Component {
             <input type="text" name="timeEnd" value={timeEnd} onChange={this.handleFormChange}/>
             <label>Description:</label>
             <textarea name="description" value={description} onChange={this.handleFormChange}/>
-            <button type="submit">Create your Event</button>
+            <button type="submit">{this.props.editing ? 'Update Your Event' : 'Create your Event'}</button>
           </form>
         </div>
         <PlacesAutocomplete
@@ -243,7 +260,8 @@ class AddEvent extends React.Component {
 export default connect(
   state => ({ 
     event: getEvents(state),
-    user: getUser(state)
+    user: getUser(state),
+    userProfile: getUserProfile(state)
   }),
-  { addEvent }
+  { addEvent, updateEvent }
 )(AddEvent);
