@@ -31,6 +31,12 @@ export function singleEvent(state = {}, { type, payload }) {
     case EVENT_LOAD: {
       return payload;
     }
+    case EVENT_UPDATE: {
+      return payload;
+    }
+    case EVENT_REMOVE: {
+      return payload;
+    }
     default:
       return state;
   }
