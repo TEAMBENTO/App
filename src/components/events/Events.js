@@ -11,6 +11,7 @@ import EventDetail from './EventDetail';
 import { getUserProfile } from '../profile/reducers';
 import { loadUserProfile, queryProfile } from '../profile/actions';
 import { getUser } from '../auth/reducers';
+// import PrivateRoute from '../auth/PrivateRoute';
 import styles from './Events.css';
 
 
