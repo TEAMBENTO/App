@@ -25,9 +25,9 @@ class ProfileList extends Component {
       if(!profiles) return null;
 
       return (
-        <ul>
+        <ul id="profile-grid">
           {profiles.map(profile => <Link key={profile._id} to={`/profile/${profile._id}`}>
-            <p>Username: {profile.userId.name}</p>
+            <p><img src={profile.image}></img></p>
           </Link>)}
         </ul>
       ); 

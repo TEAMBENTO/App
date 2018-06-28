@@ -1,12 +1,11 @@
 import React, { PureComponent } from 'react';
-import styles from './Home.css';
-
+import './Home.css';
 export default class Home extends PureComponent {
 
   render() {
     return (
-      <div className={styles.home}>
-        <p>I am Home</p>
+      <div className = "background-image">
+        <p> I am Home</p>
       </div>
     );
   }
