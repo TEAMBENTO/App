@@ -21,7 +21,6 @@ class EventListItem extends Component {
     return (
       <li>
         <Link to={`/events/${_id}`}><h2>{name}</h2></Link>
-        {host.length ? <p>Hosted by: {host.map(hostee => <Link key={hostee._id}to={`/profiles/${hostee._id}`}>{hostee.userId.name}</Link>)}</p> : null}
         {group.length ? <p>Team: {group}</p> : null}
         <p>Activity: {type}</p>
         <p>Description: {description}</p>

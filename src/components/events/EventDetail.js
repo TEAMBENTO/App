@@ -28,7 +28,7 @@ class EventDetail extends Component {
     const profileIds = singleEvent.attendance.map(attendee => attendee._id);
     const updatedAttendants = {
       _id: this.props.singleEvent._id,
-      attendance: [...profileIds, userProfile.userId]
+      attendance: [...profileIds, userProfile._id]
     };
     updateEventAttendants(updatedAttendants);
   };
@@ -60,7 +60,7 @@ class EventDetail extends Component {
         <h2>{name}</h2>{editing || <button onClick={this.handleEdit}>✐</button>}
         <button onClick={this.handleJoin}>Join</button>
         {editing && <AddEvent editing={editing} id={_id} />}
-        {host.length ? <p>Hosted by: {host.map(hostee => <Link key={hostee._id}to={`/profiles/${hostee._id}`}>{hostee.userId.name}</Link>)}</p> : null}
+        {/* {host[0].userId.name ? <p>Hosted by: {host[0].userId.name} </p> : null} */}
         {group.length ? <p>Team: {group}</p> : null}
         <p>Activity: {type}</p>
         <p>Description: {description}</p>
