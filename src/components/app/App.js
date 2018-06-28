@@ -13,6 +13,7 @@ import Header from '../header/Header';
 import Profile from '../profile/Profile';
 import Groups from '../groups/Groups';
 import Events from '../events/Events';
+import EventDetail from '../events/EventDetail';
 import Profiles from '../profile/Profiles';
 import styles from './App.css';
 import GroupDetail from '../groups/GroupDetail';
@@ -46,7 +47,7 @@ class App extends PureComponent {
           { 
             user 
               ? <div>
-                <h2 className="user-name">Hello {user.name}</h2>
+                <h2 className="user-name">Welcome {user.name}!</h2>
               </div>
               : <h1>Welcome to Rally!</h1>
           }
@@ -67,7 +68,7 @@ class App extends PureComponent {
           </main>
           {/* <Error/>
           <Loading/> */}
-          <footer>I am footer</footer>
+          {/* <footer className = "foot"><p id = "foot-type">&copy; 2018 TEAMBENTO</p></footer> */}
         </div>
       </Router>
     );

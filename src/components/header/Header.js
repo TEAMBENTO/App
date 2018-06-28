@@ -29,11 +29,11 @@ class Header extends Component {
 
     return (
       <nav className={styles.nav}>
+        <h1><NavLink exact to="/"><img src='http://res.cloudinary.com/dmy3efbjm/image/upload/v1530131312/Rally_Logo_noback.png' id="logo"></img></NavLink></h1>
         <ul>
           <li><NavLink to="/about" >About</NavLink></li>
           <li><NavLink to="/profile/:id" >Profile</NavLink></li>
           <li><NavLink to="/profiles" >Profiles</NavLink></li>
-          <li><NavLink exact to="/"><img src='http://res.cloudinary.com/dmy3efbjm/image/upload/v1530131312/Rally_Logo_noback.png' id="logo"></img></NavLink></li>
           <li><NavLink to="/events" >Events</NavLink></li>
           <li><NavLink to="/groups" >Groups</NavLink></li>
           {

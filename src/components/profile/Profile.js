@@ -64,7 +64,7 @@ class Profile extends Component {
           {editing || <button onClick={this.handleEdit}>✐</button>}
           <h1>This is a Profile Component</h1>
           <h1>{userId.name}</h1>
-          {image ? <img src = {image}/> : <p>Add an image</p>}
+          <div id="profile-image">{image ? <img src = {image}/> : <p>Add an image</p>}</div>
           {bio ? <p>This is me:{bio}</p> : <p>No bio added, tell us about yourself!</p> }
           {demographic ? <p>demographic:{demographic}</p> : <p>blank</p>}
           {location ? <p>Location: {location}</p> : <p>Fill in your location!</p>}

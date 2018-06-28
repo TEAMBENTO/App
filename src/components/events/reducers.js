@@ -5,6 +5,7 @@ export const EVENT_REMOVE = 'EVENT_REMOVE';
 export const EVENT_LOAD = 'EVENT_LOAD';
 
 export const getEvents = state => state.events;
+export const getSingleEvent = state => state.singleEvent;
 
 export function events(state = [], { type, payload }) {
   switch(type) {
@@ -25,9 +26,15 @@ export function events(state = [], { type, payload }) {
   }
 }
 
-export function event(state = {}, { type, payload }) {
+export function singleEvent(state = {}, { type, payload }) {
   switch(type) {
     case EVENT_LOAD: {
+      return payload;
+    }
+    case EVENT_UPDATE: {
+      return payload;
+    }
+    case EVENT_REMOVE: {
       return payload;
     }
     default:

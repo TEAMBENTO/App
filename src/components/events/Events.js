@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { loadEvents } from './actions';
 import { getEvents } from './reducers';
 import MapContainer from './MapContainer';
+import EventDetail from './EventDetail';
 
 
 
@@ -41,9 +42,10 @@ class Events extends Component {
           <li><Link to={'/events/map'}>Map View</Link></li>
         </ul>
         <Switch>
-          <Route path={'/events/list'} render={() => {return <EventsList events={events}/>;}} />
+          <Route exact path={'/events/list'} render={() => {return <EventsList events={events}/>;}} />
           <Route path={'/events/new'} render={() => {return <AddEvent/>;}} />
           <Route path={'/events/map'} render={() => {return <MapContainer defaultCoords={this.state.portland} events={events}/>;}} />
+          <Route exact path="/events/:id" component={EventDetail}/>
           <Redirect to="/events/map"/>
         </Switch>
       </div>

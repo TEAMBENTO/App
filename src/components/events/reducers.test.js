@@ -1,6 +1,6 @@
 import {
   events,
-  event,
+  singleEvent,
   EVENTS_LOAD,
   EVENT_ADD,
   EVENT_UPDATE,
@@ -111,14 +111,14 @@ describe('events reducer', () => {
 describe('event reducer', () => {
 
   it('returns empty object for inital state', () => {
-    const state = event(undefined, {});
+    const state = singleEvent(undefined, {});
     expect(state).toEqual({});
   });
 
   it('loads a singular event', () => {
     const data = { type: 'something' };
 
-    const state = event({}, {
+    const state = singleEvent({}, {
       type: EVENT_LOAD,
       payload: data
     });

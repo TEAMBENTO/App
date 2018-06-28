@@ -20,7 +20,7 @@ class EventListItem extends Component {
 
     return (
       <li>
-        <Link to={`/events/${_id}/`}><h2>{name}</h2></Link>
+        <Link to={`/events/${_id}`}><h2>{name}</h2></Link>
         {!host ? <p>Hosted by: {host}</p> : null}
         {!group ? <p>Team: {group}</p> : null}
         <p>Activity: {type}</p>
