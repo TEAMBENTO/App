@@ -18,10 +18,12 @@ class Profiles extends Component {
 
   componentDidMount() {
     this.props.loadProfiles();
-    this.props.queryProfile(this.props.user._id)
-      .then(({ payload }) => {
-        return this.props.loadUserProfile(payload[0]._id);
-      });
+    if(this.props.user !== null) {
+      this.props.queryProfile(this.props.user._id)
+        .then(({ payload }) => {
+          return this.props.loadUserProfile(payload[0]._id);
+        });
+    }
   }
 
   render() {
