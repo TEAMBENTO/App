@@ -7,7 +7,7 @@ import { getUser } from '../auth/reducers';
 import { Link } from 'react-router-dom';
 import ProfileForm  from './ProfileForm';
 import profileDefault from '../../../assets/person.png';
-import './Profile.css';
+import styles from './Profile.css';
 
 class Profile extends Component {
 
@@ -55,7 +55,7 @@ class Profile extends Component {
       if(!events) return null;
 
       return (
-        <div>
+        <div className = {styles.profile}>
           <h1>{userId.name}</h1>
           <div className="profile-image">{image ? <img src = {image}/> : <img src="https://harrell-remodeling.com/wp-content/uploads/2017/09/Person-placeholder.jpg"/>}</div>
           <div className = 'profile-edit'>{editing || <button onClick={this.handleEdit}>✐</button>}</div>
@@ -67,7 +67,7 @@ class Profile extends Component {
             onCancel={this.handleCancel}
           /> }
           <div className = "personal-bio">
-            {bio ? <p>About me:{bio}</p> : <p>No bio added, tell us about yourself!</p> }
+            {bio ? <p>About me:   {bio}</p> : <p>No bio added, tell us about yourself!</p> }
             {demographic ? <p>Gender: {demographic}</p> : <p>blank</p>}
             {location ? <p>Location: {location}</p> : <p>Fill in your location!</p>}
             {activities ? <p>{activities}</p> : <p>No activities added</p>}

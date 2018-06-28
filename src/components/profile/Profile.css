@@ -1,31 +1,40 @@
 @import url('https://fonts.googleapis.com/css?family=Magra:400,700');
 
+:local(.profile) {
 
-.profile-image img {
-    border-radius: 50%;
-    max-width: 300px;
-    max-height: 300px;
-    overflow: hidden;
-    align-content: center; 
-    margin: 0;
+    display: grid;
 
-    border: 10px solid rgba(96, 96, 96, .75);
-    border-radius:50%;
-    -moz-border-radius:50%;
-    -webkit-border-radius:50%;
-    overflow: hidden;
-    align-content: center;
-
-}
-
-p {
-    font-family: 'Magra', sans-serif;
-}
-
-.personal-bio {
+    .profile-image img {
+        border-radius: 50%;
+        max-width: 300px;
+        max-height: 300px;
+        overflow: hidden;
+        align-content: center; 
+        margin: 0;
     
-}
+        border: 10px solid rgba(96, 96, 96, .75);
+        border-radius:50%;
+        -moz-border-radius:50%;
+        -webkit-border-radius:50%;
+        overflow: hidden;
+        align-content: center;
+    
+    }
+    
+   @media(min-width: 376px) {
+       background-color: rgba(62, 172, 171, 0.5);
+       border-top-right-radius: 22%;
+       border-top-left-radius: 22%;
 
-#bold {
-    color: red;
+   }
+
+   @media(max-width: 376px) {
+    background-color: rgba(162, 212, 171, 0.5);
+    border-top-right-radius: 15%;
+    border-top-left-radius: 15%;
+    margin: 0;
+   }
+    
+    
+    
 }
