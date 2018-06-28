@@ -48,7 +48,6 @@ class GroupForm extends Component {
   };
 
   handleSubmit = event => {
-    console.log('STATE!!!', this.state);
     event.preventDefault();
     this.props.onComplete(this.state.edit);
     this.setState({
