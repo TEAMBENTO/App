@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { getSingleEvent } from './reducers';
 import { loadEvent } from './actions';
 import AddEvent from './AddEvent';
+import { Link } from 'react-router-dom';
 
 
 class EventDetail extends Component {
@@ -44,14 +45,14 @@ class EventDetail extends Component {
       <div>
         <h2>{name}</h2>{editing || <button onClick={this.handleEdit}>✐</button>}
         {editing && <AddEvent editing={editing} id={_id} />}
-        {!host ? <p>Hosted by: {host}</p> : null}
-        {!group ? <p>Team: {group}</p> : null}
+        {host.length ? <p>Hosted by: {host.map(hostee => <Link key={hostee._id}to={`/profiles/${hostee._id}`}>{hostee.userId.name}</Link>)}</p> : null}
+        {group.length ? <p>Team: {group}</p> : null}
         <p>Activity: {type}</p>
         <p>Description: {description}</p>
         <p>Address: {location.name}</p>
         <p>Event Start: {timeStart.toLocaleString()}</p>
         <p>Event End: {timeEnd.toLocaleString()}</p>
-        {!attendance ? <p>Attendants: {attendance}</p> : null}
+        {attendance.length > 1 ? <p>Attendants: {attendance.map(attendee => <Link key={attendee._id}to={`/profiles/${attendee._id}`}>{attendee.userId.name}</Link>)}</p> : null}
       </div>
     );
   }
