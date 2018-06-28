@@ -24,8 +24,8 @@ export const deleteGroup = id => del(`${GROUPS_URL}/${id}`, id);
 export const getAllEvents = () => get(EVENTS_URL);
 export const getEventById = id => get(`${EVENTS_URL}/${id}`);
 export const postEvent = event => post(EVENTS_URL, event);
-export const putEvent = event => post(EVENTS_URL, event);
-export const deleteEvent = id => post(`${EVENTS_URL}/${id}`);
+export const putEvent = event => put(`${EVENTS_URL}/${event._id}`, event);
+export const deleteEvent = id => del(`${EVENTS_URL}/${id}`);
 
 export const signin = credentials => post(`${AUTH_URL}/signin`, credentials);
 export const signup = credentials => post(`${AUTH_URL}/signup`, credentials);
