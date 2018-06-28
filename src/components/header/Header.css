@@ -3,12 +3,12 @@
 
 :local(nav) {
 
-  @media (min-width: 400px) {
     img {
         height: 60px;
     }   
 
     #logo {
+      padding-top: .5rem;
       margin-left: 20px;
       -webkit-transition: height .05s;
       transition: height .05s;
@@ -18,37 +18,37 @@
       height: 80px;
       text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     }
+
     text-align: center;
 
 
-  ul {
-    list-style: none;
-    padding-left: 0px;
+    ul {
+      list-style: none;
+      padding-left: 0px;
 
 
-    a {
-      display: inline-block;
-      text-decoration: none;
-      color: #2d2d2d;
-      font-family: 'Raleway', sans-serif;
-      font-weight: 800;
-      margin: 0 10px 0 0;
-      // -webkit-transition: font-size color .05s;
-      // -webskit-transition-timing-function: ease;
-      transition: font-size color .05s;
-      // transition-timing-function: ease;
-    }
-
-    a:hover {
-      color:#3eacab;
-    }
-
-    li {
-      display: inline-block;
-      align-items: center;
+      a {
+        display: inline-block;
+        text-decoration: none;
+        color: #2d2d2d;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 800;
+        margin: 0 10px 0 0;
+        // -webkit-transition: font-size color .05s;
+        // -webskit-transition-timing-function: ease;
+        transition: font-size color .05s;
+        // transition-timing-function: ease;
       }
-    }
-  }
+
+      a:hover {
+        color:#3eacab;
+      }
+
+      li {
+        display: inline-block;
+        align-items: center;
+        }
+      }
 
 
 @media (max-width: 376px) {

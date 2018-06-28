@@ -3,6 +3,38 @@
 :local(.profile) {
 
     display: grid;
+    grid-template-rows: auto 1fr 20px 1fr;
+    background-color: rgba(62, 172, 171, 0.5);
+    border-top-right-radius: 22%;
+    border-top-left-radius: 22%;
+    height: 100%;
+    width:100%;
+
+    h1 {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding-top: .5rem;
+    }
+
+    .profile-image {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .personal-bio {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: .5rem
+    }
+
+    .profile-edit {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
 
     .profile-image img {
         border-radius: 50%;
@@ -20,13 +52,6 @@
         align-content: center;
     
     }
-    
-   @media(min-width: 376px) {
-       background-color: rgba(62, 172, 171, 0.5);
-       border-top-right-radius: 22%;
-       border-top-left-radius: 22%;
-
-   }
 
    @media(max-width: 376px) {
     background-color: rgba(162, 212, 171, 0.5);

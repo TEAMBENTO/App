@@ -64,7 +64,7 @@ class Profile extends Component {
         <div className = {styles.profile}>
           <h1>{userId.name}</h1>
           <div className="profile-image">{image ? <img src = {image}/> : <img src="https://harrell-remodeling.com/wp-content/uploads/2017/09/Person-placeholder.jpg"/>}</div>
-          <div className = 'profile-edit'>{editing || <button onClick={this.handleEdit}>✐</button>}</div>
+          <div className="profile-edit">{editing || <button onClick={this.handleEdit}>✐</button>}</div>
           { editing &&
           <ProfileForm 
             label="update profile"
@@ -72,7 +72,7 @@ class Profile extends Component {
             onComplete={updateProfile}
             onCancel={this.handleCancel}
           /> }
-          <div className = "personal-bio">
+          <div className="personal-bio">
             {bio ? <p>About me:   {bio}</p> : <p>No bio added, tell us about yourself!</p> }
             {demographic ? <p>Gender: {demographic}</p> : <p>blank</p>}
             {location ? <p>Location: {location}</p> : <p>Fill in your location!</p>}
