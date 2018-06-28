@@ -67,9 +67,7 @@ class AddEvent extends React.Component {
       time: {
         start: new Date(formData.timeStart),
         end: new Date(formData.timeEnd)
-      },
-      host: this.props.userProfile._id,
-      attendance: this.props.userProfile._id
+      }
     };
     // console.log('profile', this.props.userProfile);
     // console.log(structuredData);
@@ -77,7 +75,12 @@ class AddEvent extends React.Component {
       structuredData._id = this.props.id;
       // console.log('structured data', structuredData);
       this.props.updateEvent(structuredData);
-    } else this.props.addEvent(structuredData);
+    } else {
+      structuredData.host = [this.props.userProfile._id],
+      structuredData.attendance = [this.props.userProfile._id],
+      console.log(structuredData);
+      this.props.addEvent(structuredData);
+    }
   };
 
 
