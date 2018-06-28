@@ -49,7 +49,7 @@ class EventDetail extends Component {
   };
   
   componentDidMount() {
-    const { userProfile, loadEvent, match } = this.props;
+    const { loadEvent, match } = this.props;
     
 
     if(this.props.user !== null) {
