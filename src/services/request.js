@@ -3,7 +3,7 @@ import { getUser } from '../components/auth/reducers';
 
 let token = '';
 
-const key = 'user';
+const key1 = 'user';
 const storage = window.localStorage;
 
 store.subscribe(() => {
@@ -12,11 +12,11 @@ store.subscribe(() => {
   if(nextToken === token) return;
 
   token = nextToken;
-  token ? storage.setItem(key, JSON.stringify(user)) : clearStoredUser();
+  token ? storage.setItem(key1, JSON.stringify(user)) : clearStoredUser();
 });
 
 export const getStoredUser = () => {
-  const json = storage.getItem(key);
+  const json = storage.getItem(key1);
   try {
     return JSON.parse(json);
   }
@@ -25,7 +25,7 @@ export const getStoredUser = () => {
   }
 };
 
-export const clearStoredUser = () => storage.removeItem(key);
+export const clearStoredUser = () => storage.removeItem(key1);
 
 function request(url, options = {}, data) {
   if(data) options.body = JSON.stringify(data);

@@ -5,7 +5,7 @@
   "scripts": {
     "build:prod": "npm run build && npm run copy",
     "build": "webpack --mode production",
-    "copy": "rm -rf ../server/public && cp -R ./docs ../server/public",
+    "copy": "rm -rf ../Server/public && cp -R ./docs ../Server/public",
     "start": "webpack-dev-server --hot --mode development --open",
     "lint": "eslint .",
     "//pretest": "npm run lint",

@@ -56,8 +56,8 @@ class App extends PureComponent {
             <Switch>
               <Route exact path="/" component={Home}/>
               <Route path="/about" component={About}/>
-              <Route exact path="/profile/:id" component={Profile}/>          
               <Route path="/profiles" component={Profiles}/>          
+              <Route exact path="/profile/:id" render={({ match }) => <Profile id={match.params.id}/> } />      
               <Route path="/auth" component={Auth}/>
               <Route path="/events" component={Events}/>
               <Route exact path="/groups" component={Groups}/>

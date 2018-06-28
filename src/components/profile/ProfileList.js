@@ -13,7 +13,7 @@ class ProfileList extends Component {
       user: PropTypes.object,
       match: PropTypes.object,
       loadProfiles: PropTypes.func.isRequired,
-      profile: PropTypes.object
+      // profile: PropTypes.object
     };
 
     componentDidMount() {

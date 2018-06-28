@@ -14,6 +14,7 @@ class Profile extends Component {
   };
 
     static propTypes = {
+      id: PropTypes.string,
       user: PropTypes.object,
       match: PropTypes.object,
       loadProfile: PropTypes.func.isRequired,
@@ -22,7 +23,7 @@ class Profile extends Component {
     };
 
     componentDidMount() {
-      this.props.loadProfile(this.props.match.params.id);
+      this.props.loadProfile(this.props.id);
     }
 
     handleEdit = () => {
