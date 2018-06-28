@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loadProfiles } from './actions';
+import { getUser } from '../auth/reducers';
+import { loadProfiles, loadUserProfile, queryProfile } from './actions';
 import ProfileList from './ProfileList';
-import { getProfiles } from './reducers';
+import { getProfiles, getUserProfile } from './reducers';
 import './Profiles.css';
 
 class Profiles extends Component {
   static propTypes = {
+    user: PropTypes.object,
     profiles: PropTypes.array,
     loadProfiles: PropTypes.func.isRequired,
+    loadUserProfile: PropTypes.func.isRequired,
+    queryProfile: PropTypes.func.isRequired
   };
 
   componentDidMount() {
     this.props.loadProfiles();
+    this.props.queryProfile(this.props.user._id)
+      .then(({ payload }) => {
+        return this.props.loadUserProfile(payload[0]._id);
+      });
   }
 
   render() {
@@ -28,7 +36,9 @@ class Profiles extends Component {
 
 export default connect(
   state => ({ 
-    profiles: getProfiles(state)
+    user: getUser(state),
+    profiles: getProfiles(state),
+    userProfile: getUserProfile(state)  
   }),
-  { loadProfiles }
+  { loadProfiles, queryProfile, loadUserProfile }
 )(Profiles);
