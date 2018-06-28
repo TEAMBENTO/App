@@ -13,7 +13,7 @@ import Header from '../header/Header';
 import Profile from '../profile/Profile';
 import Groups from '../groups/Groups';
 import Events from '../events/Events';
-import EventDetail from '../events/EventDetail';
+// import EventDetail from '../events/EventDetail';
 import Profiles from '../profile/Profiles';
 import styles from './App.css';
 import GroupDetail from '../groups/GroupDetail';
