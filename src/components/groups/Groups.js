@@ -11,6 +11,7 @@ import EventList from '../events/EventsList';
 import { getUserProfile } from '../profile/reducers';
 import { loadUserProfile, queryProfile } from '../profile/actions';
 import { getUser } from '../auth/reducers';
+import './Groups.css';
 
 class Groups extends Component {
   static propTypes = {

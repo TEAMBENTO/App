@@ -30,7 +30,7 @@ class Auth extends PureComponent {
       <section className={styles.auth}>
         <Switch>
           <Route path="/auth/signin" component={() => (
-            <div>
+            <div id = "sign-up-box">
               <p>Not yet registered? <Link to="/auth/signup">Sign Up</Link></p>
               <Credentials action="Sign In" submit={signin}/>
             </div>
