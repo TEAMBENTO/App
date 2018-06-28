@@ -28,7 +28,6 @@ class EventListItem extends Component {
         <p>Address: {location.name}</p>
         <p>Event Start: {timeStart.toLocaleString()}</p>
         <p>Event End: {timeEnd.toLocaleString()}</p>
-        {attendance.length > 1 ? <p>Attendants: {attendance.map(attendee => <Link key={attendee._id}to={`/profiles/${attendee._id}`}>{attendee.userId.name}</Link>)}</p> : null}
       </li>
     );
   }
