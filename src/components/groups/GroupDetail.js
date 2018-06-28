@@ -11,12 +11,9 @@ import { getUser } from '../auth/reducers';
 import { loadUserProfile, queryProfile } from '../profile/actions';
 import GroupForm from './GroupForm';
 import EventList from '../events/EventsList';
+import ProfileList from '../profile/ProfileList';
 
 class GroupDetail extends Component {
-
-  state = {
-    editing: false
-  };
 
   static propTypes = {
     userProfile: PropTypes.object.isRequired,
@@ -33,9 +30,22 @@ class GroupDetail extends Component {
     user: PropTypes.object,
   };
 
+  state = {
+    editing: false,
+    canEdit: false
+  };
+
   componentDidMount() {
-    const { loadGroup, loadEventsByGroup, match, queryProfile, loadUserProfile, user } = this.props;
-    loadGroup(match.params.id);
+    const { loadGroup, loadEventsByGroup, match, userProfile, queryProfile, loadUserProfile, user } = this.props;
+    loadGroup(match.params.id)
+      .then(group => {
+        if(userProfile._id.toString() === group.payload.captains[0]._id.toString()) {
+          this.setState({
+            ...this.state,
+            canEdit: true
+          });
+        }
+      });
     loadEventsByGroup(match.params.id);
     queryProfile(user._id)
       .then(({ payload }) => {
@@ -60,17 +70,17 @@ class GroupDetail extends Component {
     const { group, userProfile, updateGroupMembers } = this.props;
     const profileIds = group.members.map(member => member._id);
     const updatedMembers = {
+      _id: group._id,
       members: [...profileIds, userProfile._id]
     };
     updateGroupMembers(updatedMembers);
   };
   
   render() {
-    const { editing } = this.state;
+    const { editing, canEdit } = this.state;
     const { group, events } = this.props;
     const { teamName, image, description } = group;
-    if(!group) return null;
-
+    if(!group.captains) return null;
 
     return (
       <div>
@@ -78,10 +88,12 @@ class GroupDetail extends Component {
         <img src={image}/>
         <p>{description}</p>
         <button onClick={this.handleJoin}>Join</button>
-        {editing || <button onClick={this.handleEdit}>✐</button>}
-        <Link to={'/groups'}>
-          <button onClick={() => removeGroup(group._id)}>X</button>
-        </Link>
+        {canEdit && <div>
+          {editing || <button onClick={this.handleEdit}>✐</button>}
+          <Link to={'/groups'}>
+            <button onClick={() => removeGroup(group._id)}>X</button>
+          </Link>
+        </div>}
         {editing && 
           <div>
             <GroupForm
@@ -93,6 +105,7 @@ class GroupDetail extends Component {
           </div>
         }
         {events && <EventList events={events}/>}
+        {group.members && <ProfileList profiles={group.members}/>}
       </div>
     );
   }

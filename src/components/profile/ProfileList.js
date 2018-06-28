@@ -5,6 +5,7 @@ import { loadProfiles, loadUserProfile, queryProfile } from './actions';
 import { getUser } from '../auth/reducers';
 import { Link } from 'react-router-dom';
 import { getProfiles, getUserProfile } from './reducers';
+import { Link } from 'react-router-dom';
 
 class ProfileList extends Component {
 
@@ -15,8 +16,7 @@ class ProfileList extends Component {
       match: PropTypes.object,
       loadProfiles: PropTypes.func.isRequired,
       loadUserProfile: PropTypes.func.isRequired,
-      queryProfile: PropTypes.func.isRequired,
-      // profile: PropTypes.object
+      queryProfile: PropTypes.func.isRequired
     };
 
     componentDidMount() {
@@ -25,7 +25,7 @@ class ProfileList extends Component {
           return this.props.loadUserProfile(payload[0]._id);
         });
       this.props.loadProfiles();
-    }
+    };
 
     render() {
       const { profiles } = this.props;
