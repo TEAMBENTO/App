@@ -24,11 +24,7 @@ export const deleteGroup = id => del(`${GROUPS_URL}/${id}`, id);
 export const getAllEvents = () => get(EVENTS_URL);
 export const getEventById = id => get(`${EVENTS_URL}/${id}`);
 export const postEvent = event => post(EVENTS_URL, event);
-
 export const getEventByGroup = id => get(`${EVENTS_URL}?group=${id}`);
-export const putGroup = group => put(`${GROUPS_URL}/${group._id}`, group);
-export const deleteGroup = id => del(`${GROUPS_URL}/${id}`, id);
-
 export const putEvent = event => put(`${EVENTS_URL}/${event._id}`, event);
 export const deleteEvent = id => del(`${EVENTS_URL}/${id}`);
 
