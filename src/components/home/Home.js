@@ -5,7 +5,7 @@ export default class Home extends PureComponent {
   render() {
     return (
       <div className = "background-image">
-        <p> I am Home</p>
+        <p> Welcome to Rally</p>
       </div>
     );
   }

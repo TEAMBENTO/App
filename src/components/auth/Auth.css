@@ -1,0 +1,14 @@
+:local(.auth) {
+    @media (min-width: 400px) {
+    border: 5px solid #3eacab;
+    background-color: rgba(62, 172, 171, 0.5);
+    margin-left: 200px;
+    margin-right: 200px;
+    }
+
+    @media (max-width: 376px) {
+        border: 5px solid #a2d4ab;
+        background-color: rgba(162, 212, 171, 0.5);
+    }
+}
+

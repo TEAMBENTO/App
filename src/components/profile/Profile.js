@@ -6,7 +6,8 @@ import { loadProfile, updateProfile } from './actions';
 import { getUser } from '../auth/reducers';
 import { Link } from 'react-router-dom';
 import ProfileForm  from './ProfileForm';
-import editIcon from '../../../assets/009-pen.png';
+import profileDefault from '../../../assets/person.png';
+import './Profile.css';
 
 class Profile extends Component {
 
@@ -56,7 +57,7 @@ class Profile extends Component {
       return (
         <div>
           <h1>{userId.name}</h1>
-          <div id="profile-image">{image ? <img src = {image}/> : <p>Add an image</p>}</div>
+          <div className="profile-image">{image ? <img src = {image}/> : <img src="https://harrell-remodeling.com/wp-content/uploads/2017/09/Person-placeholder.jpg"/>}</div>
           <div className = 'profile-edit'>{editing || <button onClick={this.handleEdit}>✐</button>}</div>
           { editing &&
           <ProfileForm 
@@ -65,13 +66,15 @@ class Profile extends Component {
             onComplete={updateProfile}
             onCancel={this.handleCancel}
           /> }
-          {bio ? <p>About me: {bio}</p> : <p>No bio added, tell us about yourself!</p> }
-          {demographic ? <p>Gender: {demographic}</p> : <p>blank</p>}
-          {location ? <p>Location: {location}</p> : <p>Fill in your location!</p>}
-          {activities ? <p>{activities}</p> : <p>No activities added</p>}
-          {events.map(event => <Link key={event._id} to={`/events/${event._id}`}>
+          <div className = "personal-bio">
+            {bio ? <p>About me:{bio}</p> : <p>No bio added, tell us about yourself!</p> }
+            {demographic ? <p>Gender: {demographic}</p> : <p>blank</p>}
+            {location ? <p>Location: {location}</p> : <p>Fill in your location!</p>}
+            {activities ? <p>{activities}</p> : <p>No activities added</p>}
+            {events.map(event => <Link key={event._id} to={`/events/${event._id}`}>
           This is an event! Event called: {event.name}
-          </Link>)}
+            </Link>)}
+          </div>
 
         </div>
 

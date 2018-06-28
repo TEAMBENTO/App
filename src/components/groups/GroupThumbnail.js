@@ -12,7 +12,7 @@ class GroupThumbnail extends Component {
     const { teamName, image } = this.props;
 
     return (
-      <div>
+      <div id = "image-thumbnail">
         {image && <img src={image}/>}
         {teamName && <h1>{teamName}</h1>}
       </div>

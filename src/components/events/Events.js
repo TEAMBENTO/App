@@ -8,7 +8,7 @@ import { loadEvents } from './actions';
 import { getEvents } from './reducers';
 import MapContainer from './MapContainer';
 import EventDetail from './EventDetail';
-
+import styles from './Events.css';
 
 
 class Events extends Component {
@@ -36,7 +36,7 @@ class Events extends Component {
     return (
       <div>
         <h2>Events</h2>
-        <ul>
+        <ul className = {styles}>
           <li><Link to={'/events/list'}>All Events</Link></li>
           <li><Link to={'/events/new'}>Add a New Event</Link></li>
           <li><Link to={'/events/map'}>Map View</Link></li>

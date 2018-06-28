@@ -8,6 +8,7 @@ import { addGroup } from './actions';
 import GroupForm from './GroupForm';
 import GroupList from './GroupList';
 import EventList from '../events/EventsList';
+import './Groups.css';
 
 class Groups extends Component {
   static propTypes = {
