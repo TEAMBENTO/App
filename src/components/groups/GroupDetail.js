@@ -10,6 +10,7 @@ import { getEvents } from '../events/reducers';
 import GroupForm from './GroupForm';
 import EventList from '../events/EventsList';
 import ProfileList from '../profile/ProfileList';
+import AddEvent from '../events/AddEvent';
 
 class GroupDetail extends Component {
 
@@ -95,6 +96,7 @@ class GroupDetail extends Component {
             />
           </div>
         }
+        <AddEvent groupId={group._id}/>
         {events && <EventList events={events}/>}
         {group.members && <ProfileList profiles={group.members}/>}
       </div>
