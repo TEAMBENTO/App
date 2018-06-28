@@ -16,7 +16,8 @@ class EventDetail extends Component {
 
   state = {
     editing: false,
-    canEdit: false
+    canEdit: false,
+    nonAttendee: true
   };
 
   static propTypes = {
@@ -66,6 +67,14 @@ class EventDetail extends Component {
                   canEdit: true
                 });
               }
+              const isGoing = event.payload.attendance.filter(a => a._id === payload._id);
+              if(isGoing.length) {
+                this.setState({
+                  ...this.state,
+                  nonAttendee: false
+                });
+              }
+
             });
         });
     }
@@ -76,7 +85,7 @@ class EventDetail extends Component {
 
   render() {
     if(!this.props.singleEvent._id) return null;
-    const { editing, canEdit } = this.state;
+    const { editing, canEdit, nonAttendee } = this.state;
     const { attendance, description, group, host, location, name, time, type, _id } = this.props.singleEvent;
 
     const { start, end } = time;
@@ -89,7 +98,7 @@ class EventDetail extends Component {
         <h2>{name}</h2>
         {canEdit && <div>
           {editing || <button onClick={this.handleEdit}>✐</button>} </div>}
-        <button onClick={this.handleJoin}>Join</button>
+        {nonAttendee && <button onClick={this.handleJoin}>Join</button>}
         {editing && <AddEvent editing={editing} id={_id} />}
         {/* {host[0].userId.name ? <p>Hosted by: {host[0].userId.name} </p> : null} */}
         {group.length ? <p>Team: {group}</p> : null}
