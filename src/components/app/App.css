@@ -1,3 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500i,800|Raleway:400,800');
+@import url('https://fonts.googleapis.com/css?family=Magra:400,700');
+
+
+
 * {
-    text-align: center;
+text-align: center;
 }
+
+.user-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2em;
+
+}
+
+.foot {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-family: 'Magra', san-serif;
+}
+
+#profile-grid {
+    display: grid;
+    grid-template-columbs: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: "profile profile profile"
+    "profile profile profile";
+
+}
+
+#profile-grid img{
+    // background-color:#2d2d2d;
+    border:10px solid rgba(96, 96, 96, .75); 
+    height: 200px;
+    border-radius:50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+    width: 200px;
+    border-style: inset; 
+    grid-area: profile;
+
+}
+
