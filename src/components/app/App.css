@@ -22,14 +22,14 @@ text-align: center;
 
 #profile-grid {
     display: grid;
-    grid-template-columbs: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-areas: "profile profile profile"
     "profile profile profile";
 
 }
 
-#profile-grid img{
+#profile-grid img {
     // background-color:#2d2d2d;
     border:10px solid rgba(96, 96, 96, .75); 
     height: 200px;
@@ -41,4 +41,3 @@ text-align: center;
     grid-area: profile;
 
 }
-
