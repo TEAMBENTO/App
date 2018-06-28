@@ -4,6 +4,7 @@ import { classnames } from '../helpers';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addEvent, updateEvent } from './actions';
+import { loadUserProfile, queryProfile } from '../profile/actions';
 import { getEvents } from './reducers';
 import { getUser } from '../auth/reducers';
 import { getUserProfile } from '../profile/reducers';
@@ -20,12 +21,15 @@ const defaultFormState = {
 class AddEvent extends React.Component {
 
   static propTypes = {
+    loadUserProfile: PropTypes.func.isRequired,
+    queryProfile: PropTypes.func.isRequired,
     addEvent: PropTypes.func.isRequired,
     updateEvent: PropTypes.func.isRequired,
     user: PropTypes.object,
     editing: PropTypes.bool,
     id: PropTypes.string,
-    userProfile: PropTypes.object
+    userProfile: PropTypes.object,
+    groupId: PropTypes.string,
   };
   
   constructor(props) {
@@ -39,7 +43,15 @@ class AddEvent extends React.Component {
       isGeocoding: false,
     };
   }
-  
+
+  componentDidMount() {
+    if(this.props.user !== null) {
+      this.props.queryProfile(this.props.user._id)
+        .then(({ payload }) => {
+          return this.props.loadUserProfile(payload[0]._id);
+        });
+    }
+  }
 
 
   handleSubmit = event => {
@@ -67,9 +79,7 @@ class AddEvent extends React.Component {
       time: {
         start: new Date(formData.timeStart),
         end: new Date(formData.timeEnd)
-      },
-      host: this.props.userProfile._id,
-      attendance: this.props.userProfile._id
+      }
     };
     // console.log('profile', this.props.userProfile);
     // console.log(structuredData);
@@ -77,7 +87,15 @@ class AddEvent extends React.Component {
       structuredData._id = this.props.id;
       // console.log('structured data', structuredData);
       this.props.updateEvent(structuredData);
-    } else this.props.addEvent(structuredData);
+    } else {
+      structuredData.host = [this.props.userProfile._id];
+      structuredData.attendance = [this.props.userProfile._id];
+      if(this.props.groupId) {
+        structuredData.group = [this.props.groupId];
+      }
+      console.log(structuredData);
+      this.props.addEvent(structuredData);
+    }
   };
 
 
@@ -263,5 +281,5 @@ export default connect(
     user: getUser(state),
     userProfile: getUserProfile(state)
   }),
-  { addEvent, updateEvent }
+  { addEvent, updateEvent, queryProfile, loadUserProfile  }
 )(AddEvent);

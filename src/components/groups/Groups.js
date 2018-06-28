@@ -8,15 +8,28 @@ import { addGroup } from './actions';
 import GroupForm from './GroupForm';
 import GroupList from './GroupList';
 import EventList from '../events/EventsList';
+import { getUserProfile } from '../profile/reducers';
+import { loadUserProfile, queryProfile } from '../profile/actions';
+import { getUser } from '../auth/reducers';
 import './Groups.css';
 
 class Groups extends Component {
   static propTypes = {
     loadGroups: PropTypes.func.isRequired,
-    groups: PropTypes.array
+    loadUserProfile: PropTypes.func.isRequired,
+    queryProfile: PropTypes.func.isRequired,
+    groups: PropTypes.array,
+    user: PropTypes.object,
+    userProfile: PropTypes.object
   };
 
   componentDidMount() {
+    if(this.props.user !== null) {
+      this.props.queryProfile(this.props.user._id)
+        .then(({ payload }) => {
+          return this.props.loadUserProfile(payload[0]._id);
+        });
+    }
     this.props.loadGroups();
   }
 
@@ -55,6 +68,10 @@ class Groups extends Component {
 }
 
 export default connect(
-  state => ({ groups: getGroups(state) }),
-  { addGroup, loadGroups }
+  state => ({ 
+    user: getUser(state),
+    groups: getGroups(state),
+    userProfile: getUserProfile(state)
+  }),
+  { addGroup, loadGroups, queryProfile, loadUserProfile }
 )(Groups);

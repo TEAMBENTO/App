@@ -1,24 +1,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loadProfiles } from './actions';
+import { loadProfiles, loadUserProfile, queryProfile } from './actions';
 import { getUser } from '../auth/reducers';
 import { Link } from 'react-router-dom';
-import { getProfiles } from './reducers';
+import { getProfiles, getUserProfile } from './reducers';
 
 class ProfileList extends Component {
 
     static propTypes = {
       profiles: PropTypes.array,
-      user: PropTypes.object,
-      match: PropTypes.object,
-      loadProfiles: PropTypes.func.isRequired,
-      profile: PropTypes.object
+      // user: PropTypes.object,
+      // userProfile: PropTypes.object,
+      // match: PropTypes.object,
+      // loadProfiles: PropTypes.func.isRequired,
+      // loadUserProfile: PropTypes.func.isRequired,
+      // queryProfile: PropTypes.func.isRequired
     };
 
-    componentDidMount() {
-      this.props.loadProfiles();
-    }
+    // componentDidMount() {
+    //   this.props.queryProfile(this.props.user._id)
+    //     .then(({ payload }) => {
+    //       return this.props.loadUserProfile(payload[0]._id);
+    //     });
+    //   this.props.loadProfiles();
+    // };
 
     render() {
       const { profiles } = this.props;
@@ -34,10 +40,4 @@ class ProfileList extends Component {
     } 
 }
 
-export default connect(
-  state => ({ 
-    user: getUser(state),
-    profiles: getProfiles(state)
-  }),
-  { loadProfiles }
-)(ProfileList);
+export default ProfileList;
