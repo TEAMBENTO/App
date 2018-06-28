@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { addEvent, updateEvent } from './actions';
 import { getEvents } from './reducers';
 import { getUser } from '../auth/reducers';
+import { getUserProfile } from '../profile/reducers';
 
 const defaultFormState = {
   eventName: '',
@@ -24,6 +25,7 @@ class AddEvent extends React.Component {
     user: PropTypes.object,
     editing: PropTypes.bool,
     id: PropTypes.string,
+    userProfile: PropTypes.object
   };
   
   constructor(props) {
@@ -37,6 +39,8 @@ class AddEvent extends React.Component {
       isGeocoding: false,
     };
   }
+  
+
 
   handleSubmit = event => {
     event.preventDefault();
@@ -64,16 +68,18 @@ class AddEvent extends React.Component {
         start: new Date(formData.timeStart),
         end: new Date(formData.timeEnd)
       },
-      host: this.props.user._id // TODO: change to profile ID
+      host: this.props.userProfile._id,
+      attendance: this.props.userProfile._id
     };
-    console.log(structuredData);
+    // console.log('profile', this.props.userProfile);
+    // console.log(structuredData);
     if(this.props.editing) {
-      console.log('got here');
       structuredData._id = this.props.id;
-      console.log('structured data', structuredData);
+      // console.log('structured data', structuredData);
       this.props.updateEvent(structuredData);
     } else this.props.addEvent(structuredData);
   };
+
 
   handleFormChange = ({ target }) => {
     this.setState(({ form }) => {
@@ -126,6 +132,7 @@ class AddEvent extends React.Component {
       clearSuggestions();
     });
   };
+
 
   render() {
     const {
@@ -253,7 +260,8 @@ class AddEvent extends React.Component {
 export default connect(
   state => ({ 
     event: getEvents(state),
-    user: getUser(state)
+    user: getUser(state),
+    userProfile: getUserProfile(state)
   }),
   { addEvent, updateEvent }
 )(AddEvent);
