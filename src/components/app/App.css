@@ -41,3 +41,46 @@ text-align: center;
     grid-area: profile;
 
 }
+
+@media (max-width: 376px) {
+    * {
+        text-align: center;
+        background: url("https://images.unsplash.com/photo-1521208433527-7e6e378a9a65?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=47ff7cf60f689a568caa93dd87bbca51&auto=format&fit=crop&w=1050&q=80") center center fixed no-repeat;       
+        padding: 0;
+        margin: 2px;
+    }
+        
+        .user-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2em;
+        
+        }
+        
+        .foot {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-family: 'Magra', san-serif;
+        }
+        
+        #profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            grid-template-areas: "profile profile profile"
+            "profile profile profile";
+        
+        }
+        
+        #profile-grid img {
+            // background-color:#2d2d2d;
+            border:10px solid rgba(96, 96, 96, .75); 
+            height: 75px;
+            border-radius:50%;
+            -moz-border-radius:50%;
+            -webkit-border-radius:50%;
+            width: 75px;
+            border-style: inset; 
+            grid-area: profile;        
+        }
+}
