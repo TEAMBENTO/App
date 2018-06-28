@@ -6,6 +6,7 @@ import { loadEvent, updateEventAttendants } from './actions';
 import AddEvent from './AddEvent';
 import { Link } from 'react-router-dom';
 import { getUserProfile } from '../profile/reducers';
+import ProfileList from '../profile/ProfileList';
 
 
 class EventDetail extends Component {
@@ -66,7 +67,7 @@ class EventDetail extends Component {
         <p>Address: {location.name}</p>
         <p>Event Start: {timeStart.toLocaleString()}</p>
         <p>Event End: {timeEnd.toLocaleString()}</p>
-        {attendance.length > 1 ? <p>Attendants: {attendance.map(attendee => <Link key={attendee._id}to={`/profiles/${attendee._id}`}>{attendee.userId.name}</Link>)}</p> : null}
+        {attendance && <ProfileList profiles={attendance}/>}
       </div>
     );
   }
