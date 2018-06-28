@@ -21,14 +21,14 @@ class EventListItem extends Component {
     return (
       <li>
         <Link to={`/events/${_id}`}><h2>{name}</h2></Link>
-        {!host ? <p>Hosted by: {host}</p> : null}
+        {host.length ? <p>Hosted by: {host.map(hostee => <Link key={hostee._id}to={`/profiles/${hostee._id}`}>{hostee.userId.name}</Link>)}</p> : null}
         {!group ? <p>Team: {group}</p> : null}
         <p>Activity: {type}</p>
         <p>Description: {description}</p>
         <p>Address: {location.name}</p>
         <p>Event Start: {timeStart.toLocaleString()}</p>
         <p>Event End: {timeEnd.toLocaleString()}</p>
-        {!attendance ? <p>Attendants: {attendance}</p> : null}
+        {!attendance ? <p>Attendants: {attendance.map(attendee => attendee.userId.name)}</p> : null}
       </li>
     );
   }
