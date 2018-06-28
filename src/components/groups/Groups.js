@@ -7,7 +7,6 @@ import { loadGroups } from './actions';
 import { addGroup } from './actions';
 import GroupForm from './GroupForm';
 import GroupList from './GroupList';
-import EventList from '../events/EventsList';
 import { getUserProfile } from '../profile/reducers';
 import { loadUserProfile, queryProfile } from '../profile/actions';
 import { getUser } from '../auth/reducers';
@@ -53,14 +52,14 @@ class Groups extends Component {
   };
 
   render() {
-    const { groups } = this.props;
+    const { groups, user } = this.props;
     const { redirect, newGroup } = this.state;
 
     if(redirect && newGroup) return <Redirect to={`/groups/${newGroup._id}`}/>;
 
     return (
       <div>
-        <GroupForm label="Add" onComplete={this.handleAdd}/>
+        {user && <GroupForm label="Add" onComplete={this.handleAdd}/>}
         <GroupList groups={groups}/>
       </div>
     );
