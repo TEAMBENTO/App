@@ -11,7 +11,7 @@ class EventListItem extends Component {
 
   render() {
     const { event } = this.props;
-    const { attendance, description, group, host, location, name, time, type, _id } = event;
+    const { description, group, location, name, time, type, _id } = event;
 
     const { start, end } = time;
 
