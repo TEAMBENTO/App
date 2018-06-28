@@ -48,12 +48,14 @@ class GroupDetail extends Component {
           });
         }
         const isMember = payload.members.filter(member => member.userId._id === user._id);
+        console.log('MEMBER', isMember);
         if(isMember.length) {
           this.setState({
             ...this.state,
             nonMember: false
           });
         }
+        console.log(this.state);
       });
     loadEventsByGroup(match.params.id);
     queryProfile(user._id)
@@ -83,6 +85,10 @@ class GroupDetail extends Component {
       members: [...profileIds, userProfile._id]
     };
     updateGroupMembers(updatedMembers);
+    this.setState({
+      ...this.state,
+      nonMember: false
+    });
   };
   
   render() {
