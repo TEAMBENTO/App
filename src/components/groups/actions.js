@@ -11,7 +11,8 @@ import {
   postGroup,
   getGroupById,
   putGroup,
-  deleteGroup
+  deleteGroup,
+  putGroupMembers
 } from '../../services/api';
 
 export function loadGroups() {
@@ -39,6 +40,13 @@ export function updateGroup(group) {
   return {
     type: GROUP_UPDATE,
     payload: putGroup(group)
+  };
+}
+
+export function updateGroupMembers(group) {
+  return {
+    type: GROUP_UPDATE,
+    payload: putGroupMembers(group)
   };
 }
 

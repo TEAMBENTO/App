@@ -19,6 +19,7 @@ export const getAllGroups = () => get(GROUPS_URL);
 export const getGroupById = id => get(`${GROUPS_URL}/${id}`);
 export const postGroup = group => post(GROUPS_URL, group);
 export const putGroup = group => put(`${GROUPS_URL}/${group._id}`, group);
+export const putGroupMembers = group => put(`${GROUPS_URL}/${group._id}/mem`, group);
 export const deleteGroup = id => del(`${GROUPS_URL}/${id}`, id);
 
 export const getAllEvents = () => get(EVENTS_URL);
