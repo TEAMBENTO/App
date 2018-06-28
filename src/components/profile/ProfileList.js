@@ -10,21 +10,7 @@ class ProfileList extends Component {
 
     static propTypes = {
       profiles: PropTypes.array,
-      // user: PropTypes.object,
-      // userProfile: PropTypes.object,
-      // match: PropTypes.object,
-      // loadProfiles: PropTypes.func.isRequired,
-      // loadUserProfile: PropTypes.func.isRequired,
-      // queryProfile: PropTypes.func.isRequired
     };
-
-    // componentDidMount() {
-    //   this.props.queryProfile(this.props.user._id)
-    //     .then(({ payload }) => {
-    //       return this.props.loadUserProfile(payload[0]._id);
-    //     });
-    //   this.props.loadProfiles();
-    // };
 
     render() {
       const { profiles } = this.props;

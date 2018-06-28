@@ -33,17 +33,25 @@ class GroupDetail extends Component {
 
   state = {
     editing: false,
-    canEdit: false
+    canEdit: false,
+    nonMember: true
   };
 
   componentDidMount() {
-    const { loadGroup, loadEventsByGroup, match, userProfile, queryProfile, loadUserProfile, user } = this.props;
+    const { loadGroup, loadEventsByGroup, match, user, queryProfile, loadUserProfile } = this.props;
     loadGroup(match.params.id)
-      .then(group => {
-        if(userProfile._id.toString() === group.payload.captains[0]._id.toString()) {
+      .then(({ payload }) => {
+        if(user._id.toString() === payload.captains[0].userId._id.toString()) {
           this.setState({
             ...this.state,
             canEdit: true
+          });
+        }
+        const isMember = payload.members.filter(member => member.userId._id === user._id);
+        if(isMember.length) {
+          this.setState({
+            ...this.state,
+            nonMember: false
           });
         }
       });
@@ -78,7 +86,7 @@ class GroupDetail extends Component {
   };
   
   render() {
-    const { editing, canEdit } = this.state;
+    const { editing, canEdit, nonMember } = this.state;
     const { group, events } = this.props;
     const { teamName, image, description } = group;
     if(!group.captains) return null;
@@ -88,7 +96,7 @@ class GroupDetail extends Component {
         <h1>{teamName}</h1>
         <img src={image}/>
         <p>{description}</p>
-        <button onClick={this.handleJoin}>Join</button>
+        {nonMember && <button onClick={this.handleJoin}>Join</button>}
         {canEdit && <div>
           {editing || <button onClick={this.handleEdit}>✐</button>}
           <Link to={'/groups'}>
@@ -105,7 +113,7 @@ class GroupDetail extends Component {
             />
           </div>
         }
-        <AddEvent groupId={group._id}/>
+        {canEdit && <AddEvent groupId={group._id}/>}
         {events && <EventList events={events}/>}
         {group.members && <ProfileList profiles={group.members}/>}
       </div>
