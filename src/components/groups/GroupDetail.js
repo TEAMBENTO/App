@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getGroup } from './reducers';
-import { getUser } from '../auth/reducers';
+import { getUserProfile } from '../profile/reducers';
 import { loadGroup, updateGroup, removeGroup } from './actions';
+import { loadEventsByGroup } from '../events/actions';
+import { getEvents } from '../events/reducers';
 import GroupForm from './GroupForm';
+import EventList from '../events/EventsList';
 
 class GroupDetail extends Component {
 
@@ -14,16 +17,20 @@ class GroupDetail extends Component {
   };
 
   static propTypes = {
-    user: PropTypes.object.isRequired,
+    userProfile: PropTypes.object.isRequired,
     match: PropTypes.object,
     loadGroup: PropTypes.func.isRequired,
     group: PropTypes.object.isRequired,
     updateGroup: PropTypes.func,
     removeGroup: PropTypes.func,
+    loadEventsByGroup: PropTypes.func.isRequired,
+    events: PropTypes.object
   };
 
   componentDidMount() {
-    this.props.loadGroup(this.props.match.params.id);
+    const { loadGroup, loadEventsByGroup, match } = this.props;
+    loadGroup(match.params.id);
+    loadEventsByGroup(match.params.id);
   }
 
   handleEdit = () => {
@@ -40,19 +47,18 @@ class GroupDetail extends Component {
   };
 
   handleJoin = () => {
-    const { group, user } = this.props;
+    const { group, userProfile } = this.props;
     const profileIds = group.members.map(member => member._id);
     const updatedGroup = {
       ...group,
-      members: [...profileIds, user._id]
+      members: [...profileIds, userProfile._id]
     };
-    console.log('MEMBERS!!', updatedGroup.members);
-    // this.props.updateGroup(updatedGroup);
+    this.props.updateGroup(updatedGroup);
   };
   
   render() {
     const { editing } = this.state;
-    const { group } = this.props;
+    const { group, events } = this.props;
     const { teamName, image, description } = group;
     if(!group) return null;
 
@@ -77,6 +83,7 @@ class GroupDetail extends Component {
             />
           </div>
         }
+        {events && <EventList events={events}/>}
       </div>
     );
   }
@@ -85,7 +92,8 @@ class GroupDetail extends Component {
 export default connect(
   state => ({ 
     group: getGroup(state),
-    user: getUser(state)
+    userProfile: getUserProfile(state),
+    events: getEvents(state)
   }),
-  { loadGroup, updateGroup, removeGroup }
+  { loadGroup, updateGroup, removeGroup, loadEventsByGroup }
 )(GroupDetail);
