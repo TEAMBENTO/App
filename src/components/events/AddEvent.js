@@ -28,7 +28,8 @@ class AddEvent extends React.Component {
     user: PropTypes.object,
     editing: PropTypes.bool,
     id: PropTypes.string,
-    userProfile: PropTypes.object
+    userProfile: PropTypes.object,
+    groupId: PropTypes.string,
   };
   
   constructor(props) {
@@ -87,8 +88,11 @@ class AddEvent extends React.Component {
       // console.log('structured data', structuredData);
       this.props.updateEvent(structuredData);
     } else {
-      structuredData.host = [this.props.userProfile._id],
-      structuredData.attendance = [this.props.userProfile._id],
+      structuredData.host = [this.props.userProfile._id];
+      structuredData.attendance = [this.props.userProfile._id];
+      if(this.props.groupId) {
+        structuredData.group = [this.props.groupId];
+      }
       console.log(structuredData);
       this.props.addEvent(structuredData);
     }
