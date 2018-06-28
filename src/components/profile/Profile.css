@@ -33,6 +33,12 @@
     border-top-right-radius: 15%;
     border-top-left-radius: 15%;
     margin: 0;
+
+
+    .profile-image img {
+        max-width: 200px;
+        max-height: 200px;
+    }
    }
     
     

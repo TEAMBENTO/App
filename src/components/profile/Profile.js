@@ -6,7 +6,6 @@ import { loadProfile, updateProfile } from './actions';
 import { getUser } from '../auth/reducers';
 import { Link } from 'react-router-dom';
 import ProfileForm  from './ProfileForm';
-import profileDefault from '../../../assets/person.png';
 import styles from './Profile.css';
 
 class Profile extends Component {
