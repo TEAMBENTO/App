@@ -8,17 +8,30 @@ import { loadEvents } from './actions';
 import { getEvents } from './reducers';
 import MapContainer from './MapContainer';
 import EventDetail from './EventDetail';
+import { getUserProfile } from '../profile/reducers';
+import { loadUserProfile, queryProfile } from '../profile/actions';
+import { getUser } from '../auth/reducers';
 
 
 
 class Events extends Component {
 
   static propTypes = {
+    loadUserProfile: PropTypes.func.isRequired,
+    queryProfile: PropTypes.func.isRequired,
+    user: PropTypes.object,
+    userProfile: PropTypes.object,
     loadEvents: PropTypes.func.isRequired,
     events: PropTypes.array
   };
 
   componentDidMount() {
+    if(this.props.user !== null) {
+      this.props.queryProfile(this.props.user._id)
+        .then(({ payload }) => {
+          return this.props.loadUserProfile(payload[0]._id);
+        });
+    }
     this.props.loadEvents();
   }
 
@@ -54,6 +67,10 @@ class Events extends Component {
 }
 
 export default connect(
-  state => ({ events: getEvents(state) }),
-  { loadEvents }
+  state => ({ 
+    events: getEvents(state),
+    user: getUser(state),
+    userProfile: getUserProfile(state)
+  }),
+  { loadEvents, queryProfile, loadUserProfile }
 )(Events);

@@ -7,6 +7,8 @@ import { getUserProfile } from '../profile/reducers';
 import { loadGroup, updateGroup, removeGroup, updateGroupMembers } from './actions';
 import { loadEventsByGroup } from '../events/actions';
 import { getEvents } from '../events/reducers';
+import { getUser } from '../auth/reducers';
+import { loadUserProfile, queryProfile } from '../profile/actions';
 import GroupForm from './GroupForm';
 import EventList from '../events/EventsList';
 import ProfileList from '../profile/ProfileList';
@@ -15,6 +17,8 @@ class GroupDetail extends Component {
 
   static propTypes = {
     userProfile: PropTypes.object.isRequired,
+    loadUserProfile: PropTypes.func.isRequired,
+    queryProfile: PropTypes.func.isRequired,
     match: PropTypes.object,
     loadGroup: PropTypes.func.isRequired,
     group: PropTypes.object.isRequired,
@@ -23,6 +27,7 @@ class GroupDetail extends Component {
     loadEventsByGroup: PropTypes.func.isRequired,
     updateGroupMembers: PropTypes.func.isRequired,
     events: PropTypes.array,
+    user: PropTypes.object,
   };
 
   state = {
@@ -31,7 +36,7 @@ class GroupDetail extends Component {
   };
 
   componentDidMount() {
-    const { loadGroup, loadEventsByGroup, match, userProfile } = this.props;
+    const { loadGroup, loadEventsByGroup, match, userProfile, queryProfile, loadUserProfile, user } = this.props;
     loadGroup(match.params.id)
       .then(group => {
         if(userProfile._id.toString() === group.payload.captains[0]._id.toString()) {
@@ -42,6 +47,10 @@ class GroupDetail extends Component {
         }
       });
     loadEventsByGroup(match.params.id);
+    queryProfile(user._id)
+      .then(({ payload }) => {
+        return loadUserProfile(payload[0]._id);
+      });
   }
 
   handleEdit = () => {
@@ -104,9 +113,10 @@ class GroupDetail extends Component {
 
 export default connect(
   state => ({ 
+    user: getUser(state),
     group: getGroup(state),
     userProfile: getUserProfile(state),
     events: getEvents(state)
   }),
-  { loadGroup, updateGroup, removeGroup, loadEventsByGroup, updateGroupMembers }
+  { loadGroup, updateGroup, removeGroup, loadEventsByGroup, updateGroupMembers, queryProfile, loadUserProfile  }
 )(GroupDetail);

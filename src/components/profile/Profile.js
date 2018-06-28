@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getProfile } from './reducers';
-import { loadProfile, updateProfile } from './actions';
+import { getProfile, getUserProfile } from './reducers';
+import { loadProfile, updateProfile, queryProfile, loadUserProfile } from './actions';
 import { getUser } from '../auth/reducers';
 import { Link } from 'react-router-dom';
 import ProfileForm  from './ProfileForm';
@@ -14,15 +14,22 @@ class Profile extends Component {
   };
 
     static propTypes = {
+      id: PropTypes.string,
       user: PropTypes.object,
+      userProfile: PropTypes.object,
       match: PropTypes.object,
       loadProfile: PropTypes.func.isRequired,
+      queryProfile: PropTypes.func.isRequired,
+      loadUserProfile: PropTypes.func.isRequired,
       profile: PropTypes.object,
       updateProfile: PropTypes.func
     };
 
+    
+
     componentDidMount() {
-      this.props.loadProfile(this.props.match.params.id);
+      if(this.props.id === this.props.userProfile._id) this.props.loadProfile(this.props.userProfile._id);
+      this.props.loadProfile(this.props.id);
     }
 
     handleEdit = () => {
@@ -82,8 +89,9 @@ class Profile extends Component {
 export default connect(
   state => ({ 
     user: getUser(state),
-    profile: getProfile(state) 
+    profile: getProfile(state),
+    userProfile: getUserProfile(state)
   }),
-  { loadProfile, updateProfile }
+  { loadProfile, updateProfile, queryProfile, loadUserProfile }
 )(Profile);
 

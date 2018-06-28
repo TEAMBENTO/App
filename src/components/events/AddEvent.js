@@ -4,6 +4,7 @@ import { classnames } from '../helpers';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addEvent, updateEvent } from './actions';
+import { loadUserProfile, queryProfile } from '../profile/actions';
 import { getEvents } from './reducers';
 import { getUser } from '../auth/reducers';
 import { getUserProfile } from '../profile/reducers';
@@ -20,6 +21,8 @@ const defaultFormState = {
 class AddEvent extends React.Component {
 
   static propTypes = {
+    loadUserProfile: PropTypes.func.isRequired,
+    queryProfile: PropTypes.func.isRequired,
     addEvent: PropTypes.func.isRequired,
     updateEvent: PropTypes.func.isRequired,
     user: PropTypes.object,
@@ -39,7 +42,15 @@ class AddEvent extends React.Component {
       isGeocoding: false,
     };
   }
-  
+
+  componentDidMount() {
+    if(this.props.user !== null) {
+      this.props.queryProfile(this.props.user._id)
+        .then(({ payload }) => {
+          return this.props.loadUserProfile(payload[0]._id);
+        });
+    }
+  }
 
 
   handleSubmit = event => {
@@ -266,5 +277,5 @@ export default connect(
     user: getUser(state),
     userProfile: getUserProfile(state)
   }),
-  { addEvent, updateEvent }
+  { addEvent, updateEvent, queryProfile, loadUserProfile  }
 )(AddEvent);

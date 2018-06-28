@@ -1,5 +1,6 @@
 import { USER_AUTH, LOGOUT, CHECKED_AUTH, USER_LOAD } from './reducers';
 import { PROFILE_LOGOUT, USER_PROFILE_LOGOUT } from '../profile/reducers';
+import { loadUserProfile, queryProfile } from '../profile/actions';
 import { verifyUser, getUserProfile } from '../../services/api';
 import { getStoredUser, clearStoredUser } from '../../services/request';
 
@@ -36,10 +37,12 @@ export const tryLoadUser = () => dispatch => {
   }
 
   verifyUser(user.token)
-    .then(() => dispatch({
-      type: USER_AUTH,
-      payload: user
-    }))
+    .then(() => {
+      dispatch({
+        type: USER_AUTH,
+        payload: user
+      }); 
+    })
     .catch(() => {
       clearStoredUser();
     })
