@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getGroup } from './reducers';
 import { getUserProfile } from '../profile/reducers';
-import { loadGroup, updateGroup, removeGroup } from './actions';
+import { loadGroup, updateGroup, removeGroup, updateGroupMembers } from './actions';
 import { loadEventsByGroup } from '../events/actions';
 import { getEvents } from '../events/reducers';
 import GroupForm from './GroupForm';
@@ -24,7 +24,8 @@ class GroupDetail extends Component {
     updateGroup: PropTypes.func,
     removeGroup: PropTypes.func,
     loadEventsByGroup: PropTypes.func.isRequired,
-    events: PropTypes.object
+    updateGroupMembers: PropTypes.func.isRequired,
+    events: PropTypes.array
   };
 
   componentDidMount() {
@@ -47,13 +48,12 @@ class GroupDetail extends Component {
   };
 
   handleJoin = () => {
-    const { group, userProfile } = this.props;
+    const { group, userProfile, updateGroupMembers } = this.props;
     const profileIds = group.members.map(member => member._id);
-    const updatedGroup = {
-      ...group,
+    const updatedMembers = {
       members: [...profileIds, userProfile._id]
     };
-    this.props.updateGroup(updatedGroup);
+    updateGroupMembers(updatedMembers);
   };
   
   render() {
@@ -95,5 +95,5 @@ export default connect(
     userProfile: getUserProfile(state),
     events: getEvents(state)
   }),
-  { loadGroup, updateGroup, removeGroup, loadEventsByGroup }
+  { loadGroup, updateGroup, removeGroup, loadEventsByGroup, updateGroupMembers }
 )(GroupDetail);
