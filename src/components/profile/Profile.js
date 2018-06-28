@@ -28,6 +28,7 @@ class Profile extends Component {
     
 
     componentDidMount() {
+      if(this.props.id === this.props.userProfile._id) this.props.loadProfile(this.props.userProfile._id);
       this.props.loadProfile(this.props.id);
     }
 

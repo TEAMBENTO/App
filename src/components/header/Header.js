@@ -35,7 +35,7 @@ class Header extends Component {
         <ul>
           <li><NavLink to="/about" >About</NavLink></li>
           { userProfile &&
-            <li><NavLink to={`/profile/${userProfile._id}`} >Profile</NavLink></li>
+            <li><NavLink refresh="true" to={`/profile/${userProfile._id}`} >Profile</NavLink></li>
           }
           <li><NavLink to="/profiles" >Profiles</NavLink></li>
           <li><NavLink to="/events" >Events</NavLink></li>

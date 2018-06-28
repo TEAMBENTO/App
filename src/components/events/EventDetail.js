@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import { getSingleEvent } from './reducers';
 import { loadEvent } from './actions';
 import AddEvent from './AddEvent';
+import { getUserProfile } from '../profile/reducers';
+import { loadUserProfile, queryProfile } from '../profile/actions';
+import { getUser } from '../auth/reducers';
 
 
 class EventDetail extends Component {
@@ -13,6 +16,10 @@ class EventDetail extends Component {
   };
 
   static propTypes = {
+    loadUserProfile: PropTypes.func.isRequired,
+    queryProfile: PropTypes.func.isRequired,
+    user: PropTypes.object,
+    userProfile: PropTypes.object,
     match: PropTypes.object,
     loadEvent: PropTypes.func.isRequired,
     singleEvent: PropTypes.object.isRequired
@@ -27,6 +34,12 @@ class EventDetail extends Component {
   };
   
   componentDidMount() {
+    if(this.props.user !== null) {
+      this.props.queryProfile(this.props.user._id)
+        .then(({ payload }) => {
+          return this.props.loadUserProfile(payload[0]._id);
+        });
+    }
     this.props.loadEvent(this.props.match.params.id);
   }
 
@@ -59,7 +72,9 @@ class EventDetail extends Component {
 
 export default connect(
   state => ({
+    user: getUser(state),
+    userProfile: getUserProfile(state),
     singleEvent: getSingleEvent(state)
   }),
-  { loadEvent }
+  { loadEvent, queryProfile, loadUserProfile }
 )(EventDetail);

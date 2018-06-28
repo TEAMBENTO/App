@@ -9,17 +9,12 @@ import Home from '../home/Home';
 import Auth from '../auth/Auth';
 import About from '../about/About';
 import Header from '../header/Header';
-// import Nav from '../nav/Nav';
 import Profile from '../profile/Profile';
 import Groups from '../groups/Groups';
 import Events from '../events/Events';
-// import EventDetail from '../events/EventDetail';
 import Profiles from '../profile/Profiles';
 import styles from './App.css';
 import GroupDetail from '../groups/GroupDetail';
-
-// import Error from './Error';
-// import Loading from './Loading';
 
 
 class App extends PureComponent {
