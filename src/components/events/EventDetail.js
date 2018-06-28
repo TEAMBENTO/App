@@ -15,7 +15,8 @@ import ProfileList from '../profile/ProfileList';
 class EventDetail extends Component {
 
   state = {
-    editing: false
+    editing: false,
+    canEdit: false
   };
 
   static propTypes = {
@@ -48,18 +49,34 @@ class EventDetail extends Component {
   };
   
   componentDidMount() {
+    const { userProfile, loadEvent, match } = this.props;
+    
+
     if(this.props.user !== null) {
       this.props.queryProfile(this.props.user._id)
         .then(({ payload }) => {
           return this.props.loadUserProfile(payload[0]._id);
+        })
+        .then(({ payload }) => {
+          loadEvent(match.params.id)
+            .then(event => {
+              if(payload._id === event.payload.host[0]._id) {
+                this.setState({
+                  ...this.state,
+                  canEdit: true
+                });
+              }
+            });
         });
     }
-    this.props.loadEvent(this.props.match.params.id);
+    
+
+
   }
 
   render() {
     if(!this.props.singleEvent._id) return null;
-    const { editing } = this.state;
+    const { editing, canEdit } = this.state;
     const { attendance, description, group, host, location, name, time, type, _id } = this.props.singleEvent;
 
     const { start, end } = time;
@@ -69,7 +86,9 @@ class EventDetail extends Component {
 
     return (
       <div>
-        <h2>{name}</h2>{editing || <button onClick={this.handleEdit}>✐</button>}
+        <h2>{name}</h2>
+        {canEdit && <div>
+          {editing || <button onClick={this.handleEdit}>✐</button>} </div>}
         <button onClick={this.handleJoin}>Join</button>
         {editing && <AddEvent editing={editing} id={_id} />}
         {/* {host[0].userId.name ? <p>Hosted by: {host[0].userId.name} </p> : null} */}
