@@ -14,14 +14,18 @@ export const putProfile = profile => put(`${PROFILES_URL}/${profile._id}`, profi
 export const getAllProfiles = () => get(`${PROFILES_URL}`);
 export const getProfileById = id => get(`${PROFILES_URL}/${id}`);
 export const postProfile = profile => post(PROFILES_URL, profile);
+
 export const getAllGroups = () => get(GROUPS_URL);
 export const getGroupById = id => get(`${GROUPS_URL}/${id}`);
 export const postGroup = group => post(GROUPS_URL, group);
+export const putGroup = group => put(`${GROUPS_URL}/${group._id}`, group);
+export const deleteGroup = id => del(`${GROUPS_URL}/${id}`, id);
+
 export const getAllEvents = () => get(EVENTS_URL);
 export const getEventById = id => get(`${EVENTS_URL}/${id}`);
 export const postEvent = event => post(EVENTS_URL, event);
-export const putGroup = group => put(`${GROUPS_URL}/${group._id}`, group);
-export const deleteGroup = id => del(`${GROUPS_URL}/${id}`, id);
+export const putEvent = event => post(EVENTS_URL, event);
+export const deleteEvent = id => post(`${EVENTS_URL}/${id}`);
 
 export const signin = credentials => post(`${AUTH_URL}/signin`, credentials);
 export const signup = credentials => post(`${AUTH_URL}/signup`, credentials);
