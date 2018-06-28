@@ -13,10 +13,6 @@ import ProfileList from '../profile/ProfileList';
 
 class GroupDetail extends Component {
 
-  state = {
-    editing: false
-  };
-
   static propTypes = {
     userProfile: PropTypes.object.isRequired,
     match: PropTypes.object,
@@ -29,9 +25,22 @@ class GroupDetail extends Component {
     events: PropTypes.array,
   };
 
+  state = {
+    editing: false,
+    canEdit: false
+  };
+
   componentDidMount() {
-    const { loadGroup, loadEventsByGroup, match } = this.props;
-    loadGroup(match.params.id);
+    const { loadGroup, loadEventsByGroup, match, userProfile } = this.props;
+    loadGroup(match.params.id)
+      .then(group => {
+        if(userProfile._id.toString() === group.payload.captains[0]._id.toString()) {
+          this.setState({
+            ...this.state,
+            canEdit: true
+          });
+        }
+      });
     loadEventsByGroup(match.params.id);
   }
 
@@ -59,11 +68,10 @@ class GroupDetail extends Component {
   };
   
   render() {
-    const { editing } = this.state;
+    const { editing, canEdit } = this.state;
     const { group, events } = this.props;
     const { teamName, image, description } = group;
-    if(!group) return null;
-
+    if(!group.captains) return null;
 
     return (
       <div>
@@ -71,10 +79,12 @@ class GroupDetail extends Component {
         <img src={image}/>
         <p>{description}</p>
         <button onClick={this.handleJoin}>Join</button>
-        {editing || <button onClick={this.handleEdit}>✐</button>}
-        <Link to={'/groups'}>
-          <button onClick={() => removeGroup(group._id)}>X</button>
-        </Link>
+        {canEdit && <div>
+          {editing || <button onClick={this.handleEdit}>✐</button>}
+          <Link to={'/groups'}>
+            <button onClick={() => removeGroup(group._id)}>X</button>
+          </Link>
+        </div>}
         {editing && 
           <div>
             <GroupForm
