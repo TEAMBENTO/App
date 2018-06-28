@@ -11,7 +11,7 @@ class EventListItem extends Component {
 
   render() {
     const { event } = this.props;
-    const { attendance, description, group, host, location, name, time, type, _id } = event;
+    const { description, group, location, name, time, type, _id } = event;
 
     const { start, end } = time;
 
@@ -21,14 +21,12 @@ class EventListItem extends Component {
     return (
       <li>
         <Link to={`/events/${_id}`}><h2>{name}</h2></Link>
-        {!host ? <p>Hosted by: {host}</p> : null}
-        {!group ? <p>Team: {group}</p> : null}
+        {group.length ? <p>Team: {group}</p> : null}
         <p>Activity: {type}</p>
         <p>Description: {description}</p>
         <p>Address: {location.name}</p>
         <p>Event Start: {timeStart.toLocaleString()}</p>
         <p>Event End: {timeEnd.toLocaleString()}</p>
-        {!attendance ? <p>Attendants: {attendance}</p> : null}
       </li>
     );
   }
