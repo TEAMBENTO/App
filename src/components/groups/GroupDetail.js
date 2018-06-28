@@ -9,6 +9,7 @@ import { loadEventsByGroup } from '../events/actions';
 import { getEvents } from '../events/reducers';
 import GroupForm from './GroupForm';
 import EventList from '../events/EventsList';
+import ProfileList from '../profile/ProfileList';
 
 class GroupDetail extends Component {
 
@@ -25,7 +26,7 @@ class GroupDetail extends Component {
     removeGroup: PropTypes.func,
     loadEventsByGroup: PropTypes.func.isRequired,
     updateGroupMembers: PropTypes.func.isRequired,
-    events: PropTypes.array
+    events: PropTypes.array,
   };
 
   componentDidMount() {
@@ -51,6 +52,7 @@ class GroupDetail extends Component {
     const { group, userProfile, updateGroupMembers } = this.props;
     const profileIds = group.members.map(member => member._id);
     const updatedMembers = {
+      _id: group._id,
       members: [...profileIds, userProfile._id]
     };
     updateGroupMembers(updatedMembers);
@@ -84,6 +86,7 @@ class GroupDetail extends Component {
           </div>
         }
         {events && <EventList events={events}/>}
+        {group.members && <ProfileList profiles={group.members}/>}
       </div>
     );
   }
