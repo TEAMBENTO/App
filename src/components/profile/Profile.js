@@ -6,6 +6,7 @@ import { loadProfile, updateProfile } from './actions';
 import { getUser } from '../auth/reducers';
 import { Link } from 'react-router-dom';
 import ProfileForm  from './ProfileForm';
+import editIcon from '../../../assets/009-pen.png';
 
 class Profile extends Component {
 
@@ -54,6 +55,9 @@ class Profile extends Component {
 
       return (
         <div>
+          <h1>{userId.name}</h1>
+          <div id="profile-image">{image ? <img src = {image}/> : <p>Add an image</p>}</div>
+          <div className = 'profile-edit'>{editing || <button onClick={this.handleEdit}>✐</button>}</div>
           { editing &&
           <ProfileForm 
             label="update profile"
@@ -61,12 +65,8 @@ class Profile extends Component {
             onComplete={updateProfile}
             onCancel={this.handleCancel}
           /> }
-          {editing || <button onClick={this.handleEdit}>✐</button>}
-          <h1>This is a Profile Component</h1>
-          <h1>{userId.name}</h1>
-          <div id="profile-image">{image ? <img src = {image}/> : <p>Add an image</p>}</div>
-          {bio ? <p>This is me:{bio}</p> : <p>No bio added, tell us about yourself!</p> }
-          {demographic ? <p>demographic:{demographic}</p> : <p>blank</p>}
+          {bio ? <p>About me: {bio}</p> : <p>No bio added, tell us about yourself!</p> }
+          {demographic ? <p>Gender: {demographic}</p> : <p>blank</p>}
           {location ? <p>Location: {location}</p> : <p>Fill in your location!</p>}
           {activities ? <p>{activities}</p> : <p>No activities added</p>}
           {events.map(event => <Link key={event._id} to={`/events/${event._id}`}>
