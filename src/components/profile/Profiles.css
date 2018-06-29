@@ -2,7 +2,7 @@
 
 :local(.profiles) {
     display: grid;
-    grid-template-rows: auto 1fr 50px 1fr;
+    grid-template-rows: auto 1fr;
     background-color: #547a8248;
     border-top: solid #547a82 .3rem;
     border-top-right-radius: 1rem;
