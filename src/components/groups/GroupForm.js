@@ -35,7 +35,6 @@ class GroupForm extends Component {
   };
 
   handleChange = ({ target }) => {
-    console.log(this.state);
     this.setState(({ edit }) => {
       return {
         edit: {

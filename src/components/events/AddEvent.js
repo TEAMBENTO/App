@@ -160,6 +160,17 @@ class AddEvent extends React.Component {
     });
   };
 
+  handleTypeSelect = ({ target }) => {
+    console.log(this.state);
+    this.setState(({ form }) => {
+      return {
+        form: {
+          ...form,
+          type: target.value
+        }
+      };
+    });
+  };
 
   render() {
     const {
@@ -172,7 +183,7 @@ class AddEvent extends React.Component {
       newEvent
     } = this.state;
 
-
+    const categories = ['basketball', 'yoga', 'baseball', 'tennis', 'hiking', 'running', 'racquetball', 'frisbee', 'climbing', 'rafting', 'kayaking', 'swimming', 'golfing', 'football', 'ice hockey', 'volleyball', 'cross fit', 'softball', 'badminton', 'walking', 'chess', 'soccer'];
     const { eventName, description, type, location, timeStart, timeEnd } = this.state.form;
 
     if(redirect && newEvent) return <Redirect to={`/events/${newEvent._id}`}/>;
@@ -185,7 +196,14 @@ class AddEvent extends React.Component {
             <label>Event Name:</label>
             <input type="text" name="eventName" value={eventName} onChange={this.handleFormChange}/>
             <label>Type of Activity:</label>
-            <input type="text" name="type" value={type} onChange={this.handleFormChange}/>
+            {/* <input type="text" name="type" value={type} onChange={this.handleFormChange}/> */}
+            <select onChange={this.handleTypeSelect}>
+              <option>Activity</option>
+              {categories.map(category => <option key={category} value={category}>
+                {category}
+              </option>)
+              }
+            </select>
             <label>Event Start:</label>
             <input type="text" name="timeStart" value={timeStart} onChange={this.handleFormChange}/>
             <label>Event End:</label>
