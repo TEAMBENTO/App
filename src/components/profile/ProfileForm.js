@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import styles from './ProfileForm.css';
 
 class ProfileForm extends Component {
 
@@ -35,7 +35,7 @@ class ProfileForm extends Component {
         const { label, onCancel } = this.props;
 
         return (
-          <form onSubmit={this.handleSubmit}>
+          <form className={styles.profileForm} onSubmit={this.handleSubmit}>
             <input name="activities" placeholder="Activity" value={activities} onChange={this.handleChange}/>
             <input name="bio" placeholder="Describe Yourself" value={bio} onChange={this.handleChange}/>
             <input name="demographic" placeholder="How do you Identify?" value={demographic} onChange={this.handleChange}/>

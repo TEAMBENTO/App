@@ -62,7 +62,7 @@ class Profile extends Component {
         <div className = {styles.profile}>
           <h1>{userId.name}</h1>
           <div className="profile-image">{image ? <img src = {image}/> : <img src="https://harrell-remodeling.com/wp-content/uploads/2017/09/Person-placeholder.jpg"/>}</div>
-          <div className="profile-edit">{editing || <button onClick={this.handleEdit}>✐</button>}</div>
+          <div className="profile-edit">{editing || <button onClick={this.handleEdit}>Edit Profile</button>}</div>
           { editing &&
           <ProfileForm 
             label="update profile"

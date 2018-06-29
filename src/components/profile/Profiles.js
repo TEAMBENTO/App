@@ -5,7 +5,7 @@ import { getUser } from '../auth/reducers';
 import { loadProfiles, loadUserProfile, queryProfile } from './actions';
 import ProfileList from './ProfileList';
 import { getProfiles, getUserProfile } from './reducers';
-import './Profiles.css';
+import styles from './Profiles.css';
 
 class Profiles extends Component {
   static propTypes = {
@@ -29,7 +29,7 @@ class Profiles extends Component {
   render() {
     const { profiles } = this.props;
     return (
-      <div id = "Profile-list">
+      <div className={styles.profiles}>
         <ProfileList profiles={profiles}/>
       </div>
     );
