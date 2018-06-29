@@ -1,0 +1,4 @@
+:local(.eventsList) {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,8 @@
+:local(.eventListItem) {
+  width: 100%;
+  p {
+    padding-left: 1rem;
+    padding-bottom: .5rem;
+  }
+  border: 1px solid #547a82;
+}
