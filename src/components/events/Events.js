@@ -25,7 +25,7 @@ class Events extends Component {
     user: PropTypes.object,
     userProfile: PropTypes.object,
     loadEvents: PropTypes.func.isRequired,
-    checkedAuth: PropTypes.func.isRequired,
+    checkedAuth: PropTypes.boolean,
     events: PropTypes.array
   };
 
