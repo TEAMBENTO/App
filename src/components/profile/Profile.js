@@ -10,11 +10,6 @@ import styles from './Profile.css';
 
 class Profile extends Component {
 
-  state = {
-    editing: false,
-    canEdit: false
-  };
-
     static propTypes = {
       id: PropTypes.string,
       user: PropTypes.object,
@@ -25,6 +20,11 @@ class Profile extends Component {
       loadUserProfile: PropTypes.func.isRequired,
       profile: PropTypes.object,
       updateProfile: PropTypes.func
+    };
+
+    state = {
+      editing: false,
+      canEdit: false
     };
 
     componentDidMount() {
@@ -67,7 +67,7 @@ class Profile extends Component {
       const { profile } = this.props;
 
       const { activities, bio, events, demographic, location, image, userId } = profile;
-      if(!events) return null;
+      if(!userId) return null;
 
       return (
         <div className = {styles.profile}>
@@ -86,7 +86,7 @@ class Profile extends Component {
             {demographic ? <p>Gender: {demographic}</p> : <p>blank</p>}
             {location ? <p>Location: {location}</p> : <p>Fill in your location!</p>}
             {activities ? <p>{activities}</p> : <p>No activities added</p>}
-            {events.map(event => <Link key={event._id} to={`/events/${event._id}`}>
+            {events && events.map(event => <Link key={event._id} to={`/events/${event._id}`}>
           This is an event! Event called: {event.name}
             </Link>)}
           </div>
