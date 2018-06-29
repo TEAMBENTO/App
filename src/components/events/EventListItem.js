@@ -22,7 +22,6 @@ class EventListItem extends Component {
     return (
       <li className={styles.eventListItem}>
         <Link to={`/events/${_id}`}><h2>{name}</h2></Link>
-        {group.length ? <p>Team: {group}</p> : null}
         <p>Activity: {type}</p>
         <p>Description: {description}</p>
         <p>Address: {location.name}</p>
