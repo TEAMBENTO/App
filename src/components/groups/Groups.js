@@ -34,7 +34,8 @@ class Groups extends Component {
 
   state = {
     redirect: false,
-    newGroup: ''
+    newGroup: '',
+    filter: 'allActivities'
   };
 
   static propTypes = {
@@ -51,28 +52,43 @@ class Groups extends Component {
       });
   };
 
+  handleSelect = ({ target }) => {
+    this.setState(({ edit }) => {
+      return {
+        ...edit,
+        filter: target.value
+      };
+    });
+  };
+
+  filterCategories = filter => {
+    const { groups } = this.props;
+    const filteredList = groups.filter(group => group.type === filter);
+    return filteredList;
+  };
+
   render() {
     const categories = ['basketball', 'yoga', 'baseball', 'tennis', 'hiking', 'running', 'racquetball', 'frisbee', 'climbing', 'rafting', 'kayaking', 'swimming', 'golfing', 'football', 'ice hockey', 'volleyball', 'cross fit', 'softball', 'badminton', 'walking', 'chess', 'soccer'];
     const { groups, user } = this.props;
-    const { redirect, newGroup } = this.state;
+    const { redirect, newGroup, filter } = this.state;
 
-    // const groupList = 
+    const groupList = filter === 'allActivities' ? groups : this.filterCategories(filter);
 
     if(redirect && newGroup) return <Redirect to={`/groups/${newGroup._id}`}/>;
 
     return (
       <div className = {styles.groups}>
         <div>
-        <select onChange={this.handleSelect}>
-          <option>Activity</option>
-          {categories.map(category => <option key={category} value={category}>
-            {category}
-          </option>)
-          }
-        </select>
+          <select onChange={this.handleSelect}>
+            <option value="allActivities"> All Activity</option>
+            {categories.map(category => <option key={category} value={category}>
+              {category}
+            </option>)
+            }
+          </select>
         </div>
         {user && <GroupForm label="Add" onComplete={this.handleAdd}/>}
-        <GroupList groups={groups}/>
+        <GroupList groups={groupList}/>
       </div>
     );
   }
