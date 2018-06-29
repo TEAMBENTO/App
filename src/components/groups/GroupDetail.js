@@ -81,13 +81,14 @@ class GroupDetail extends Component {
   };
 
   handleJoin = () => {
-    const { group, userProfile, updateGroupMembers } = this.props;
+    const { group, userProfile, updateGroupMembers, loadGroup, match } = this.props;
     const profileIds = group.members.map(member => member._id);
     const updatedMembers = {
       _id: group._id,
       members: [...profileIds, userProfile._id]
     };
-    updateGroupMembers(updatedMembers);
+    updateGroupMembers(updatedMembers)
+      .then(() => loadGroup(match.params.id));
     this.setState({
       ...this.state,
       nonMember: false
@@ -107,9 +108,9 @@ class GroupDetail extends Component {
         <p>{description}</p>
         {nonMember && <button onClick={this.handleJoin}>Join</button>}
         {canEdit && <div>
-          {editing || <button onClick={this.handleEdit}>✐</button>}
+          {editing || <button onClick={this.handleEdit}>Edit Group</button>}
           <Link to={'/groups'}>
-            <button onClick={() => removeGroup(group._id)}>X</button>
+            <button onClick={() => removeGroup(group._id)}>Delete Group</button>
           </Link>
         </div>}
         {editing && 

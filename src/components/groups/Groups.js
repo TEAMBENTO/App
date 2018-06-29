@@ -71,7 +71,7 @@ class Groups extends Component {
     const categories = ['basketball', 'yoga', 'baseball', 'tennis', 'hiking', 'running', 'racquetball', 'frisbee', 'climbing', 'rafting', 'kayaking', 'swimming', 'golfing', 'football', 'ice hockey', 'volleyball', 'cross fit', 'softball', 'badminton', 'walking', 'chess', 'soccer'];
     const { groups, user } = this.props;
     const { redirect, newGroup, filter } = this.state;
-
+    if(!groups) return null;
     const groupList = filter === 'allActivities' ? groups : this.filterCategories(filter);
 
     if(redirect && newGroup) return <Redirect to={`/groups/${newGroup._id}`}/>;
