@@ -70,14 +70,16 @@ class Profile extends Component {
             onComplete={updateProfile}
             onCancel={this.handleCancel}
           /> }
-          <div className="personal-bio">
-            {bio ? <p>About me:   {bio}</p> : <p>No bio added, tell us about yourself!</p> }
-            {demographic ? <p>Gender: {demographic}</p> : <p>blank</p>}
-            {location ? <p>Location: {location}</p> : <p>Fill in your location!</p>}
-            {activities ? <p>{activities}</p> : <p>No activities added</p>}
-            {events.map(event => <Link key={event._id} to={`/events/${event._id}`}>
-          This is an event! Event called: {event.name}
-            </Link>)}
+          <div className="personal-div">
+            <div className="personal-bio">
+              {bio ? <p>About me:   {bio}</p> : <p>No bio added, tell us about yourself!</p> }
+              {demographic ? <p>Gender: {demographic}</p> : <p>blank</p>}
+              {location ? <p>Location: {location}</p> : <p>Fill in your location!</p>}
+              {activities ? <p>{activities}</p> : <p>No activities added</p>}
+            </div>
+            <div className="events">
+              {events.map(event => <div className="links" key={event._id}><Link className="profile-event" to={`/events/${event._id}`}>{event.name} </Link></div>)}
+            </div>
           </div>
 
         </div>
