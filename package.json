@@ -1,15 +1,14 @@
 {
   "name": "app",
   "version": "1.0.0",
-  "description": "",
   "main": ".enzyme.setup.js",
   "scripts": {
     "build:prod": "npm run build && npm run copy",
     "build": "webpack --mode production",
-    "copy": "rm -rf ../server/public && cp -R ./docs ../server/public",
+    "copy": "rm -rf ../Server/public && cp -R ./docs ../Server/public",
     "start": "webpack-dev-server --hot --mode development --open",
     "lint": "eslint .",
-    "pretest": "npm run lint",
+    "//pretest": "npm run lint",
     "jest": "jest",
     "test": "npm run jest",
     "test:watch": "npm run jest -- --watch"
@@ -62,14 +61,23 @@
   },
   "dependencies": {
     "@mdi/font": "^2.4.85",
+    "google-maps-react": "^2.0.2",
     "jsonwebtoken-promisified": "^1.0.3",
     "mdi-react": "^3.4.0",
+    "normalize-css": "^2.3.1",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
+    "react-places-autocomplete": "^7.1.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0"
-  }
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "keywords": [],
+  "author": "",
+  "description": ""
 }

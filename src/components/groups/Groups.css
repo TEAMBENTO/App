@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Magra:400,700');
+
+:local(.groups) {
+
+    margin: 0;
+    grid-template-rows: 1fr 1fr 20px 20px;
+    background-color: #547a8248;
+    border-top: solid #547a82 .3rem;
+    height: 100%;
+    text-align: center;
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
+
+    button {
+        height: 30px;
+        background-color:  rgba(0, 122, 92, 0.733);
+        color: white;
+        border: solid rgba(0, 122, 92, 0.733) 1px;
+        padding: .5rem;
+        border-radius: .5rem;
+        margin: 10px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'Magra', sans-serif;
+
+    }   
+
+    
+
+
+} 

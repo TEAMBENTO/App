@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css?family=Magra:400,700');
+
+:local(.profile) {
+
+    display: grid;
+    grid-template-rows: auto 1fr 50px 1fr;
+    background-color: #547a8248;
+    border-top: solid #547a82 .3rem;
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
+    height: 100%;
+    width:100%;
+
+    h1 {
+        font-family: 'Magra', sans-serif;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding-top: .5rem;
+    }
+
+    .profile-image {
+        padding-top: 2rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .personal-div {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .personal-bio {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: .5rem;
+        p {
+            padding: .8rem;
+            font-family: 'Magra', sans-serif;
+        }
+    }
+
+    .profile-edit {
+        padding-top: .7rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        button {
+            height: 30px;
+            background-color:  rgba(0, 122, 92, 0.733);
+            color: white;
+            border: solid rgba(0, 122, 92, 0.733) 1px;
+            padding: .5rem;
+            border-radius: .5rem;
+        }
+    }
+
+    .profile-image img {
+        border-radius: 50%;
+        max-width: 300px;
+        max-height: 300px;
+        overflow: hidden;
+        align-content: center; 
+        margin: 0;
+    
+        border: 10px solid rgba(96, 96, 96, .75);
+        border-style: inset;
+        border-radius:50%;
+        -moz-border-radius:50%;
+        -webkit-border-radius:50%;
+        overflow: hidden;
+        align-content: center;
+    
+    }
+
+    .links {
+        padding-top: .8rem;
+        padding-left: .8rem;
+    }
+
+    .profile-event {
+        background-color: white;
+        border: solid black 1px;
+        margin-top: .8rem;
+        border-radius: 1rem;
+        padding-left: .8rem;
+        padding-right: .8rem;
+        font-family: 'Magra', sans-serif;
+    }
+    
+}

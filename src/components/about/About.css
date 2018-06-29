@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Magra:400,700');
+
+
+:local(.about) {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  font-family: 'Magra', sans-serif;
+
+  .each-person {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+
+    img {
+      border-radius: 50%;
+      max-width: 200px;
+      max-height: 200px;
+      overflow: hidden;
+      align-content: center; 
+      margin: 0;
+  
+      border: 10px solid rgba(96, 96, 96, .75);
+      border-style: inset;
+      border-radius:50%;
+      -moz-border-radius:50%;
+      -webkit-border-radius:50%;
+      overflow: hidden;
+      align-content: center;
+    }
+    .info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      padding-left: 1rem;
+    }
+  }
+}
