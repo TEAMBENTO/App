@@ -32,7 +32,7 @@ class Profile extends Component {
       if(id === userProfile._id) loadProfile(userProfile._id);
       loadProfile(id)
         .then(({ payload }) => {
-          if(user._id.toString() === payload.userId._id.toString()) {
+          if(user._id === payload.userId._id) {
             this.setState({
               ...this.state,
               canEdit: true
@@ -63,7 +63,7 @@ class Profile extends Component {
 
     render() {
 
-      const { editing } = this.state;
+      const { editing, canEdit } = this.state;
       const { profile } = this.props;
 
       const { activities, bio, events, demographic, location, image, userId } = profile;
@@ -73,7 +73,7 @@ class Profile extends Component {
         <div className = {styles.profile}>
           <h1>{userId.name}</h1>
           <div className="profile-image">{image ? <img src = {image}/> : <img src="https://harrell-remodeling.com/wp-content/uploads/2017/09/Person-placeholder.jpg"/>}</div>
-          <div className="profile-edit">{editing || <button onClick={this.handleEdit}>Edit Profile</button>}</div>
+          {canEdit && <div className="profile-edit">{editing || <button onClick={this.handleEdit}>Edit Profile</button>}</div>}
           { editing &&
           <ProfileForm 
             label="update profile"
