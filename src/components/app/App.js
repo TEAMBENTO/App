@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { tryLoadUser } from '../auth/actions';
 import { getCheckedAuth, getUser } from '../auth/reducers';
-// import PrivateRoute from './PrivateRoute';
+import PrivateRoute from './PrivateRoute';
 import Home from '../home/Home';
 import Auth from '../auth/Auth';
 import About from '../about/About';
@@ -51,12 +51,12 @@ class App extends PureComponent {
             <Switch>
               <Route exact path="/" component={Home}/>
               <Route path="/about" component={About}/>
-              <Route path="/profiles" component={Profiles}/>          
-              <Route exact path="/profile/:id" render={({ match }) => <Profile id={match.params.id}/> } />      
+              <PrivateRoute path="/profiles" component={Profiles}/>          
+              <PrivateRoute exact path="/profile/:id" render={({ match }) => <Profile id={match.params.id}/> } />      
               <Route path="/auth" component={Auth}/>
               <Route path="/events" component={Events}/>
               <Route exact path="/groups" component={Groups}/>
-              <Route exact path="/groups/:id" component={GroupDetail}/>
+              <PrivateRoute exact path="/groups/:id" component={GroupDetail}/>
               <Redirect to="/"/>
             </Switch>
             }
