@@ -82,7 +82,7 @@ export class MapContainer extends Component {
     return (
       <Map google={this.props.google}
         style={{
-          width: '90%',
+          width: '100%',
           height: '90%'
         }}
         zoom={14}

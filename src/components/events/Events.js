@@ -48,9 +48,9 @@ class Events extends Component {
     if(!events) return null;
 
     return (
-      <div>
+      <div className={styles.eventsView}>
         <h2>Events</h2>
-        <ul className = {styles}>
+        <ul>
           <li><Link to={'/events/list'}>All Events</Link></li>
           <li><Link to={'/events/new'}>Add a New Event</Link></li>
           <li><Link to={'/events/map'}>Map View</Link></li>
