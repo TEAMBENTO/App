@@ -42,7 +42,7 @@ class GroupForm extends Component {
           [target.name]: target.value,
           captains: [this.props.userProfile._id],
           members: [this.props.userProfile._id],
-          private: target.checked ? true : false
+          // private: target.checked ? true : false
         }
       };
     });
@@ -75,7 +75,6 @@ class GroupForm extends Component {
     return (
       <div id = "group-form"><form onSubmit={this.handleSubmit}>
         <input name="teamName" placeholder="Name" value={teamName} onChange={this.handleChange} required/>
-        {/* <input name="type" placeholder="Activity" value={type} onChange={this.handleChange} required/> */}
         <select onChange={this.handleSelect}>
           <option>Activity</option>
           {categories.map(category => <option key={category} value={category}>
