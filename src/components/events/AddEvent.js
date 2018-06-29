@@ -207,93 +207,85 @@ class AddEvent extends React.Component {
             <input type="text" name="timeStart" value={timeStart} onChange={this.handleFormChange}/>
             <label>Event End:</label>
             <input type="text" name="timeEnd" value={timeEnd} onChange={this.handleFormChange}/>
-            <label>Description:</label>
-            <textarea name="description" value={description} onChange={this.handleFormChange}/>
-            <button type="submit">{this.props.editing ? 'Update Your Event' : 'Create your Event'}</button>
-          </form>
-          <PlacesAutocomplete
-            onChange={this.handleChange}
-            value={address}
-            onSelect={this.handleSelect}
-            onError={this.handleError}
-            shouldFetchSuggestions={address.length > 2}
-          >
-            {({ getInputProps, suggestions, getSuggestionItemProps }) => {
-              return (
-                <div className="Demo__search-bar-container">
-                  <div className="Demo__search-input-container">
+            <label>Location:</label>
+            <PlacesAutocomplete
+              onChange={this.handleChange}
+              value={address}
+              onSelect={this.handleSelect}
+              onError={this.handleError}
+              shouldFetchSuggestions={address.length > 2}
+            >
+              {({ getInputProps, suggestions, getSuggestionItemProps }) => {
+                return (
+                  <div className="search-bar-container">
                     <input className="autocomplete"
                       {...getInputProps({
-                        placeholder: 'Location',
-                        className: 'Demo__search-input',
+                        placeholder: 'Enter a search and select an option',
+                        className: 'search-input',
                       })}
                     />
                     {this.state.address.length > 0 && (
                       <button
-                        className="Demo__clear-button"
+                        className="clear-button"
                         onClick={this.handleCloseClick}
                       >
-                      Reset
+                    Reset
                       </button>
                     )}
-                  </div>
-                  {suggestions.length > 0 && (
-                    <div className="Demo__autocomplete-container">
-                      {suggestions.map(suggestion => {
-                        const className = classnames('Demo__suggestion-item', {
-                          'Demo__suggestion-item--active': suggestion.active,
-                        });
+                    {suggestions.length > 0 && (
+                      <div className="autocomplete-container">
+                        {suggestions.map(suggestion => {
+                          const className = classnames('suggestion-item', {
+                            'suggestion-item--active': suggestion.active,
+                          });
 
-                        return (
-                        /* eslint-disable react/jsx-key */
-                          <div
-                            {...getSuggestionItemProps(suggestion, { className })}
-                          >
-                            <strong>
-                              {suggestion.formattedSuggestion.mainText}
-                            </strong>{' '}
-                            <small>
-                              {suggestion.formattedSuggestion.secondaryText}
-                            </small>
+                          return (
+                          /* eslint-disable react/jsx-key */
+                            <div
+                              {...getSuggestionItemProps(suggestion, { className })}
+                            >
+                              <strong>
+                                {suggestion.formattedSuggestion.mainText}
+                              </strong>{' '}
+                              <small>
+                                {suggestion.formattedSuggestion.secondaryText}
+                              </small>
+                            </div>
+                          );
+                          /* eslint-enable react/jsx-key */
+                        })}
+                        <div className="dropdown-footer">
+                          <div>
                           </div>
-                        );
-                      /* eslint-enable react/jsx-key */
-                      })}
-                      <div className="Demo__dropdown-footer">
-                        <div>
                         </div>
                       </div>
-                    </div>
-                  )}
-                </div>
-              );
-            }}
-          </PlacesAutocomplete>
+                    )}
+                  </div>
+                );
+              }}
+            </PlacesAutocomplete>
+            <label>Description:</label>
+            <textarea name="description" value={description} onChange={this.handleFormChange}/>
+            <button type="submit">{this.props.editing ? 'Update Your Event' : 'Create your Event'}</button>
+          </form>
+          
         </div>
         {errorMessage.length > 0 && (
-          <div className="Demo__error-message">{this.state.errorMessage}</div>
+          <div className="error-message">{this.state.errorMessage}</div>
         )}
 
         {((latitude && longitude) || isGeocoding) && (
-          <div>
-            <h3 className="Demo__geocode-result-header">Your location has been updated</h3>
+          <div className="location-update">
+            <h3 className="geocode-result-header">Your location has been updated</h3>
             {isGeocoding ? (
               <div>
-                <i className="fa fa-spinner fa-pulse fa-3x fa-fw Demo__spinner" />
+                <i className="fa fa-spinner fa-pulse fa-3x fa-fw spinner" />
               </div>
             ) : (
               <div>
-                <div className="Demo__geocode-result-item--lat">
+                <div className="geocode-result-item--lat">
                   <label>Address:</label>
                   <span>{address}</span>
-                </div>
-                <div className="Demo__geocode-result-item--lat">
-                  <label>Latitude:</label>
-                  <span>{latitude}</span>
-                </div>
-                <div className="Demo__geocode-result-item--lng">
-                  <label>Longitude:</label>
-                  <span>{longitude}</span>
                 </div>
               </div>
             )}

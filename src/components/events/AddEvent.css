@@ -3,15 +3,17 @@
 :local(.addEvent) {
   font-family: 'Raleway', sans-serif;
   form {
+    padding: 2rem 2rem;
     display: flex;
     flex-direction: column;
-    label, input, textarea {
+    width: 100%;
+    align-items: center;
+    label, input, textarea, select {
       margin-bottom: .5rem;
     }
-    textarea, input, button {
+    textarea, input, button, select {
       width: 15rem;
     }
-
   }
 
 }
