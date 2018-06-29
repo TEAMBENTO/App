@@ -9,6 +9,7 @@ import { loadUserProfile, queryProfile } from '../profile/actions';
 import { getUser } from '../auth/reducers';
 import { Link } from 'react-router-dom';
 import ProfileList from '../profile/ProfileList';
+import styles from './EventDetail.css';
 
 
 
@@ -94,20 +95,22 @@ class EventDetail extends Component {
     const timeEnd = new Date(end);
 
     return (
-      <div>
+      <div className={styles.eventDetail}>
         <h2>{name}</h2>
         {canEdit && <div>
           {editing || <button onClick={this.handleEdit}>✐</button>} </div>}
         {nonAttendee && <button onClick={this.handleJoin}>Join</button>}
         {editing && <AddEvent editing={editing} id={_id} />}
         {/* {host[0].userId.name ? <p>Hosted by: {host[0].userId.name} </p> : null} */}
-        {group.length ? <p>Team: {group}</p> : null}
-        <p>Activity: {type}</p>
-        <p>Description: {description}</p>
-        <p>Address: {location.name}</p>
-        <p>Event Start: {timeStart.toLocaleString()}</p>
-        <p>Event End: {timeEnd.toLocaleString()}</p>
-        {attendance && <ProfileList profiles={attendance}/>}
+        {/* {group.length ? <p>Team: {group}</p> : null} */}
+        <p><span className="heading">Activity: </span>{type}</p>
+        <p><span className="heading">Description: </span>{description}</p>
+        <p><span className="heading">Address: </span>{location.name}</p>
+        <p><span className="heading">Event Start: </span><span className="styled">{timeStart.toLocaleString()}</span></p>
+        <p><span className="heading">Event End: </span><span className="styled">{timeEnd.toLocaleString()}</span></p>
+        <div className="attendance">
+          {attendance && <ProfileList profiles={attendance}/>}
+        </div>
       </div>
     );
   }

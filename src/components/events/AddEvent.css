@@ -3,7 +3,6 @@
 :local(.addEvent) {
   font-family: 'Raleway', sans-serif;
   form {
-    padding: 2rem 2rem;
     display: flex;
     flex-direction: column;
     width: 100%;
