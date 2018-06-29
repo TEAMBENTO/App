@@ -10,10 +10,6 @@ import styles from './Profile.css';
 
 class Profile extends Component {
 
-  state = {
-    editing: false
-  };
-
     static propTypes = {
       id: PropTypes.string,
       user: PropTypes.object,
@@ -26,9 +22,24 @@ class Profile extends Component {
       updateProfile: PropTypes.func
     };
 
+    state = {
+      editing: false,
+      canEdit: false
+    };
+
     componentDidMount() {
-      if(this.props.id === this.props.userProfile._id) this.props.loadProfile(this.props.userProfile._id);
-      this.props.loadProfile(this.props.id);
+      const { id, userProfile, loadProfile, user } = this.props;
+      if(id === userProfile._id) loadProfile(userProfile._id);
+      loadProfile(id)
+        .then(({ payload }) => {
+          if(user._id === payload.userId._id) {
+            this.setState({
+              ...this.state,
+              canEdit: true
+            });
+          }
+        });
+      
     }
 
     handleEdit = () => {
@@ -52,17 +63,17 @@ class Profile extends Component {
 
     render() {
 
-      const { editing } = this.state;
+      const { editing, canEdit } = this.state;
       const { profile } = this.props;
 
       const { activities, bio, events, demographic, location, image, userId } = profile;
-      if(!events) return null;
+      if(!userId) return null;
 
       return (
         <div className = {styles.profile}>
           <h1>{userId.name}</h1>
           <div className="profile-image">{image ? <img src = {image}/> : <img src="https://harrell-remodeling.com/wp-content/uploads/2017/09/Person-placeholder.jpg"/>}</div>
-          <div className="profile-edit">{editing || <button onClick={this.handleEdit}>Edit Profile</button>}</div>
+          {canEdit && <div className="profile-edit">{editing || <button onClick={this.handleEdit}>Edit Profile</button>}</div>}
           { editing &&
           <ProfileForm 
             label="update profile"
@@ -81,7 +92,6 @@ class Profile extends Component {
               {events.map(event => <div className="links" key={event._id}><Link className="profile-event" to={`/events/${event._id}`}>{event.name} </Link></div>)}
             </div>
           </div>
-
         </div>
 
       ); 
