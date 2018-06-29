@@ -161,7 +161,6 @@ class AddEvent extends React.Component {
   };
 
   handleTypeSelect = ({ target }) => {
-    console.log(this.state);
     this.setState(({ form }) => {
       return {
         form: {
