@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { tryLoadUser } from '../auth/actions';
 import { getCheckedAuth, getUser } from '../auth/reducers';
 import PrivateRoute from './PrivateRoute';
-import Home from '../home/Home';
 import Auth from '../auth/Auth';
 import About from '../about/About';
 import Header from '../header/Header';
@@ -42,7 +41,6 @@ class App extends PureComponent {
           <main>
             { checkedAuth && 
             <Switch>
-              <Route exact path="/" component={Home}/>
               <Route path="/about" component={About}/>
               <PrivateRoute path="/profiles" component={Profiles}/>          
               <PrivateRoute exact path="/profile/:id" component={Profile} />      
@@ -50,7 +48,7 @@ class App extends PureComponent {
               <Route path="/events" component={Events}/>
               <Route exact path="/groups" component={Groups}/>
               <PrivateRoute exact path="/groups/:id" component={GroupDetail}/>
-              <Redirect to="/"/>
+              <Redirect to="/events/map"/>
             </Switch>
             }
           </main>
