@@ -74,16 +74,16 @@ class Profile extends Component {
           <h1>{userId.name}</h1>
           <div className="profile-image">{image ? <img src = {image}/> : <img src="https://harrell-remodeling.com/wp-content/uploads/2017/09/Person-placeholder.jpg"/>}</div>
           {canEdit && <div className="profile-edit">{editing || <button onClick={this.handleEdit}>Edit Profile</button>}</div>}
-          { editing &&
+          {editing &&
           <ProfileForm 
             label="update profile"
             profile={profile}
             onComplete={updateProfile}
             onCancel={this.handleCancel}
-          /> }
+          />}
           <div className="personal-div">
             <div className="personal-bio">
-              {bio ? <p>About me:   {bio}</p> : <p>No bio added, tell us about yourself!</p> }
+              {bio ? <p>About me:   {bio}</p> : <p>No bio added, tell us about yourself!</p>}
               {demographic ? <p>Gender: {demographic}</p> : <p>blank</p>}
               {location ? <p>Location: {location}</p> : <p>Fill in your location!</p>}
               {activities ? <p>{activities}</p> : <p>No activities added</p>}
