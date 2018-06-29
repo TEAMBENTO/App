@@ -42,7 +42,18 @@ class GroupForm extends Component {
           [target.name]: target.value,
           captains: [this.props.userProfile._id],
           members: [this.props.userProfile._id],
-          private: target.checked ? true : false
+          // private: target.checked ? true : false
+        }
+      };
+    });
+  };
+
+  handleSelect = ({ target }) => {
+    this.setState(({ edit }) => {
+      return {
+        edit: {
+          ...edit,
+          type: target.value
         }
       };
     });
@@ -57,24 +68,29 @@ class GroupForm extends Component {
   };
 
   render() {
-    const { teamName, description, type, image } = this.state.edit;
+    const categories = ['basketball', 'yoga', 'baseball', 'tennis', 'hiking', 'running', 'racquetball', 'frisbee', 'climbing', 'rafting', 'kayaking', 'swimming', 'golfing', 'football', 'ice hockey', 'volleyball', 'cross fit', 'softball', 'badminton', 'walking', 'chess', 'soccer'];
+    const { teamName, description, image } = this.state.edit;
     const { label, onCancel } = this.props;
 
     return (
-      <div className = {styles.groupform}>
-        <div id = "group-form"><form onSubmit={this.handleSubmit}>
-          <input name="teamName" placeholder="Name" value={teamName} onChange={this.handleChange}/>
-          <input name="type" placeholder="Activity" value={type} onChange={this.handleChange}/>
-          <input name="image" placeholder="Image" value={image} onChange={this.handleChange}/>
-          <textarea name="description" placeholder="Description" value={description} onChange={this.handleChange}/>
-          <label>
+      <div className={styles.groupform}><form onSubmit={this.handleSubmit}>
+        <input name="teamName" placeholder="Name" value={teamName} onChange={this.handleChange} required/>
+        <select onChange={this.handleSelect}>
+          <option>Activity</option>
+          {categories.map(category => <option key={category} value={category}>
+            {category}
+          </option>)
+          }
+        </select>
+        <input name="image" placeholder="Image" value={image} onChange={this.handleChange} required/>
+        <textarea name="description" placeholder="Description" value={description} onChange={this.handleChange} required/>
+        {/* <label>
           Private
-            <input name="private" type="checkbox" onChange={this.handleChange}/>
-          </label>
-          <button type="submit">{label}</button>
-          {onCancel && <button type="reset" onClick={onCancel}>Cancel</button>}
-        </form>
-        </div>
+          <input name="private" type="checkbox" onChange={this.handleChange}/>
+        </label> */}
+        <button type="submit">{label}</button>
+        {onCancel && <button type="reset" onClick={onCancel}>Cancel</button>}
+      </form>
       </div>
     );
   }

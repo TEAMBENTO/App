@@ -32,20 +32,13 @@ class App extends PureComponent {
 
   render() {
 
-    const { checkedAuth, user } = this.props;
+    const { checkedAuth } = this.props;
 
 
     return (
       <Router>
         <div className={styles.app}>
           <Header/>
-          { 
-            user 
-              ? <div>
-                <h2 className="user-name">Welcome {user.name}!</h2>
-              </div>
-              : <h1>Welcome to Rally!</h1>
-          }
           <main>
             { checkedAuth && 
             <Switch>

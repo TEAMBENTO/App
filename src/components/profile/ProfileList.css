@@ -1,0 +1,26 @@
+:local(.profileList) {
+
+  p {
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  p img {
+      border-radius: 50%;
+        width: 200px;
+        height: 200px;
+        overflow: hidden;
+        align-content: center; 
+        margin: 0;
+    
+        border: 10px solid rgba(96, 96, 96, .75);
+        border-style: inset;
+        border-radius:50%;
+        -moz-border-radius:50%;
+        -webkit-border-radius:50%;
+        overflow: hidden;
+        align-content: center;
+  }
+}

@@ -5,7 +5,7 @@ import { getUser } from '../auth/reducers';
 import { loadProfiles, loadUserProfile, queryProfile } from './actions';
 import ProfileList from './ProfileList';
 import { getProfiles, getUserProfile } from './reducers';
-import './Profiles.css';
+import styles from './Profiles.css';
 
 class Profiles extends Component {
   static propTypes = {
@@ -14,6 +14,10 @@ class Profiles extends Component {
     loadProfiles: PropTypes.func.isRequired,
     loadUserProfile: PropTypes.func.isRequired,
     queryProfile: PropTypes.func.isRequired
+  };
+
+  state = {
+    filter: 'allActivities'
   };
 
   componentDidMount() {
@@ -26,11 +30,41 @@ class Profiles extends Component {
     }
   }
 
-  render() {
+  filterCategories = filter => {
     const { profiles } = this.props;
+    const filteredList = profiles.filter(event => event.activities === filter);
+    return filteredList;
+  };
+
+  handleSelect = ({ target }) => {
+    this.setState(() => {
+      return {
+        ...this.state,
+        filter: target.value
+      };
+    });
+  };
+
+  render() {
+    const categories = ['basketball', 'yoga', 'baseball', 'tennis', 'hiking', 'running', 'racquetball', 'frisbee', 'climbing', 'rafting', 'kayaking', 'swimming', 'golfing', 'football', 'ice hockey', 'volleyball', 'cross fit', 'softball', 'badminton', 'walking', 'chess', 'soccer'];
+    const { profiles } = this.props;
+    const { filter } = this.state;
+
+    const profileList = filter === 'allActivities' ? profiles : this.filterCategories(filter);
+
     return (
-      <div id = "Profile-list">
-        <ProfileList profiles={profiles}/>
+      <div className={styles.profiles} >
+        <div>
+          <h3>Filter Profiles by Activity</h3>
+          <select onChange={this.handleSelect}>
+            <option value="allActivities"> All Activity</option>
+            {categories.map(category => <option key={category} value={category}>
+              {category}
+            </option>)
+            }
+          </select>
+        </div>
+        <ProfileList profiles={profileList}/>
       </div>
     );
   }
