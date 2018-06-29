@@ -90,7 +90,6 @@ class Profile extends Component {
           This is an event! Event called: {event.name}
             </Link>)}
           </div>
-
         </div>
 
       ); 
