@@ -5,7 +5,7 @@ import { getUser } from '../auth/reducers';
 import { loadProfiles, loadUserProfile, queryProfile } from './actions';
 import ProfileList from './ProfileList';
 import { getProfiles, getUserProfile } from './reducers';
-import './Profiles.css';
+import styles from './Profiles.css';
 
 class Profiles extends Component {
   static propTypes = {
@@ -53,7 +53,7 @@ class Profiles extends Component {
     const profileList = filter === 'allActivities' ? profiles : this.filterCategories(filter);
 
     return (
-      <div id = "Profile-list">
+      <div className={styles.profiles} >
         <div>
           <h3>Filter Profiles by Activity</h3>
           <select onChange={this.handleSelect}>

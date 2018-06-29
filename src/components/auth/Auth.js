@@ -31,13 +31,13 @@ class Auth extends PureComponent {
         <Switch>
           <Route path="/auth/signin" component={() => (
             <div id = "sign-up-box">
-              <p>Not yet registered? <Link to="/auth/signup">Sign Up</Link></p>
+              <p>Not yet registered? <Link className="toggle-button" to="/auth/signup">Sign Up</Link></p>
               <Credentials action="Sign In" submit={signin}/>
             </div>
           )}/>
           <Route path="/auth/signup" render={() => (
             <div>
-              <p>Already have an account? <Link to="/auth/signin">Sign In</Link></p>
+              <p>Already have an account? <Link className="toggle-button" to="/auth/signin">Sign In</Link></p>
               <Credentials action="Sign Up" submit={signup} allowName={true}/>
             </div>
           )}/>

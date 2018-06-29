@@ -77,7 +77,7 @@ export default connect(
     events: getEvents(state),
     user: getUser(state),
     userProfile: getUserProfile(state),
-    checkedAuth: getCheckedAuth(state), 
+    checkedAuth: getCheckedAuth(state)
   }),
   { loadEvents, queryProfile, loadUserProfile }
 )(Events);

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import styles from './ProfileList.css';
+
+
 
 class ProfileList extends Component {
 
@@ -13,7 +16,7 @@ class ProfileList extends Component {
       if(!profiles) return null;
 
       return (
-        <ul id="profile-grid">
+        <ul className={styles.profileList}>
           {profiles.map(profile => <Link key={profile._id} to={`/profile/${profile._id}`}>
             <p><img src={profile.image}></img></p>
           </Link>)}

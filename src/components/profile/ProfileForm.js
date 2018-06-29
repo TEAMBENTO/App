@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import styles from './ProfileForm.css';
 
 class ProfileForm extends Component {
 
@@ -44,7 +44,7 @@ class ProfileForm extends Component {
         const { label, onCancel } = this.props;
 
         return (
-          <form onSubmit={this.handleSubmit}>
+          <form className={styles.profileForm} onSubmit={this.handleSubmit}>
             <select onChange={this.handleSelect}>
               <option>Activity</option>
               {categories.map(category => <option key={category} value={category}>
