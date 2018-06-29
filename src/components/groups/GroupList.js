@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import GroupThumbnail from './GroupThumbnail';
+import styles from './GroupList.css'; 
 
 class GroupList extends Component {
   static propTypes = {
@@ -13,7 +14,7 @@ class GroupList extends Component {
     if(!groups) return null;
 
     return (
-      <div>
+      <div className={styles.grouplist}>
         {groups.map(group => <Link key={group._id} to={`/groups/${group._id}`}> 
           <GroupThumbnail {...group}/>
         </Link>)}      

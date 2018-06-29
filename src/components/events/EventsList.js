@@ -18,6 +18,10 @@ class EventsList extends Component {
     events: PropTypes.array
   };
 
+  state = {
+    filter: 'allActivities'
+  };
+
   componentDidMount() {
     if(this.props.user !== null) {
       this.props.queryProfile(this.props.user._id)
@@ -27,15 +31,46 @@ class EventsList extends Component {
     }
   }
 
-  render() {
+  filterCategories = filter => {
     const { events } = this.props;
+    const filteredList = events.filter(event => event.type === filter);
+    return filteredList;
+  };
+
+  handleSelect = ({ target }) => {
+    this.setState(() => {
+      return {
+        ...this.state,
+        filter: target.value
+      };
+    });
+  };
+
+  render() {
+    const categories = ['basketball', 'yoga', 'baseball', 'tennis', 'hiking', 'running', 'racquetball', 'frisbee', 'climbing', 'rafting', 'kayaking', 'swimming', 'golfing', 'football', 'ice hockey', 'volleyball', 'cross fit', 'softball', 'badminton', 'walking', 'chess', 'soccer'];
+    const { events } = this.props;
+    const { filter } = this.state;
+
+    const eventList = filter === 'allActivities' ? events : this.filterCategories(filter);
 
     return (
-      <ul className={styles.eventsList}>
-        {events.map((event, i) => (
-          <EventListItem key={i} event={event}/>
-        ))}
-      </ul>
+      <div>
+        <div>
+          <h3>Filter Events by Activity</h3>
+          <select onChange={this.handleSelect}>
+            <option value="allActivities"> All Activity</option>
+            {categories.map(category => <option key={category} value={category}>
+              {category}
+            </option>)
+            }
+          </select>
+        </div>
+        <ul className={styles.eventsList}>
+          {eventList.map((event, i) => (
+            <EventListItem key={i} event={event}/>
+          ))}
+        </ul>
+      </div>
     );
   }
 }

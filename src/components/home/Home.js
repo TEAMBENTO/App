@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { getUserProfile } from '../profile/reducers';
 import { loadUserProfile, queryProfile } from '../profile/actions';
 import { getUser } from '../auth/reducers';
-import './Home.css';
+import styles from './Home.css';
 
 
 class Home extends PureComponent {
@@ -27,7 +27,7 @@ class Home extends PureComponent {
 
   render() {
     return (
-      <div className = "background-image">
+      <div className={styles.home}>
         <p> Welcome to Rally</p>
       </div>
     );

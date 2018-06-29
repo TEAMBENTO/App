@@ -9,7 +9,6 @@
 
     #logo {
       padding-top: .5rem;
-      margin-left: 20px;
       -webkit-transition: height .05s;
       transition: height .05s;
     }

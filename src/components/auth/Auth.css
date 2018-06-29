@@ -1,14 +1,24 @@
-:local(.auth) {
-    @media (min-width: 400px) {
-    border: 5px solid #3eacab;
-    background-color: rgba(62, 172, 171, 0.5);
-    margin-left: 200px;
-    margin-right: 200px;
-    }
+@import url('https://fonts.googleapis.com/css?family=Magra:400,700');
 
-    @media (max-width: 376px) {
-        border: 5px solid #a2d4ab;
-        background-color: rgba(162, 212, 171, 0.5);
+:local(.auth) {
+    width: 100%;
+    border: solid #547a82cb 2px;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: .5rem;
+    font-family: 'Magra', sans-serif;
+
+    .toggle-button {
+        margin-top: 1rem;
+        margin-left: 1rem;
+        height: 20px;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        text-align: center;
+        background-color:  rgba(0, 122, 92, 0.733);
+        color: white;
+        border: solid rgba(0, 122, 92, 0.733) 1px;
+        border-radius: .5rem;
     }
 }
 
