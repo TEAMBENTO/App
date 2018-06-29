@@ -10,7 +10,7 @@ import GroupList from './GroupList';
 import { getUserProfile } from '../profile/reducers';
 import { loadUserProfile, queryProfile } from '../profile/actions';
 import { getUser } from '../auth/reducers';
-import './Groups.css';
+import styles from './Groups.css';
 
 class Groups extends Component {
   static propTypes = {
@@ -58,7 +58,7 @@ class Groups extends Component {
     if(redirect && newGroup) return <Redirect to={`/groups/${newGroup._id}`}/>;
 
     return (
-      <div>
+      <div className = {styles.groups}>
         {user && <GroupForm label="Add" onComplete={this.handleAdd}/>}
         <GroupList groups={groups}/>
       </div>
