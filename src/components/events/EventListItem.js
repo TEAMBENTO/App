@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import styles from './EventListItem.css';
 
 class EventListItem extends Component {
 
@@ -19,7 +20,7 @@ class EventListItem extends Component {
     const timeEnd = new Date(end);
 
     return (
-      <li>
+      <li className={styles.eventListItem}>
         <Link to={`/events/${_id}`}><h2>{name}</h2></Link>
         {group.length ? <p>Team: {group}</p> : null}
         <p>Activity: {type}</p>

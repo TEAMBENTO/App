@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500i,800|Raleway:400,800');
+
+:local(.addEvent) {
+  font-family: 'Raleway', sans-serif;
+  form {
+    display: flex;
+    flex-direction: column;
+    label, input, textarea {
+      margin-bottom: .5rem;
+    }
+    textarea, input, button {
+      width: 15rem;
+    }
+
+  }
+
+}

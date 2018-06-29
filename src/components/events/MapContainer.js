@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import PropTypes from 'prop-types';
- 
 
 export class MapContainer extends Component {
 
@@ -65,7 +64,7 @@ export class MapContainer extends Component {
       showingInfoWindow: true
     });
 
-  onMapClicked = (props) => {
+  onMapClicked = () => {
     if(this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
@@ -83,7 +82,7 @@ export class MapContainer extends Component {
     return (
       <Map google={this.props.google}
         style={{
-          width: '90%',
+          width: '100%',
           height: '90%'
         }}
         zoom={14}
@@ -101,6 +100,7 @@ export class MapContainer extends Component {
             time={(new Date(event.time.start)).toLocaleString()}
             event={event}
             position={event.location.coords}
+            id={event._id}
           />
         ))}
  

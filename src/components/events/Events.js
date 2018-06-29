@@ -6,13 +6,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loadEvents } from './actions';
 import { getEvents } from './reducers';
-import { getCheckedAuth } from '../auth/reducers';
 import MapContainer from './MapContainer';
 import EventDetail from './EventDetail';
 import { getUserProfile } from '../profile/reducers';
 import { loadUserProfile, queryProfile } from '../profile/actions';
 import { getUser } from '../auth/reducers';
-import PrivateRoute from '../app/PrivateRoute';
 import styles from './Events.css';
 
 
@@ -25,7 +23,6 @@ class Events extends Component {
     user: PropTypes.object,
     userProfile: PropTypes.object,
     loadEvents: PropTypes.func.isRequired,
-    checkedAuth: PropTypes.boolean,
     events: PropTypes.array
   };
 
@@ -47,26 +44,26 @@ class Events extends Component {
   };
 
   render() {
-    const { events, checkedAuth } = this.props;
+    const { events } = this.props;
     if(!events) return null;
 
     return (
-      <div>
+      <div className={styles.eventsView}>
         <h2>Events</h2>
-        <ul className = {styles}>
-          <li><Link to={'/events/list'}>All Events</Link></li>
-          <li><Link to={'/events/new'}>Add a New Event</Link></li>
-          <li><Link to={'/events/map'}>Map View</Link></li>
+        <ul>
+          <li className="miniNav"><Link to={'/events/list'}>All Events</Link></li>
+          <li className="miniNav"><Link to={'/events/new'}>Add a New Event</Link></li>
+          <li className="miniNav"><Link to={'/events/map'}>Map View</Link></li>
         </ul>
-        { checkedAuth && 
+
         <Switch>
           <Route exact path={'/events/list'} render={() => {return <EventsList events={events}/>;}} />
           <Route path={'/events/new'} render={() => {return <AddEvent/>;}} />
           <Route path={'/events/map'} render={() => {return <MapContainer defaultCoords={this.state.portland} events={events}/>;}} />
-          <PrivateRoute exact path="/events/:id" component={EventDetail}/>
+          <Route exact path="/events/:id" component={EventDetail}/>
           <Redirect to="/events/map"/>
         </Switch>
-        }
+        
       </div>
     );
   } 
@@ -77,7 +74,6 @@ export default connect(
     events: getEvents(state),
     user: getUser(state),
     userProfile: getUserProfile(state),
-    checkedAuth: getCheckedAuth(state)
   }),
   { loadEvents, queryProfile, loadUserProfile }
 )(Events);

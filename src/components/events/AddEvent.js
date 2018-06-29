@@ -9,6 +9,7 @@ import { getEvents } from './reducers';
 import { getUser } from '../auth/reducers';
 import { getUserProfile } from '../profile/reducers';
 import { Redirect } from 'react-router-dom';
+import styles from './AddEvent.css';
 
 const defaultFormState = {
   eventName: '',
@@ -188,8 +189,8 @@ class AddEvent extends React.Component {
     if(redirect && newEvent) return <Redirect to={`/events/${newEvent._id}`}/>;
 
     return (
-      <div>
-        <div>
+      <div className={styles.addEvent}>
+        <div className="addEventForm">
           <h3>Create an Event</h3>
           <form onSubmit={this.handleSubmit}>
             <label>Event Name:</label>
@@ -210,65 +211,65 @@ class AddEvent extends React.Component {
             <textarea name="description" value={description} onChange={this.handleFormChange}/>
             <button type="submit">{this.props.editing ? 'Update Your Event' : 'Create your Event'}</button>
           </form>
-        </div>
-        <PlacesAutocomplete
-          onChange={this.handleChange}
-          value={address}
-          onSelect={this.handleSelect}
-          onError={this.handleError}
-          shouldFetchSuggestions={address.length > 2}
-        >
-          {({ getInputProps, suggestions, getSuggestionItemProps }) => {
-            return (
-              <div className="Demo__search-bar-container">
-                <div className="Demo__search-input-container">
-                  <input
-                    {...getInputProps({
-                      placeholder: 'Location',
-                      className: 'Demo__search-input',
-                    })}
-                  />
-                  {this.state.address.length > 0 && (
-                    <button
-                      className="Demo__clear-button"
-                      onClick={this.handleCloseClick}
-                    >
+          <PlacesAutocomplete
+            onChange={this.handleChange}
+            value={address}
+            onSelect={this.handleSelect}
+            onError={this.handleError}
+            shouldFetchSuggestions={address.length > 2}
+          >
+            {({ getInputProps, suggestions, getSuggestionItemProps }) => {
+              return (
+                <div className="Demo__search-bar-container">
+                  <div className="Demo__search-input-container">
+                    <input className="autocomplete"
+                      {...getInputProps({
+                        placeholder: 'Location',
+                        className: 'Demo__search-input',
+                      })}
+                    />
+                    {this.state.address.length > 0 && (
+                      <button
+                        className="Demo__clear-button"
+                        onClick={this.handleCloseClick}
+                      >
                       Reset
-                    </button>
-                  )}
-                </div>
-                {suggestions.length > 0 && (
-                  <div className="Demo__autocomplete-container">
-                    {suggestions.map(suggestion => {
-                      const className = classnames('Demo__suggestion-item', {
-                        'Demo__suggestion-item--active': suggestion.active,
-                      });
+                      </button>
+                    )}
+                  </div>
+                  {suggestions.length > 0 && (
+                    <div className="Demo__autocomplete-container">
+                      {suggestions.map(suggestion => {
+                        const className = classnames('Demo__suggestion-item', {
+                          'Demo__suggestion-item--active': suggestion.active,
+                        });
 
-                      return (
+                        return (
                         /* eslint-disable react/jsx-key */
-                        <div
-                          {...getSuggestionItemProps(suggestion, { className })}
-                        >
-                          <strong>
-                            {suggestion.formattedSuggestion.mainText}
-                          </strong>{' '}
-                          <small>
-                            {suggestion.formattedSuggestion.secondaryText}
-                          </small>
-                        </div>
-                      );
+                          <div
+                            {...getSuggestionItemProps(suggestion, { className })}
+                          >
+                            <strong>
+                              {suggestion.formattedSuggestion.mainText}
+                            </strong>{' '}
+                            <small>
+                              {suggestion.formattedSuggestion.secondaryText}
+                            </small>
+                          </div>
+                        );
                       /* eslint-enable react/jsx-key */
-                    })}
-                    <div className="Demo__dropdown-footer">
-                      <div>
+                      })}
+                      <div className="Demo__dropdown-footer">
+                        <div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )}
-              </div>
-            );
-          }}
-        </PlacesAutocomplete>
+                  )}
+                </div>
+              );
+            }}
+          </PlacesAutocomplete>
+        </div>
         {errorMessage.length > 0 && (
           <div className="Demo__error-message">{this.state.errorMessage}</div>
         )}
