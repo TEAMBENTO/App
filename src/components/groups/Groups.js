@@ -52,13 +52,25 @@ class Groups extends Component {
   };
 
   render() {
+    const categories = ['basketball', 'yoga', 'baseball', 'tennis', 'hiking', 'running', 'racquetball', 'frisbee', 'climbing', 'rafting', 'kayaking', 'swimming', 'golfing', 'football', 'ice hockey', 'volleyball', 'cross fit', 'softball', 'badminton', 'walking', 'chess', 'soccer'];
     const { groups, user } = this.props;
     const { redirect, newGroup } = this.state;
+
+    // const groupList = 
 
     if(redirect && newGroup) return <Redirect to={`/groups/${newGroup._id}`}/>;
 
     return (
       <div className = {styles.groups}>
+        <div>
+        <select onChange={this.handleSelect}>
+          <option>Activity</option>
+          {categories.map(category => <option key={category} value={category}>
+            {category}
+          </option>)
+          }
+        </select>
+        </div>
         {user && <GroupForm label="Add" onComplete={this.handleAdd}/>}
         <GroupList groups={groups}/>
       </div>
