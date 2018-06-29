@@ -42,23 +42,25 @@ class GroupDetail extends Component {
     const { loadGroup, loadEventsByGroup, match, user, queryProfile, loadUserProfile } = this.props;
     loadGroup(match.params.id)
       .then(({ payload }) => {
-        if(user._id.toString() === payload.captains[0].userId._id.toString()) {
+        if(user._id === payload.captains[0].userId._id) {
           this.setState({
             ...this.state,
             canEdit: true
           });
         }
+
         const isMember = payload.members.filter(member => member.userId._id === user._id);
-        console.log('MEMBER', isMember);
+
         if(isMember.length) {
           this.setState({
             ...this.state,
             nonMember: false
           });
         }
-        console.log(this.state);
       });
+
     loadEventsByGroup(match.params.id);
+
     queryProfile(user._id)
       .then(({ payload }) => {
         return loadUserProfile(payload[0]._id);
