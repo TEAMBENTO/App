@@ -8,6 +8,7 @@ import { loadUserProfile, queryProfile } from '../profile/actions';
 import { getEvents } from './reducers';
 import { getUser } from '../auth/reducers';
 import { getUserProfile } from '../profile/reducers';
+import { Redirect } from 'react-router-dom';
 
 const defaultFormState = {
   eventName: '',
@@ -41,6 +42,8 @@ class AddEvent extends React.Component {
       latitude: null,
       longitude: null,
       isGeocoding: false,
+      redirect: false,
+      newEvent: ''
     };
   }
 
@@ -94,7 +97,13 @@ class AddEvent extends React.Component {
         structuredData.group = [this.props.groupId];
       }
       console.log(structuredData);
-      this.props.addEvent(structuredData);
+      this.props.addEvent(structuredData)
+        .then(({ payload }) => {
+          this.setState({
+            redirect: true,
+            newEvent: payload
+          });
+        });
     }
   };
 
@@ -159,10 +168,14 @@ class AddEvent extends React.Component {
       latitude,
       longitude,
       isGeocoding,
+      redirect,
+      newEvent
     } = this.state;
 
 
     const { eventName, description, type, location, timeStart, timeEnd } = this.state.form;
+
+    if(redirect && newEvent) return <Redirect to={`/events/${newEvent._id}`}/>;
 
     return (
       <div>
