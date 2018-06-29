@@ -88,9 +88,9 @@ class Profile extends Component {
               {location ? <p>Location: {location}</p> : <p>Fill in your location!</p>}
               {activities ? <p>{activities}</p> : <p>No activities added</p>}
             </div>
-            <div className="events">
+            {events && <div className="events">
               {events.map(event => <div className="links" key={event._id}><Link className="profile-event" to={`/events/${event._id}`}>{event.name} </Link></div>)}
-            </div>
+            </div>}
           </div>
         </div>
 
