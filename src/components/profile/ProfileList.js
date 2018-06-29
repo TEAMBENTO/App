@@ -18,7 +18,7 @@ class ProfileList extends Component {
       return (
         <ul className={styles.profileList}>
           {profiles.map(profile => <Link key={profile._id} to={`/profile/${profile._id}`}>
-            {profile.image && <p><img src={profile.image}></img></p>}
+            <p>{profile.image ? <img src={profile.image}/> : <img src="https://harrell-remodeling.com/wp-content/uploads/2017/09/Person-placeholder.jpg"/>}</p>
           </Link>)}
         </ul>
       ); 
