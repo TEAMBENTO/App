@@ -194,7 +194,7 @@ class AddEvent extends React.Component {
           <h3>Create an Event</h3>
           <form onSubmit={this.handleSubmit}>
             <label>Event Name:</label>
-            <input type="text" name="eventName" value={eventName} onChange={this.handleFormChange}/>
+            <input type="text" name="eventName" value={eventName} onChange={this.handleFormChange} required />
             <label>Type of Activity:</label>
             <select onChange={this.handleTypeSelect}>
               <option>Activity</option>
@@ -204,9 +204,9 @@ class AddEvent extends React.Component {
               }
             </select>
             <label>Event Start:</label>
-            <input type="text" name="timeStart" value={timeStart} onChange={this.handleFormChange}/>
+            <input type="text" name="timeStart" value={timeStart} onChange={this.handleFormChange} required/>
             <label>Event End:</label>
-            <input type="text" name="timeEnd" value={timeEnd} onChange={this.handleFormChange}/>
+            <input type="text" name="timeEnd" value={timeEnd} onChange={this.handleFormChange} required/>
             <label>Location:</label>
             <PlacesAutocomplete
               onChange={this.handleChange}
@@ -265,7 +265,7 @@ class AddEvent extends React.Component {
               }}
             </PlacesAutocomplete>
             <label>Description:</label>
-            <textarea name="description" value={description} onChange={this.handleFormChange}/>
+            <textarea name="description" value={description} onChange={this.handleFormChange} required/>
             <button type="submit">{this.props.editing ? 'Update Your Event' : 'Create your Event'}</button>
           </form>
           
