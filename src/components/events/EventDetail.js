@@ -15,7 +15,9 @@ import ProfileList from '../profile/ProfileList';
 class EventDetail extends Component {
 
   state = {
-    editing: false
+    editing: false,
+    canEdit: false,
+    nonAttendee: true
   };
 
   static propTypes = {
@@ -48,18 +50,42 @@ class EventDetail extends Component {
   };
   
   componentDidMount() {
+    const { loadEvent, match } = this.props;
+    
+
     if(this.props.user !== null) {
       this.props.queryProfile(this.props.user._id)
         .then(({ payload }) => {
           return this.props.loadUserProfile(payload[0]._id);
+        })
+        .then(({ payload }) => {
+          loadEvent(match.params.id)
+            .then(event => {
+              if(payload._id === event.payload.host[0]._id) {
+                this.setState({
+                  ...this.state,
+                  canEdit: true
+                });
+              }
+              const isGoing = event.payload.attendance.filter(a => a._id === payload._id);
+              if(isGoing.length) {
+                this.setState({
+                  ...this.state,
+                  nonAttendee: false
+                });
+              }
+
+            });
         });
     }
-    this.props.loadEvent(this.props.match.params.id);
+    
+
+
   }
 
   render() {
     if(!this.props.singleEvent._id) return null;
-    const { editing } = this.state;
+    const { editing, canEdit, nonAttendee } = this.state;
     const { attendance, description, group, host, location, name, time, type, _id } = this.props.singleEvent;
 
     const { start, end } = time;
@@ -69,8 +95,10 @@ class EventDetail extends Component {
 
     return (
       <div>
-        <h2>{name}</h2>{editing || <button onClick={this.handleEdit}>✐</button>}
-        <button onClick={this.handleJoin}>Join</button>
+        <h2>{name}</h2>
+        {canEdit && <div>
+          {editing || <button onClick={this.handleEdit}>✐</button>} </div>}
+        {nonAttendee && <button onClick={this.handleJoin}>Join</button>}
         {editing && <AddEvent editing={editing} id={_id} />}
         {/* {host[0].userId.name ? <p>Hosted by: {host[0].userId.name} </p> : null} */}
         {group.length ? <p>Team: {group}</p> : null}
