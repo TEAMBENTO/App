@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getUserProfile } from '../profile/reducers';
 import PropTypes from 'prop-types';
-import './GroupForm.css';
+import styles from './GroupForm.css';
 
 const defaultState = {
   teamName: '',
@@ -73,7 +73,7 @@ class GroupForm extends Component {
     const { label, onCancel } = this.props;
 
     return (
-      <div id = "group-form"><form onSubmit={this.handleSubmit}>
+      <div className={styles.groupform}><form onSubmit={this.handleSubmit}>
         <input name="teamName" placeholder="Name" value={teamName} onChange={this.handleChange} required/>
         <select onChange={this.handleSelect}>
           <option>Activity</option>

@@ -13,6 +13,7 @@ import GroupForm from './GroupForm';
 import EventList from '../events/EventsList';
 import ProfileList from '../profile/ProfileList';
 import AddEvent from '../events/AddEvent';
+import styles from './GroupDetail.css';
 
 class GroupDetail extends Component {
 
@@ -98,7 +99,7 @@ class GroupDetail extends Component {
     if(!group.captains) return null;
 
     return (
-      <div>
+      <div className = {styles.groupdetail}>
         <h1>{teamName}</h1>
         <img src={image}/>
         <p>{description}</p>

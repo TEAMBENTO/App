@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styles from './GroupThumbnail.css';
 
 class GroupThumbnail extends Component {
 
@@ -12,7 +13,7 @@ class GroupThumbnail extends Component {
     const { teamName, image } = this.props;
 
     return (
-      <div id = "image-thumbnail">
+      <div className = {styles.groupthumb}>
         {image && <img src={image}/>}
         {teamName && <h1>{teamName}</h1>}
       </div>
