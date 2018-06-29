@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500i,800|Raleway:400,800');
+
+:local(.eventDetail) {
+  font-family: 'Raleway', sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  .styled {
+    font-style: italic; 
+  }
+  .heading {
+    font-weight: 600; 
+  }
+  p {
+    padding-left: 1rem;
+    padding-bottom: .5rem;
+  }
+  .attendance {
+    ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    }
+  }
+}
