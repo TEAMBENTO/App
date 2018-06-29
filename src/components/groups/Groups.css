@@ -7,11 +7,14 @@
     border-top-left-radius: 15%;
     margin: 0;
 
-    img {
+    #image-thumbnail {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        width:100%;
+        width: 100%;
+        border: black;
     }
+
+
 
 } 
