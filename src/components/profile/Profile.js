@@ -28,9 +28,9 @@ class Profile extends Component {
     };
 
     componentDidMount() {
-      const { id, userProfile, loadProfile, user } = this.props;
-      if(id === userProfile._id) loadProfile(userProfile._id);
-      loadProfile(id)
+      const { id, userProfile, loadProfile, user, match } = this.props;
+      if(match.params.id === userProfile._id) loadProfile(match.params.id);
+      loadProfile(match.params.id)
         .then(({ payload }) => {
           if(user._id === payload.userId._id) {
             this.setState({
@@ -74,16 +74,16 @@ class Profile extends Component {
           <h1>{userId.name}</h1>
           <div className="profile-image">{image ? <img src = {image}/> : <img src="https://harrell-remodeling.com/wp-content/uploads/2017/09/Person-placeholder.jpg"/>}</div>
           {canEdit && <div className="profile-edit">{editing || <button onClick={this.handleEdit}>Edit Profile</button>}</div>}
-          { editing &&
+          {editing &&
           <ProfileForm 
             label="update profile"
             profile={profile}
-            onComplete={updateProfile}
+            onComplete={this.handleUpdate}
             onCancel={this.handleCancel}
-          /> }
+          />}
           <div className="personal-div">
             <div className="personal-bio">
-              {bio ? <p>About me:   {bio}</p> : <p>No bio added, tell us about yourself!</p> }
+              {bio ? <p>About me:   {bio}</p> : <p>No bio added, tell us about yourself!</p>}
               {demographic ? <p>Gender: {demographic}</p> : <p>blank</p>}
               {location ? <p>Location: {location}</p> : <p>Fill in your location!</p>}
               {activities ? <p>{activities}</p> : <p>No activities added</p>}
