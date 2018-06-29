@@ -48,17 +48,19 @@ class GroupDetail extends Component {
             canEdit: true
           });
         }
+
         const isMember = payload.members.filter(member => member.userId._id === user._id);
-        console.log('MEMBER', isMember);
+
         if(isMember.length) {
           this.setState({
             ...this.state,
             nonMember: false
           });
         }
-        console.log(this.state);
       });
+
     loadEventsByGroup(match.params.id);
+    
     queryProfile(user._id)
       .then(({ payload }) => {
         return loadUserProfile(payload[0]._id);

@@ -11,7 +11,8 @@ import styles from './Profile.css';
 class Profile extends Component {
 
   state = {
-    editing: false
+    editing: false,
+    canEdit: false
   };
 
     static propTypes = {
@@ -27,8 +28,18 @@ class Profile extends Component {
     };
 
     componentDidMount() {
-      if(this.props.id === this.props.userProfile._id) this.props.loadProfile(this.props.userProfile._id);
-      this.props.loadProfile(this.props.id);
+      const { id, userProfile, loadProfile, user } = this.props;
+      if(id === userProfile._id) loadProfile(userProfile._id);
+      loadProfile(id)
+        .then(({ payload }) => {
+          if(user._id.toString() === payload.userId._id.toString()) {
+            this.setState({
+              ...this.state,
+              canEdit: true
+            });
+          }
+        });
+      
     }
 
     handleEdit = () => {
