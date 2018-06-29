@@ -33,13 +33,14 @@ class EventDetail extends Component {
   };
 
   handleJoin = () => {
-    const { singleEvent, userProfile, updateEventAttendants } = this.props;
+    const { singleEvent, userProfile, updateEventAttendants, loadEvent, match } = this.props;
     const profileIds = singleEvent.attendance.map(attendee => attendee._id);
     const updatedAttendants = {
       _id: this.props.singleEvent._id,
       attendance: [...profileIds, userProfile._id]
     };
-    updateEventAttendants(updatedAttendants);
+    updateEventAttendants(updatedAttendants)
+      .then(() => loadEvent(match.params.id));
   };
 
   handleEdit = () => {
