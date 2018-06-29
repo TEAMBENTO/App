@@ -32,23 +32,6 @@ describe('events reducer', () => {
     expect(state).toEqual([]);
   });
 
-  it('loads all events', () => {
-    const data = [{
-      type: 'soccer',
-      location: 'Portland',
-      description: 'were gonna play futball',
-      teamName: 'sneaky sneks',
-      private: 'false'
-    }];
-
-    const state = events([], {
-      type: EVENTS_LOAD,
-      payload: data
-    });
-
-    expect(state).toEqual(data);
-  });
-
   it('adds an event', () => {
     const data = {
       type: 'soccer',
