@@ -1,0 +1,20 @@
+:local(.groups) {
+
+    display: grid;
+    grid-template-rows: auto 1fr 1fr;
+    background-color: rgba(62, 172, 171, 0.5);
+    border-top-right-radius: 15%;
+    border-top-left-radius: 15%;
+    margin: 0;
+
+    #image-thumbnail {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        border: black;
+    }
+
+
+
+} 
