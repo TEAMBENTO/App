@@ -4,13 +4,15 @@
 
     display: grid;
     grid-template-rows: auto 1fr 50px 1fr;
-    background-color: rgba(138, 187, 179, 0.281);
+    background-color: #547a8248;
+    border-top: solid #547a82 .3rem;
     border-top-right-radius: 1rem;
     border-top-left-radius: 1rem;
     height: 100%;
     width:100%;
 
     h1 {
+        font-family: 'Magra', sans-serif;
         display: flex;
         flex-direction: row;
         justify-content: center;

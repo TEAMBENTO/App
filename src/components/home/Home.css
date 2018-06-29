@@ -1,7 +1,8 @@
-.background-image {
-    font-weight: bold;
-    padding: 0;
-    margin: 0;
+:local(.home) {
+    height: 30rem;
+
 }
+
+
 
 
