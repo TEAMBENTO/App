@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { loadProfiles, loadUserProfile, queryProfile } from './actions';
-import { getUser } from '../auth/reducers';
 import { Link } from 'react-router-dom';
-import { getProfiles, getUserProfile } from './reducers';
 
 class ProfileList extends Component {
 
