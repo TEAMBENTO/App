@@ -28,9 +28,9 @@ class Profile extends Component {
     };
 
     componentDidMount() {
-      const { id, userProfile, loadProfile, user } = this.props;
-      if(id === userProfile._id) loadProfile(userProfile._id);
-      loadProfile(id)
+      const { id, userProfile, loadProfile, user, match } = this.props;
+      if(match.params.id === userProfile._id) loadProfile(match.params.id);
+      loadProfile(match.params.id)
         .then(({ payload }) => {
           if(user._id === payload.userId._id) {
             this.setState({
@@ -78,7 +78,7 @@ class Profile extends Component {
           <ProfileForm 
             label="update profile"
             profile={profile}
-            onComplete={updateProfile}
+            onComplete={this.handleUpdate}
             onCancel={this.handleCancel}
           />}
           <div className="personal-div">
