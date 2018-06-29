@@ -25,6 +25,11 @@
         flex-direction: row;
         justify-content: center;
     }
+    
+    .personal-div {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
 
     .personal-bio {
         display: flex;
@@ -68,6 +73,21 @@
         overflow: hidden;
         align-content: center;
     
-    }  
+    }
+
+    .links {
+        padding-top: .8rem;
+        padding-left: .8rem;
+    }
+
+    .profile-event {
+        background-color: white;
+        border: solid black 1px;
+        margin-top: .8rem;
+        border-radius: 1rem;
+        padding-left: .8rem;
+        padding-right: .8rem;
+        font-family: 'Magra', sans-serif;
+    }
     
 }

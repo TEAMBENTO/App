@@ -54,10 +54,10 @@ class Profiles extends Component {
 
     return (
       <div className={styles.profiles} >
-        <div>
+        <div className="drop-down">
           <h3>Filter Profiles by Activity</h3>
           <select onChange={this.handleSelect}>
-            <option value="allActivities"> All Activity</option>
+            <option value="allActivities"> All Activities</option>
             {categories.map(category => <option key={category} value={category}>
               {category}
             </option>)
