@@ -53,9 +53,9 @@ class Groups extends Component {
   };
 
   handleSelect = ({ target }) => {
-    this.setState(({ edit }) => {
+    this.setState(() => {
       return {
-        ...edit,
+        ...this.state,
         filter: target.value
       };
     });
@@ -79,6 +79,7 @@ class Groups extends Component {
     return (
       <div className = {styles.groups}>
         <div>
+          <h3>Filter Groups by Activity</h3>
           <select onChange={this.handleSelect}>
             <option value="allActivities"> All Activity</option>
             {categories.map(category => <option key={category} value={category}>
