@@ -81,7 +81,7 @@ class Groups extends Component {
         <div>
           <h3>Filter Groups by Activity</h3>
           <select onChange={this.handleSelect}>
-            <option value="allActivities"> All Activity</option>
+            <option id ="activity" value="allActivities"> All Activity</option>
             {categories.map(category => <option key={category} value={category}>
               {category}
             </option>)
