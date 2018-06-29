@@ -6,7 +6,6 @@
     img {
         height: 60px;
     }   
-
     #logo {
       padding-top: .5rem;
       -webkit-transition: height .05s;
@@ -14,10 +13,9 @@
     }
 
     #logo:hover {
-      height: 80px;
       text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     }
-
+  
     text-align: center;
 
 

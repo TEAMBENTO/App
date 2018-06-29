@@ -2,6 +2,7 @@
 
     display: grid;
     background-color: rgba(38, 110, 98, 0.281);
+    border-top: solid #547a82 .3rem;
     border-top-right-radius: 1rem;
     border-top-left-radius: 1rem;
     border-top: 1rem;
@@ -15,5 +16,18 @@
         width: 100%;
         
     }
+
+
+    button {
+        height: 30px;
+        background-color:  rgba(0, 122, 92, 0.733);
+        color: white;
+        border: solid rgba(0, 122, 92, 0.733) 1px;
+        padding: .5rem;
+        border-radius: .5rem;
+        margin: 50px;
+    }
+
+  
 
 }
