@@ -1,7 +1,5 @@
+:local(.groupform) {
 
-
-@media(min-width: 376px) {
-    #image-thumbnail {
-        color: black;        
-    }
+    align-content: center;
+    
 }

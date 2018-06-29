@@ -59,8 +59,8 @@ class Groups extends Component {
 
     return (
       <div className = {styles.groups}>
-        {user && <GroupForm label="Add" onComplete={this.handleAdd}/>}
         <GroupList groups={groups}/>
+        {user && <GroupForm label="Add" onComplete={this.handleAdd}/>}
       </div>
     );
   }

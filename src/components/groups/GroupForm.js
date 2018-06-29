@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getUserProfile } from '../profile/reducers';
 import PropTypes from 'prop-types';
-import './GroupForm.css';
+import styles from './GroupForm.css';
 
 const defaultState = {
   teamName: '',
@@ -61,18 +61,20 @@ class GroupForm extends Component {
     const { label, onCancel } = this.props;
 
     return (
-      <div id = "group-form"><form onSubmit={this.handleSubmit}>
-        <input name="teamName" placeholder="Name" value={teamName} onChange={this.handleChange}/>
-        <input name="type" placeholder="Activity" value={type} onChange={this.handleChange}/>
-        <input name="image" placeholder="Image" value={image} onChange={this.handleChange}/>
-        <textarea name="description" placeholder="Description" value={description} onChange={this.handleChange}/>
-        <label>
+      <div className = {styles.groupform}>
+        <div id = "group-form"><form onSubmit={this.handleSubmit}>
+          <input name="teamName" placeholder="Name" value={teamName} onChange={this.handleChange}/>
+          <input name="type" placeholder="Activity" value={type} onChange={this.handleChange}/>
+          <input name="image" placeholder="Image" value={image} onChange={this.handleChange}/>
+          <textarea name="description" placeholder="Description" value={description} onChange={this.handleChange}/>
+          <label>
           Private
-          <input name="private" type="checkbox" onChange={this.handleChange}/>
-        </label>
-        <button type="submit">{label}</button>
-        {onCancel && <button type="reset" onClick={onCancel}>Cancel</button>}
-      </form>
+            <input name="private" type="checkbox" onChange={this.handleChange}/>
+          </label>
+          <button type="submit">{label}</button>
+          {onCancel && <button type="reset" onClick={onCancel}>Cancel</button>}
+        </form>
+        </div>
       </div>
     );
   }
