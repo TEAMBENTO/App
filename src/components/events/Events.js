@@ -36,12 +36,6 @@ class Events extends Component {
     this.props.loadEvents();
   }
 
-  state = {
-    portland: {
-      lat: 45.51,
-      lng: -122.65
-    }
-  };
 
   render() {
     const { events } = this.props;
@@ -59,7 +53,7 @@ class Events extends Component {
         <Switch>
           <Route exact path={'/events/list'} render={() => {return <EventsList events={events}/>;}} />
           <Route path={'/events/new'} render={() => {return <AddEvent/>;}} />
-          <Route path={'/events/map'} render={() => {return <MapContainer defaultCoords={this.state.portland} events={events}/>;}} />
+          <Route path={'/events/map'} render={() => {return <MapContainer events={events}/>;}} />
           <Route exact path="/events/:id" component={EventDetail}/>
           <Redirect to="/events/map"/>
         </Switch>

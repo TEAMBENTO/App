@@ -59,4 +59,4 @@ This is app is live running on heroku servers https://rally-alchemy.herokuapp.co
 This project is licensed under the MIT LICENSE - please see our LICENSE.md file.
 
 **Acknowledgments:**
-Thankyou Andrew, Charly, and Marty for all the help along the way.
+Special thanks to Alchemy Code Lab 
