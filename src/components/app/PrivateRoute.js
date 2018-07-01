@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { getUser } from '../auth/reducers';
 import { Route, Redirect } from 'react-router-dom';
 
+/*eslint-disable react/prop-types */
+
 const PrivateRoute = ({ user, component: Component, render, ...rest }) => {
   
   return <Route {...rest} render={props => {
