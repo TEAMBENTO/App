@@ -55,12 +55,6 @@ class Profile extends Component {
       this.setState({ editing: false });
     };
 
-    // componentDidUpdate(prevProps) {
-    //   if(this.props.profile !== prevProps.profile) {
-    //     this.fetchData(this.props.profile);
-    //   }
-    // }
-
     render() {
 
       const { editing, canEdit } = this.state;

@@ -13,7 +13,6 @@ import { loadUserProfile, queryProfile } from '../profile/actions';
 import { getUser } from '../auth/reducers';
 import styles from './Events.css';
 
-
 class Events extends Component {
 
   static propTypes = {

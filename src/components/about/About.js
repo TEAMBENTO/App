@@ -6,8 +6,6 @@ import { loadUserProfile, queryProfile } from '../profile/actions';
 import { getUser } from '../auth/reducers';
 import styles from './About.css';
 import { GithubCircleIcon } from 'mdi-react';
-// import steph from '../../../assets/Steph.jpg';
-// import Henry from '../../../assets/Henry.jpg';
 
 class About extends PureComponent {
 

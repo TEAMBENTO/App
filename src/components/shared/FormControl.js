@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import styles from './FormControl.css';
+// import styles from './FormControl.css';
 
 class FormControl extends PureComponent {
 
@@ -13,7 +13,8 @@ class FormControl extends PureComponent {
     const { label, children } = this.props;
 
     return (
-      <div className={styles['form-control']}>
+      // <div className={styles['form-control']}>
+      <div>
         { label && <label>{label}:</label> }
         <div className="control">
           {children}

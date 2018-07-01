@@ -9,7 +9,6 @@ class EventListItem extends Component {
     event: PropTypes.object.isRequired
   };
 
-
   render() {
     const { event } = this.props;
     const { description, location, name, time, type, _id } = event;

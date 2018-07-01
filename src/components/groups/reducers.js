@@ -15,13 +15,6 @@ export function groups(state = [], { type, payload }) {
     case GROUP_ADD: {
       return [...state, payload];
     }
-    // case GROUP_UPDATE: {
-    //   const copy = state;
-    //   const updatedGroups = copy.map(group => {
-    //     if(group._id === payload._id) group = payload;
-    //   });
-    //   return updatedGroups;
-    // }
     default:
       return state;
   }

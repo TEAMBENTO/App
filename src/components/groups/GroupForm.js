@@ -42,7 +42,6 @@ class GroupForm extends Component {
           [target.name]: target.value,
           captains: [this.props.userProfile._id],
           members: [this.props.userProfile._id],
-          // private: target.checked ? true : false
         }
       };
     });
@@ -84,10 +83,6 @@ class GroupForm extends Component {
         </select>
         <input name="image" placeholder="Image" value={image} onChange={this.handleChange} required/>
         <textarea name="description" placeholder="Description" value={description} onChange={this.handleChange} required/>
-        {/* <label>
-          Private
-          <input name="private" type="checkbox" onChange={this.handleChange}/>
-        </label> */}
         <button type="submit">{label}</button>
         {onCancel && <button type="reset" onClick={onCancel}>Cancel</button>}
       </form>
