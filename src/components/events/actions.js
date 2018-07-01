@@ -1,4 +1,4 @@
-import { EVENTS_LOAD, EVENT_ADD, EVENT_LOAD, EVENT_UPDATE, EVENT_REMOVE } from './reducers';
+import { EVENTS_LOAD, EVENT_ADD, EVENT_LOAD, EVENT_UPDATE } from './reducers';
 import { getAllEvents, getEventById, postEvent, putEvent, deleteEvent, getEventByGroup, putEventAttendants } from '../../services/api';
 
 export function loadEvents() {

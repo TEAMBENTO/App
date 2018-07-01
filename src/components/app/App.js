@@ -28,11 +28,9 @@ class App extends PureComponent {
     this.props.tryLoadUser();
   }
 
-
   render() {
 
     const { checkedAuth } = this.props;
-
 
     return (
       <Router>
@@ -52,9 +50,6 @@ class App extends PureComponent {
             </Switch>
             }
           </main>
-          {/* <Error/>
-          <Loading/> */}
-          {/* <footer className = "foot"><p id = "foot-type">&copy; 2018 TEAMBENTO</p></footer> */}
         </div>
       </Router>
     );
