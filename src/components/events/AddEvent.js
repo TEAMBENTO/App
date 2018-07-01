@@ -85,11 +85,9 @@ class AddEvent extends React.Component {
         end: new Date(formData.timeEnd)
       }
     };
-    // console.log('profile', this.props.userProfile);
-    // console.log(structuredData);
+
     if(this.props.editing) {
       structuredData._id = this.props.id;
-      // console.log('structured data', structuredData);
       this.props.updateEvent(structuredData);
     } else {
       structuredData.host = [this.props.userProfile._id];
@@ -97,7 +95,6 @@ class AddEvent extends React.Component {
       if(this.props.groupId) {
         structuredData.group = [this.props.groupId];
       }
-      console.log(structuredData);
       this.props.addEvent(structuredData)
         .then(({ payload }) => {
           this.setState({
@@ -107,7 +104,6 @@ class AddEvent extends React.Component {
         });
     }
   };
-
 
   handleFormChange = ({ target }) => {
     this.setState(({ form }) => {
@@ -184,7 +180,7 @@ class AddEvent extends React.Component {
     } = this.state;
 
     const categories = ['basketball', 'yoga', 'baseball', 'tennis', 'hiking', 'running', 'racquetball', 'frisbee', 'climbing', 'rafting', 'kayaking', 'swimming', 'golfing', 'football', 'ice hockey', 'volleyball', 'cross fit', 'softball', 'badminton', 'walking', 'chess', 'soccer'];
-    const { eventName, description, location, timeStart, timeEnd } = this.state.form;
+    const { eventName, description, timeStart, timeEnd } = this.state.form;
 
     if(redirect && newEvent) return <Redirect to={`/events/${newEvent._id}`}/>;
 
@@ -279,7 +275,7 @@ class AddEvent extends React.Component {
             <h3 className="geocode-result-header">Your location has been updated</h3>
             {isGeocoding ? (
               <div>
-                <i className="fa fa-spinner fa-pulse fa-3x fa-fw spinner" />
+                <p>Loading...</p>
               </div>
             ) : (
               <div>
@@ -295,7 +291,6 @@ class AddEvent extends React.Component {
     );
   }
 }
-
 
 export default connect(
   state => ({ 

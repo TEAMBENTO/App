@@ -16,8 +16,8 @@ export class MapContainer extends Component {
     selectedPlace: {},
     fields: {
       location: {
-        lat: 45.51,
-        lng: -122.65
+        lat: 45.5231,
+        lng: -122.6814
       }
     }
   };
@@ -57,7 +57,7 @@ export class MapContainer extends Component {
     };
   }
 
-  onMarkerClick = (props, marker, e) =>
+  onMarkerClick = (props, marker) =>
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
@@ -73,11 +73,9 @@ export class MapContainer extends Component {
     }
   };
 
-
   render() {
 
     const { events } = this.props;
-    const { attendance, name, description, group, host, location, time, type, _id } = events;
 
     return (
       <Map google={this.props.google}

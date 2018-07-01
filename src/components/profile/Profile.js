@@ -28,7 +28,7 @@ class Profile extends Component {
     };
 
     componentDidMount() {
-      const { id, userProfile, loadProfile, user, match } = this.props;
+      const { userProfile, loadProfile, user, match } = this.props;
       if(match.params.id === userProfile._id) loadProfile(match.params.id);
       loadProfile(match.params.id)
         .then(({ payload }) => {

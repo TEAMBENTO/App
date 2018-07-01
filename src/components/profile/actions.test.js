@@ -8,7 +8,6 @@ jest.mock('../../services/api', () => ({
 import { loadProfile, loadProfiles, addProfile, updateProfile } from './actions';
 import { PROFILE_LOAD, PROFILES_LOAD, PROFILE_ADD, PROFILE_UPDATE } from './reducers';
 import { getAllProfiles, getProfileById, postProfile, putProfile } from '../../services/api';
-import { GROUP_UPDATE } from '../groups/reducers';
 
 
 describe('profile action tests', ()=> {

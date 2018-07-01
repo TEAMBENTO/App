@@ -1,6 +1,5 @@
 import { USER_AUTH, LOGOUT, CHECKED_AUTH, USER_LOAD } from './reducers';
 import { PROFILE_LOGOUT, USER_PROFILE_LOGOUT } from '../profile/reducers';
-import { loadUserProfile, queryProfile } from '../profile/actions';
 import { verifyUser, getUserProfile } from '../../services/api';
 import { getStoredUser, clearStoredUser } from '../../services/request';
 
