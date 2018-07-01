@@ -14,7 +14,6 @@ import { getUser } from '../auth/reducers';
 import styles from './Events.css';
 
 
-
 class Events extends Component {
 
   static propTypes = {
@@ -36,7 +35,6 @@ class Events extends Component {
     this.props.loadEvents();
   }
 
-
   render() {
     const { events } = this.props;
     if(!events) return null;
@@ -57,7 +55,6 @@ class Events extends Component {
           <Route exact path="/events/:id" component={EventDetail}/>
           <Redirect to="/events/map"/>
         </Switch>
-        
       </div>
     );
   } 
