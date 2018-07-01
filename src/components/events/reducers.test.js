@@ -1,7 +1,6 @@
 import {
   events,
   singleEvent,
-  EVENTS_LOAD,
   EVENT_ADD,
   EVENT_UPDATE,
   EVENT_REMOVE,

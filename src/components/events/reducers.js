@@ -10,7 +10,7 @@ export const getSingleEvent = state => state.singleEvent;
 export function events(state = [], { type, payload }) {
   switch(type) {
     case EVENTS_LOAD: {
-      return payload.filter(ev => (new Date (ev.time.end) > Date.now()));;
+      return payload.filter(ev => (new Date (ev.time.end) > Date.now()));
     }
     case EVENT_ADD: {
       return [...state, payload];

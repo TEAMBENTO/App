@@ -7,7 +7,6 @@ import AddEvent from './AddEvent';
 import { getUserProfile } from '../profile/reducers';
 import { loadUserProfile, queryProfile } from '../profile/actions';
 import { getUser } from '../auth/reducers';
-import { Link } from 'react-router-dom';
 import ProfileList from '../profile/ProfileList';
 import styles from './EventDetail.css';
 
@@ -88,7 +87,7 @@ class EventDetail extends Component {
   render() {
     if(!this.props.singleEvent._id) return null;
     const { editing, canEdit, nonAttendee } = this.state;
-    const { attendance, description, group, host, location, name, time, type, _id } = this.props.singleEvent;
+    const { attendance, description, location, name, time, type, _id } = this.props.singleEvent;
 
     const { start, end } = time;
 
@@ -102,8 +101,6 @@ class EventDetail extends Component {
           {editing || <button onClick={this.handleEdit}>✐</button>} </div>}
         {nonAttendee && <button onClick={this.handleJoin}>Join</button>}
         {editing && <AddEvent editing={editing} id={_id} />}
-        {/* {host[0].userId.name ? <p>Hosted by: {host[0].userId.name} </p> : null} */}
-        {/* {group.length ? <p>Team: {group}</p> : null} */}
         <p><span className="heading">Activity: </span>{type}</p>
         <p><span className="heading">Description: </span>{description}</p>
         <p><span className="heading">Address: </span>{location.name}</p>
