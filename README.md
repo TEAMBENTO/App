@@ -14,11 +14,11 @@ Our app uses NodeJS packages, all dependencies are listed in our package.json so
 
 Run
 
-`npm i`
+    npm i
 
 then
 
-`npm start`
+    npm start
 
 View the accomponying back-end server repo [here](https://github.com/TEAMBENTO/Server)
 
