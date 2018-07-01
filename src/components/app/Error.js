@@ -4,7 +4,6 @@ import { getError } from './reducers';
 import { clearError } from './actions';
 import PropTypes from 'prop-types';
 
-
 class Error extends Component {
 
   static propTypes = {

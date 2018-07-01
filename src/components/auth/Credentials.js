@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { loadUser } from '../auth/actions';
 import { addProfile, loadProfile, queryProfile, loadUserProfile } from '../profile/actions';
 import styles from './Credentials.css';
 import FormControl from '../shared/FormControl';
@@ -15,7 +14,6 @@ class Credentials extends PureComponent {
     loadProfile: PropTypes.func.isRequired,
     queryProfile: PropTypes.func.isRequired,
     loadUserProfile: PropTypes.func.isRequired,
-    // loadUser: PropTypes.func.isRequired,
     allowName: PropTypes.bool
   };
 

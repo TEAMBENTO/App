@@ -7,7 +7,6 @@ import { loadUserProfile, queryProfile } from '../profile/actions';
 import { getUser } from '../auth/reducers';
 import styles from './EventsList.css';
 
-
 class EventsList extends Component {
 
   static propTypes = {

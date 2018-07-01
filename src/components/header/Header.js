@@ -6,8 +6,6 @@ import { getUser } from '../auth/reducers';
 import { logout, profLogout, userProfLogout } from '../auth/actions';
 import styles from './Header.css';
 import { getUserProfile } from '../profile/reducers';
-// import logo from '../../../assets/RallyLogo_noback.png';
-// import { HomeIcon, ImageFilterIcon, ImageOutlineIcon, HelpIcon } from 'mdi-react';
 
 class Header extends Component {
 

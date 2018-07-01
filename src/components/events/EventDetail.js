@@ -10,8 +10,6 @@ import { getUser } from '../auth/reducers';
 import ProfileList from '../profile/ProfileList';
 import styles from './EventDetail.css';
 
-
-
 class EventDetail extends Component {
 
   state = {
@@ -53,7 +51,6 @@ class EventDetail extends Component {
   componentDidMount() {
     const { loadEvent, match } = this.props;
     
-
     if(this.props.user !== null) {
       this.props.queryProfile(this.props.user._id)
         .then(({ payload }) => {
