@@ -46,6 +46,7 @@ class EventsList extends Component {
   };
 
   render() {
+    // need to put these in one place! not repeat over and over
     const categories = ['basketball', 'yoga', 'baseball', 'tennis', 'hiking', 'running', 'racquetball', 'frisbee', 'climbing', 'rafting', 'kayaking', 'swimming', 'golfing', 'football', 'ice hockey', 'volleyball', 'cross fit', 'softball', 'badminton', 'walking', 'chess', 'soccer'];
     const { events } = this.props;
     const { filter } = this.state;

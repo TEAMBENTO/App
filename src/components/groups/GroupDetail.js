@@ -76,8 +76,9 @@ class GroupDetail extends Component {
   };
 
   handleUpdate = data => {
-    this.props.updateGroup(data);
-    this.setState({ editing: false });
+    this.props.updateGroup(data)
+      // wait till action succeeds or fails:
+      .then(() => this.setState({ editing: false }));
   };
 
   handleJoin = () => {

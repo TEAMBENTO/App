@@ -10,6 +10,7 @@ export const getSingleEvent = state => state.singleEvent;
 export function events(state = [], { type, payload }) {
   switch(type) {
     case EVENTS_LOAD: {
+      // why not filter these on the server?
       return payload.filter(ev => (new Date (ev.time.end) > Date.now()));
     }
     case EVENT_ADD: {
@@ -19,6 +20,7 @@ export function events(state = [], { type, payload }) {
       return state.map(event => event._id === payload._id ? payload : event);
     }
     case EVENT_REMOVE: {
+      // probably need to check id
       return state.filter(event => event !== payload);
     }
     default:
