@@ -48,6 +48,7 @@ class AddEvent extends React.Component {
     };
   }
 
+  // this seems to be called a lot from a lot of places
   componentDidMount() {
     if(this.props.user !== null) {
       this.props.queryProfile(this.props.user._id)

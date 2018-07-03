@@ -23,7 +23,7 @@ export class MapContainer extends Component {
   };
 
   async componentDidMount() {
-    const { lat, lng } = await this.getcurrentLocation();
+    const { lat, lng } = await this.getCurrentLocation();
     this.setState(prev => ({
       fields: {
         ...prev.fields,
@@ -39,7 +39,7 @@ export class MapContainer extends Component {
     }));
   }
 
-  getcurrentLocation() {
+  getCurrentLocation() {
     if(navigator && navigator.geolocation) {
       return new Promise((resolve) => {
         navigator.geolocation.getCurrentPosition(pos => {
@@ -51,10 +51,10 @@ export class MapContainer extends Component {
         });
       });
     }
-    return {
+    return Promise.resolve({
       lat: 0,
       lng: 0
-    };
+    });
   }
 
   onMarkerClick = (props, marker) =>

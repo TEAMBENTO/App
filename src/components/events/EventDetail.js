@@ -59,16 +59,18 @@ class EventDetail extends Component {
         .then(({ payload }) => {
           loadEvent(match.params.id)
             .then(event => {
+              // Both of these pieces of info can be derived from props,
+              // don't need to put in state.
               if(payload._id === event.payload.host[0]._id) {
                 this.setState({
-                  ...this.state,
+                  // setState can take just the keys it is updating
+                  // ...this.state,
                   canEdit: true
                 });
               }
               const isGoing = event.payload.attendance.filter(a => a._id === payload._id);
               if(isGoing.length) {
                 this.setState({
-                  ...this.state,
                   nonAttendee: false
                 });
               }

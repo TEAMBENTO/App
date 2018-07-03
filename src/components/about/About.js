@@ -16,6 +16,8 @@ class About extends PureComponent {
     userProfile: PropTypes.object
   };
 
+  // Seems odd that the About component would load user info.
+  // Why not App?
   componentDidMount() {
     if(this.props.user !== null) {
       this.props.queryProfile(this.props.user._id)
